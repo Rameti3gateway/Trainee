@@ -40,8 +40,8 @@ return [
         'redirect' =>'http://localhost:8000/site/login/facebook/callback'
     ],
     'google' => [
-        'client_id' => '261991818437-fpmvjc88lkl4e4qmgfpjpp9dl3f6o513.apps.googleusercontent.com',        
-        'client_secret' => 'Y7WV5v4aD_eH1UAFPecnLrDi', 
+        'client_id' => '266891001278-r819pt5augk1u0mu6f47u3kg2ppnhnb2.apps.googleusercontent.com',        
+        'client_secret' => 'Benjwa2EO7hXftqnG2NPStQc', 
         'redirect' =>'http://localhost:8000/site/login/google/callback'
     ],
 
