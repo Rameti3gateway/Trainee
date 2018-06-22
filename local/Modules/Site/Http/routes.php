@@ -4,10 +4,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
 {
     // Route::get('/', 'SiteController@index');
     Route::get('/', function () {
-    return view('site::trainee-welcome.Trainee');
+        return view('site::trainee-welcome.Trainee');
     });
+    //  Route::get('/home', function () {
+    //     return view('site::login-after.home');
+    // });
     Route::get('password/reset','ResetPasswordController@index');
     Route::post('password/reset/ok','ResetPasswordController@create');
+    Route::get('/home','HomeController@index');
 
     //facebook Auth
     Route::get('login/facebook', 'FacebookAuthController@redirectTofacebook');

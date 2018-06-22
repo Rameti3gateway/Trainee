@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('site::layouts.app')
    <style>
             body{
               
@@ -6,7 +6,7 @@
             }
             section{
                 /*background-color: white;*/
-                color: white;
+                /* color: white; */
             }
            .top-right {
                 position: absolute;
@@ -69,7 +69,8 @@
     <section> 
         <div class="container cr">  
         <hr>   
-            <img src="{{url('img/classroom.png')}}">      
+            <img src="{{url('/storage/image/classroom.png')}}"> 
+            <h4>     
             <h1>Welcome To Site</h1>
             <h5>Something short and leading about the
                 collection below—its contents, 
@@ -87,14 +88,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <div>
-                    <img src="{{url('img/user.png')}}">
-                    @php
-                        $id =  Auth::user()->id;
-                        $url = "users/$id";
-                    @endphp 
-                    <h3>
-                        <a href="{{url($url)}}">Profile.</a>
-                    </h3>
+                    <img src="{{url('/local/storage/image/classroom.png')}}">
+                    <h3><a>Profile.</a></h3>
                 </div>
             </div>       
             <div class="col-lg-6">
