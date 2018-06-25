@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class SiteController extends Controller
+class CheckinCheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('site::index');
+        return view('site::Login-after.checkinout');
     }
 
     /**

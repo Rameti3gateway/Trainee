@@ -1,4 +1,5 @@
-@extends('site::layouts.app')
+@extends('layouts.app')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -6,10 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ 'BlogController@update',$profile->id }}">
                         {{ csrf_field() }}
-                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -25,6 +28,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
+
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -46,17 +50,17 @@
                                 <button href="#" class="btn btn-primary btn-block mb-2 btn-lg">
                                       Login
                                 </button>                           
-                                <a class="btn btn-primary btn-block" href="{{ url('site/login/facebook') }}" >
+                                <a class="btn btn-primary btn-block" href="{{ url('login/facebook') }}" >
                                     <span class="fa fa-facebook"></span> Sign in with Facebook
                                 </a>
-                                <a href="{{ url('site/login/google') }}" class="btn btn-danger btn-block">
+                                <a href="{{ url('login/google') }}" class="btn btn-danger btn-block">
                                     <span class="fa fa-google "></span> Sign in with Google
                                </a>                                     
-                               <a class="btn btn-link " href="{{url('site/password/reset')}}">
+                               <a class="btn btn-link " href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
-                        </div>                      
+                        </div>
                     </form>
                 </div>
             </div>

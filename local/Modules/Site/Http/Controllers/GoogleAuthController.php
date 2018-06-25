@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Socialite;
+use App\Services\SocialGoogleAccountService;
 class GoogleAuthController extends Controller
 {
       //Auth google
@@ -19,10 +20,11 @@ class GoogleAuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handlegoogleCallback()
+    public function handlegoogleCallback(SocialGoogleAccountService $service)
     {
-        $user = Socialite::driver('google')->stateless()->user();
-        dd($user);
-        // $user->token;
+        $user = $service->createOrGetUser(Socialite::driver('google')->user());
+         auth()->login($user);    
+        return redirect()->to('site/home');
+        //dd($user);      
     }
 }

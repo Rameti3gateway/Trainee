@@ -1,23 +1,18 @@
 @extends('site::layouts.app')
    <style>
-            body{
-              
-                background-image: url('img/bg.jpg');
+            #t{              
+               background-image: url('/storage/image/bg.jpg');
+               /* background-color: black; */
             }
-            section{
-                /*background-color: white;*/
-                /* color: white; */
-            }
+          
            .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
             .content {
                 text-align: center;
             }
-
             .title {
                 font-size: 60px;
             }
@@ -34,11 +29,11 @@
                  width: 120px;
                  height: 120px;
             } 
-            .cr{                
+            .welcome-site{                
                 text-align: center;                
                 margin-bottom: 5%              
             }
-            .cc{
+            .detial-home{
                 text-align: center;
                 margin-top: 5%;
             }
@@ -48,64 +43,68 @@
             
             /*hover*/ 
    </style>
-@section('content')
-    <script>
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML =
-            h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
-        }
-        function checkTime(i) {
-            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
-    <section> 
-        <div class="container cr">  
+@section('content')    
+    <section class="container welcome-site "> 
+        <div>
         <hr>   
             <img src="{{url('/storage/image/classroom.png')}}"> 
-            <h4>     
-            <h1>Welcome To Site</h1>
+            <h1  class="jumbotron">Welcome To Site</h1>
             <h5>Something short and leading about the
                 collection below—its contents, 
             the creator, etc. Make it short and sweet,
              but not too short so folks don't 
-            simply skip over it entirely.</h5>
-             <p>Time :<?php echo date("d-m-Y");?></p>
-            <span id="txt">
-               
-           </span>
+            simply skip over it entirely.</h5>           
+            <p id="txt"></p>
         <hr>   
          </div>   
     </section>         
-    <div class="container cc">
-        <div class="row">
-            <div class="col-lg-6">
-                <div>
-                    <img src="{{url('/local/storage/image/classroom.png')}}">
-                    <h3><a>Profile.</a></h3>
-                </div>
-            </div>       
-            <div class="col-lg-6">
-                <div>
-                    <img src="{{url('img/todo.png')}}">
-                    <h3><a href="#">Task list</a></h3>
-                </div>
-            </div>  
+    <div class="container detial-home">
+        <div class="row">            
+            <div class="col-md-6">
+                <img src="{{url('/storage/image/user.png')}}">
+                 @php
+                 
+                        $id =  Auth::user()->id;
+                        $url = "site/users/$id";                     
+                 @endphp 
+                <h3>
+                    <a href="{{url($url)}}">Profile</a>
+                </h3>
+            </div>
+            <div class="col-md-6">
+                <img src="{{url('/storage/image/todo.png')}}">
+                <h3><a href="#">Task list</a></h3>
+            </div>           
         </div>       
         <div class="row">
             <div class="col">
                 <div>
-                   <img src="{{url('img/ch.png')}}">
-                    <h3><a href="#">Checkin-checkout</a></h3>
+                   <img src="{{url('/storage/image/check.png')}}">
+                        @php                    
+                            $id =  Auth::user()->id;
+                            $url1 = "site/users/$id/checkinout";                     
+                        @endphp 
+                     <h3><a href="{{url($url1)}}">Checkin-checkout</a></h3>                    
                 </div>
             </div> 
         </div>                
-    </div>
+    </div>    
+ <!-- time -->
+<script type="text/javascript">
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+</script>    
 @endsection

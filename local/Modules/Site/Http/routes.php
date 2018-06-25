@@ -6,8 +6,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
     Route::get('/', function () {
         return view('site::trainee-welcome.Trainee');
     });
-    //  Route::get('/home', function () {
-    //     return view('site::login-after.home');
+    //  Route::get('/users/{id}', function () {
+    //     return view('site::blog.show');
     // });
     Route::get('password/reset','ResetPasswordController@index');
     Route::post('password/reset/ok','ResetPasswordController@create');
@@ -23,5 +23,24 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
     // google Auth
     Route::get('login/google', 'GoogleAuthController@redirectTogoogle');
     Route::get('login/google/callback', 'GoogleAuthController@handlegoogleCallback');
-    
+
+    //show edit update
+    Route::prefix('/users')->group(function(){
+        Route::get('/{id}','BlogController@show');
+        Route::get('/{id}/edit','BlogController@edit');
+        Route::post('/{id}','BlogController@update');
+        Route::get('/{id}/checkinout','CheckinCheckoutController@index');
+
+        Route::get('/{id}/todolist', 'TodolistController@index');
+        Route::post('/{id}/todolist/task','TodolistController@store');
+        Route::post('/{task}/todolist/delete/{id}','TodolistController@destroy');
+        Route::post('/{id}/todolist/choose','TodolistController@show');
+    });
+    //admin
+Route::prefix('/admin')->group(function(){
+	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submitt');
+	Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    });
 });
+
