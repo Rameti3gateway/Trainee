@@ -1,6 +1,13 @@
 @extends('site::layouts.app')
+<style>
+    .login-form{
+        animation-duration: 1s;
+        animation-delay:0.1s;
+    }
+            	
+</style>
 @section('content')
-<div class="container">
+<div class="container login-form animated ZoomIn">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

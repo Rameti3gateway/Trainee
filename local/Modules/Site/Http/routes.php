@@ -30,11 +30,13 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::get('/{id}/edit','BlogController@edit');
         Route::post('/{id}','BlogController@update');
         Route::get('/{id}/checkinout','CheckinCheckoutController@index');
+        Route::post('/{id}/checkinout/check','CheckinCheckoutController@sep');
 
         Route::get('/{id}/todolist', 'TodolistController@index');
         Route::post('/{id}/todolist/task','TodolistController@store');
         Route::post('/{task}/todolist/delete/{id}','TodolistController@destroy');
         Route::post('/{id}/todolist/choose','TodolistController@show');
+    
     });
     //admin
 Route::prefix('/admin')->group(function(){

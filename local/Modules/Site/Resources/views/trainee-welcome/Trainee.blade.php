@@ -4,18 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome Trainee System</title>
 
-    <title>Laravel</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Styles -->
     <style>
             html, body {
-
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #808080;
+                color: #fff;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -43,7 +41,9 @@
             }
 
             .content {
-                text-align: center;
+                text-align: center;              
+                animation-duration: 2s;
+                animation-delay:0.1s;	
             }
 
             .title {
@@ -51,7 +51,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -64,7 +64,7 @@
                 margin-bottom: 30px;
             }  
 
-</style>
+    </style>
 </head>
 <body>
     <div class="flex-center position-ref full-height">
@@ -78,22 +78,22 @@
             @endif
         </div>
         @endif
-
-        <div class="content">
-            <div class="title m-b-md">
-                 System Trainee 
+        <div class="content animated fadeInUp">
+            <div class=" title m-b-md">
+                 Trainee System
          </div>
-
          <div class="links">
             @if (Auth::check())
-            <a href="https://laravel.com/docs">Profile</a>
-            <a href="https://laracasts.com">Checkin-Checkout</a>
-            <a href="https://laravel-news.com">To do list</a>
+            <a href="site/home">Welcome</a>   
+            <h3>*---------------------*</h3>
+                    <h5>i3gateway</h5>
+                    <h6>digital agency</h6>
+                <h3>*---------------------*</h3>         
             @else
-                <p>*---------------------*</p>
-                <h6>i3gateway</h6>
-                <h6>digital agency</h6>
-                <p>*---------------------*</p>
+                <h3>*---------------------*</h3>
+                    <h5>i3gateway</h5>
+                    <h6>digital agency</h6>
+                <h3>*---------------------*</h3>
             @endif
         </div>
     </div>

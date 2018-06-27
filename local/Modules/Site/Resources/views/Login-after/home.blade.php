@@ -1,94 +1,71 @@
 @extends('site::layouts.app')
    <style>
-            #t{              
-               background-image: url('/storage/image/bg.jpg');
-               /* background-color: black; */
-            }
-          
-           .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .content {
+           .content {
                 text-align: center;
-            }
-            .title {
-                font-size: 60px;
-            }
-            .links > a {
-                color: #000;
-                padding: 0 25px;
-                font-size: 20px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+            }            
+        
             img{
                  width: 120px;
                  height: 120px;
             } 
+
             .welcome-site{                
-                text-align: center;                
-                margin-bottom: 5%              
+                text-align: center;                               
             }
+          .welcome-site .class-room{
+                animation-duration: 2s;
+                animation-delay:0.1s;
+           }
             .detial-home{
-                text-align: center;
-                margin-top: 5%;
-            }
-            h1{
-            color: red;
-            }
-            
-            /*hover*/ 
+                text-align: center;                 
+            }                      
    </style>
-@section('content')    
-    <section class="container welcome-site "> 
-        <div>
-        <hr>   
-            <img src="{{url('/storage/image/classroom.png')}}"> 
-            <h1  class="jumbotron">Welcome To Site</h1>
-            <h5>Something short and leading about the
-                collection below—its contents, 
-            the creator, etc. Make it short and sweet,
-             but not too short so folks don't 
-            simply skip over it entirely.</h5>           
-            <p id="txt"></p>
-        <hr>   
-         </div>   
-    </section>         
+@section('content')   
+<div class="bg-body">   
+        <div class="jumbotron welcome-site ">
+            <div class="container class-room animated zoomIn">
+                <img src="{{url('/storage/image/classroom.png')}}"> 
+                <h2>
+                    @php
+                            $name =  Auth::user()->name;   
+                            echo "Welcome ".$name;                 
+                    @endphp
+                </h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex alias aut earum laboriosam neque. Culpa quia quidem expedita sint nisi nihil nostrum officiis ratione! Laborum aspernatur at non dolor voluptas?</p>
+                 <p id="txt"></p>                                        
+            </div>
+         </div>    
     <div class="container detial-home">
         <div class="row">            
-            <div class="col-md-6">
-                <img src="{{url('/storage/image/user.png')}}">
-                 @php
-                 
+            <div class="col-md-6 animated slideInUp">
+                 @php                 
                         $id =  Auth::user()->id;
                         $url = "site/users/$id";                     
                  @endphp 
-                <h3>
-                    <a href="{{url($url)}}">Profile</a>
-                </h3>
+                <a href="{{url($url)}}"><img src="{{url('/storage/image/user.png')}}"></a>
+                <h3><a href="{{url($url)}}">Profile</a></h3>
             </div>
-            <div class="col-md-6">
-                <img src="{{url('/storage/image/todo.png')}}">
-                <h3><a href="#">Task list</a></h3>
+            <div class="col-md-6 animated slideInUp">
+                  @php                 
+                        $id =  Auth::user()->id;
+                        $urltasklist = "site/users/$id/todolist";                     
+                 @endphp 
+               <a href="{{url($urltasklist)}}"><img src="{{url('/storage/image/todo.png')}}"></a> 
+                <h3><a href="{{url($urltasklist)}}">Task list</a></h3>
             </div>           
         </div>       
         <div class="row">
-            <div class="col">
-                <div>
-                   <img src="{{url('/storage/image/check.png')}}">
-                        @php                    
-                            $id =  Auth::user()->id;
-                            $url1 = "site/users/$id/checkinout";                     
-                        @endphp 
-                     <h3><a href="{{url($url1)}}">Checkin-checkout</a></h3>                    
-                </div>
+            <div class="col animated slideInDown">                
+                @php                    
+                    $id =  Auth::user()->id;
+                    $urlch = "site/users/$id/checkinout";                     
+                @endphp 
+                <a href="{{url($urlch)}}"><img src="{{url('/storage/image/check.png')}}"></a>                        
+                <h3><a href="{{url($urlch)}}">Checkin-checkout</a></h3>  
             </div> 
         </div>                
     </div>    
+</div>   
  <!-- time -->
 <script type="text/javascript">
     function startTime() {
