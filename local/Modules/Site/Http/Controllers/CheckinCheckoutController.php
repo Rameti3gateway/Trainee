@@ -16,8 +16,11 @@ class CheckinCheckoutController extends Controller
      */
     public function index()
     {
-        // echo "TTT";
-        return view('site::Login-after.checkinout');
+        $acss = array('../assets/site/css/home/checkinout/checkinout.css');
+        $this->data = array(
+            'style' => $acss
+        );       
+        return view('site::Login-after.checkinout',$this->data);
     }
 
     /**

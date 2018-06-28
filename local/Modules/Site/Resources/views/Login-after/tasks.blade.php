@@ -1,8 +1,5 @@
 @extends('site::layouts.app')
-
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script type="text/javascript">
     $.ajaxSetup({
       headers: {
@@ -57,32 +54,22 @@
                     }else{
                         $("#displaytask").empty();
                     }
-
                 }
             });
-
-
         });
         $( "#addtasks" ).click(function() {
           $( "#addtaskform" ).submit(function(data){
              alert(data.data.detail);
           });
-        });
-        
-
-
-
-    });
-          
-
+        });   
+    }); 
 </script>
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                New Task
+               Task
             </div>
-
             <div class="panel-body">
                 <!-- Display Validation Errors -->
                 
@@ -92,30 +79,24 @@
                 @endphp 
 
                 <!-- New Task Form -->
-                <!-- action="http://localhost:8080/users/<?php /*echo Auth::user()->id; */?>/todolist/task" method="post"  -->
                 <form action="http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/todolist/task" method="post" class="form-horizontal" id="addtaskform">
                     {{ csrf_field() }}
-
                     <!-- Task Name -->
                     <div  class="form-group">
-                        <label for="detail" class="col-sm-3 control-label">Task</label>
-
+                         {{ Form::label('Task','',['class' => 'col-sm-3 control-label'])}}                        
                         <div class="col-sm-6">
-                            <input type="text" name="detail" id="detail" class="form-control" >
+                            {{Form::text('detail','',['class'=>'form-control'])}}                           
                         </div>
                     </div>
-                    <div class="form-group">
-
-                        <div class="col-sm-6">
+                    <div class="form-group">                        
+                        <div class="col-sm-6 col-sm-offset-3">
                             {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}
                         </div>
                     </div>
 
-
-
                     <!-- Add Task Button -->
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-6">
+                        <div class="col-sm-4 col-sm-offset-7">
                             <button type="submit" class="btn btn-default" id="addtasks"  >
                                 <i class="fa fa-btn fa-plus"></i>Add Task
                             </button>
@@ -131,7 +112,7 @@
     <!-- Current Tasks -->
     <div  id="displaytask">
         @if (count($tasks) )
-        <div class="panel panel-default">
+        <div class="panel panel-default ">
             <div class="panel-heading">
                 Current Tasks 
             </div>
@@ -141,26 +122,31 @@
                         <th>Task</th>
                         <th>&nbsp;</th>
                     </thead>
-                    <tbody id="choosedate" >
+                    <tbody id="choosedate" class="animated zoomIn" >
                         @foreach ($tasks as $task) 
                         <tr id="{{'trid-'.$task->id}}" > 
                             <td class="table-text" id="choosedate">
                                 <div>{{ $task->detail }}</div>
                             </td>
                             <td> 
-                              <!-- <form action="{{ url('/users/'.$task->id.'/todolist/delete/'.$task->user_id) }}" method="post"> -->
+                            <!-- <form action="{{ url('/users/'.$task->id.'/todolist/delete/'.$task->user_id) }}" method="post"> -->
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  value="{{$task->id}}">
-                                    <i class="fa fa-btn fa-trash"></i>Delete
-                                </button>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary" id=""  value="">
+                                        <i class="fa fa-btn fa-trash"></i>Edit
+                                    </button>
+                                    <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  value="{{$task->id}}">
+                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                    </button>
+                                </div>                               
 
-                               <script type="text/javascript">
+                            <script type="text/javascript">
                                 $.ajaxSetup({
-                                      headers: {
+                                    headers: {
                                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                                     }
                                 });
-                               $(function($){
+                            $(function($){
                                     $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
                                         // alert($("#deletebutton-"+<?php echo $task->id ?>).val());
                                         $.ajax({
@@ -178,22 +164,15 @@
                                             }
                                         })
                                     });
-                               });
-                               </script>
-
-                            <!-- </form> -->
-                        </td> 
-                    </tr> 
-                    @endforeach  
-                </div>
+                            });
+                            </script>
+                            </td> 
+                        </tr> 
+                        @endforeach  
+                
             </tbody>
         </table> 
     </div> 
 </div> 
-@endif 
-</div>
-
-
-</div>
-</div>
+        @endif      
 @endsection

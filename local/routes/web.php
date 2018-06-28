@@ -17,5 +17,6 @@
 Route::get('/', function () {
     return redirect('/site');
 });
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

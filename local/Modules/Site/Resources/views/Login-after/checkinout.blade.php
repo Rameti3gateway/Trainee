@@ -1,21 +1,11 @@
 @extends('site::layouts.app')
-<style type="text/css">
-       .checkinout{
-           margin-top:150px;
-           margin-bottom:100px;
-       }
-       .btn-circle.btn-xl {
-            width: 300px;
-            height: 300px;
-            padding: 10px 16px;
-            border-radius: 150px;
-            font-size: 30px;
-            line-height: 1.33;
-        }        
-    </style>
+    @if(isset($style))
+        @foreach($style as $css)
+                {{ Html::style(( $css ))}}
+        @endforeach
+    @endif
 @section('content')
-<body>
-    <div class="container text-center ">
+    <div class="container text-center checkinout-main animated zoomIn">
         <h1 class="text-center text-success checkinout">CheckIN-CheckOut</h1>
         <h3><a href="{{url('site/home')}}">Back To Home</a></h3>
         <div class="row">
@@ -63,7 +53,5 @@
              });
          });
         });
-    </script>
-
-<body>
+    </script>    
 @endsection
