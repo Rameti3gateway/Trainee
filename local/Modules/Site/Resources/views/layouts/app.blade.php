@@ -22,7 +22,7 @@
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
        
  </head>
-<body onload="startTime()">   
+<body class="bg-body"onload="startTime()">   
     <nav class="navbar-inverse">
         <div class="container">
             <div class="navbar-header">  

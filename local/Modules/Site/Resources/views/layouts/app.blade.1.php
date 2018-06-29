@@ -66,7 +66,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>    
      @yield('content')
     <!-- Scripts -->  
     <script src="{{ asset('js/app.js') }}"></script>   
