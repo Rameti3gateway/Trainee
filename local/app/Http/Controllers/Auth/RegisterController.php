@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/regiss';
+    protected $redirectTo = '/site/home';
 
     /**
      * Create a new controller instance.
@@ -68,14 +68,14 @@ class RegisterController extends Controller
         // random new name
         $new_image_name = 'img_'.uniqid().".".$ext;
         // $image_path = "../profile-image/" ;
-        $image_public_path = "../public/img/profile-image/";
+        $image_assets_path = "../assets/site/img/profile-image/";
         // $upload_path = $image_path.$new_image_name;
-        $upload_public_path = $image_public_path.$new_image_name;
+        $upload_assets_path = $image_assets_path.$new_image_name;
         // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
-        $public_success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_public_path);
-        if($public_success==FALSE){
+        $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_assets_path);
+        if($success==FALSE){            
             // echo $upload_path;
-            echo $upload_public_path;
+            echo $upload_assets_path;
             exit();
         }
         $pro_image = $new_image_name;

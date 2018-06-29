@@ -37,7 +37,7 @@
                             $("#deletebutton-"+value.id).click(function(){
                                 $.ajax({
                                     'type':'POST',
-                                    'url':"http://localhost:8080/users/"+value.id+"/todolist/delete/"+value.user_id,
+                                    'url':"http://localhost/Laravel/Trainee/local/site/users/"+value.id+"/todolist/delete/"+value.user_id,
                                     'cache':false,
                                     'data':{data:value.id,date:$("#selectdate").val()},
                                     'success':function(data){
