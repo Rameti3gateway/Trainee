@@ -64,21 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $ext = pathinfo(basename($_FILES['image']['name']) ,PATHINFO_EXTENSION);
-        // random new name
-        $new_image_name = 'img_'.uniqid().".".$ext;
-        // $image_path = "../profile-image/" ;
-        $image_assets_path = "../assets/site/img/profile-image/";
-        // $upload_path = $image_path.$new_image_name;
-        $upload_assets_path = $image_assets_path.$new_image_name;
-        // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
-        $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_assets_path);
-        if($success==FALSE){            
-            // echo $upload_path;
-            echo $upload_assets_path;
-            exit();
-        }
-        $pro_image = $new_image_name;
+        $photoName = 'user_'.uniqid().'_'.time().'.'.$data['image']->getClientOriginalExtension();
+        $data['image']->move('../assets/site/img/profile-image/user-image', $photoName);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -87,7 +74,7 @@ class RegisterController extends Controller
             'university' => $data['university'],
             'major' => $data['major'],
             'password' => bcrypt($data['password']),
-            'image' => $new_image_name,
+            'image' => $photoName,
             'role'=>'user',
             'type' => 'general',
             'faculty'=>$data['faculty'],

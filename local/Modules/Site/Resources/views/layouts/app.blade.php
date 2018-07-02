@@ -14,6 +14,7 @@
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
     {{ Html::script(('../assets/site/js/app.js')) }}    
+    {{ Html::script(('../assets/site/bower_components/chart.js/dist/Chart.js')) }}    
        
     <!-- Styles home -->    
     

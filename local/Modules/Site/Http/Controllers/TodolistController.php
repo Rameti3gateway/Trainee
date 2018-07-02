@@ -154,12 +154,9 @@ class TodolistController extends Controller
         
         $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 
-        return view('site::Login-after.tasks',$data);
-        // return response()->json(['data'=>$query,'Content-Type' => 'text/html']);
-        // echo "555555";
-        // exit();
-        // return ['data', $query];
-
+        $url = "/site/users/$id/todolist";
+        return redirect($url);
+        
         
         
     }
