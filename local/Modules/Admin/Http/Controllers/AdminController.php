@@ -195,6 +195,21 @@ class AdminController extends Controller
         return view('admin::createnewadmin');
     }
     public function createnewadminprocess(Request $request,$id){
+        $ext = pathinfo(basename($_FILES['image']['name']) ,PATHINFO_EXTENSION);
+        // random new name
+        $new_image_name = 'img_'.uniqid().".".$ext;
+        // $image_path = "../profile-image/" ;
+        $image_assets_path = "../assets/site/img/profile-image/";
+        // $upload_path = $image_path.$new_image_name;
+        $upload_assets_path = $image_assets_path.$new_image_name;
+        // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
+        $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_assets_path);
+        if($success==FALSE){            
+            // echo $upload_path;
+            echo $upload_assets_path;
+            exit();
+        }
+        $pro_image = $new_image_name;
 
         $newadmin = new User;
         $newadmin->name = $request->name;
@@ -202,10 +217,9 @@ class AdminController extends Controller
         $newadmin->email = $request->email;
         $newadmin->gender = $request->gender;
         $newadmin->birt_date = $request->birt_date;
-        $newadmin->university = $request->university;
-        $newadmin->faculty = $request->faculty;
-        $newadmin->major = $request->major;
+       
         $newadmin->password = bcrypt($request->password) ;
+
         $newadmin->role = "admin";
         $newadmin->type = "general" ;
         $newadmin->save();

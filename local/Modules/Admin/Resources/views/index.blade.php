@@ -1,4 +1,5 @@
-@extends('admin::layouts.app')
+@extends('site::layouts.app')
+
 <style type="text/css">
    .checkinout{
        margin-top:150px;

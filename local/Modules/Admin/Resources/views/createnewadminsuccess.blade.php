@@ -1,4 +1,5 @@
-@extends('admin::layouts.app')
+@extends('site::layouts.app')
+
 @section('content')
 <div class="container register-form animated ZoomIn">
     <div class="row">

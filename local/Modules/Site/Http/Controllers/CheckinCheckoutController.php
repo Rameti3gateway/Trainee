@@ -90,7 +90,7 @@ class CheckinCheckoutController extends Controller
         
         $checkin = new Times;
         // $checkin->date = $current->toDateString();
-        $checkin->date = "2018-07-5";
+        $checkin->date = "2018-07-8";
         $checkin->user_id = $id;
         $checkin->time_checkin = $current;
         $checkin->save();
@@ -106,7 +106,7 @@ class CheckinCheckoutController extends Controller
         $current = Carbon::now();
         $checkout = new Times;
         // $checkout->date = $current->toDateString();
-        $checkout->date = "2018-07-5";
+        $checkout->date = "2018-07-8";
         $checkout->user_id = $id;
         $checkout->time_checkout = $current;
         $checkout->save();

@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'university' => $data['university'],
             'major' => $data['major'],
             'password' => bcrypt($data['password']),
-            'image' => $data['image'],
+            'image' => $new_image_name,
             'role'=>'user',
             'type' => 'general',
             'faculty'=>$data['faculty'],

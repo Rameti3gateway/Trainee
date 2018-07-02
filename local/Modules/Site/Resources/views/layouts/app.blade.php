@@ -13,7 +13,7 @@
     <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}   -->
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
-    {{ Html::script(('../assets/site/js/app.js')) }}
+    {{ Html::script(('../assets/site/js/app.js')) }}    
        
     <!-- Styles home -->    
     
@@ -41,6 +41,7 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('site/login') }}">Login</a></li>
                         <li><a href="{{ url('site/register') }}">Register</a></li>
+                        <li><a href="{{ url('admin/login') }}">Admin</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -70,5 +71,7 @@
     <!-- Scripts -->  
     <!-- {{ Html::script(('../assets/site/js/app.js')) }}     -->
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
 </body>
 </html>
