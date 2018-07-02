@@ -90,6 +90,16 @@ class TodolistController extends Controller
         
 
     }
+    public function edittodolist($id,$taskid,$data){
+        $task = Tasks::find($taskid);
+        $task->detail = $data;
+        $task->save();
+
+        return response()->json(['tasks' => $task->detail ]);
+        
+
+        
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -153,8 +163,11 @@ class TodolistController extends Controller
         $data['recentdate']= $task->date;
         
         $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
-
-        return view('site::Login-after.tasks',$data);
+        
+        $url = "site/users/$id/todolist";           
+        // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
+        return redirect($url);
+        // return view('site::Login-after.tasks',$data);
         // return response()->json(['data'=>$query,'Content-Type' => 'text/html']);
         // echo "555555";
         // exit();

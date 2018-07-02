@@ -13,6 +13,7 @@ use App\Admin;
 use Khill\Lavacharts\Lavacharts;
 use Lava;
 use Chart;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -195,46 +196,66 @@ class AdminController extends Controller
         return view('admin::createnewadmin');
     }
     public function createnewadminprocess(Request $request,$id){
-        $ext = pathinfo(basename($_FILES['image']['name']) ,PATHINFO_EXTENSION);
+        
+        $ext = pathinfo(basename($_FILES['pro_image']['name']) ,PATHINFO_EXTENSION);
         // random new name
         $new_image_name = 'img_'.uniqid().".".$ext;
         // $image_path = "../profile-image/" ;
-        $image_assets_path = "../assets/site/img/profile-image/";
-        // $upload_path = $image_path.$new_image_name;
-        $upload_assets_path = $image_assets_path.$new_image_name;
-        // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
-        $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_assets_path);
-        if($success==FALSE){            
-            // echo $upload_path;
-            echo $upload_assets_path;
+        if(Input::hasFile('file')){
+            $file=Input::file('file');
+            $file->move('../assets/site/img/admin-image/',$file->getClientOriginalName());
+            echo $file->getClientOriginalName();
             exit();
+        }else{
+            echo "fail";
         }
-        $pro_image = $new_image_name;
+        // $image_assets_path = "../assets/site/img/admin-image/";
+        // // $upload_path = $image_path.$new_image_name;
+        // $upload_assets_path = $image_assets_path.$new_image_name;
+        // // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
+        // $success = move_uploaded_file($_FILES['pro_image']['tmp_name'],$upload_assets_path);
+        // // if($success==FALSE){            
+        // //     // echo $upload_path;
+        // //     echo $upload_assets_path;
+        // //     exit();
+        // // }else{
+        // //     echo $success;
+        // //     exit();
 
-        $newadmin = new User;
-        $newadmin->name = $request->name;
-        $newadmin->id_card = $request->id_card;
-        $newadmin->email = $request->email;
-        $newadmin->gender = $request->gender;
-        $newadmin->birt_date = $request->birt_date;
-       
-        $newadmin->password = bcrypt($request->password) ;
+        // // }
+        // if($success){
+        //     $newadmin = new User;
+        //     $newadmin->name = $request->name;
+        //     $newadmin->id_card = $request->id_card;
+        //     $newadmin->email = $request->email;
+        //     $newadmin->gender = $request->gender;
+        //     $newadmin->birt_date = $request->birt_date;
+        
+        //     $newadmin->password = bcrypt($request->password) ;
+        //     $newadmin->image = $new_image_name;
+        //     $newadmin->role = "admin";
+        //     $newadmin->type = "general" ;
+        //     $newadmin->save();
 
-        $newadmin->role = "admin";
-        $newadmin->type = "general" ;
-        $newadmin->save();
+        //     $admin = new Admin;
+        //     $admin->user_id = $newadmin->id;
+        //     $admin->name = $newadmin->name;
+        //     $admin->email = $newadmin->email;
+        //     $admin->role = $newadmin->role;
+        //     $admin->password = $newadmin->password;
+        //     $admin->save();
 
-        $admin = new Admin;
-        $admin->user_id = $newadmin->id;
-        $admin->name = $newadmin->name;
-        $admin->email = $newadmin->email;
-        $admin->role = $newadmin->role;
-        $admin->password = $newadmin->password;
-        $admin->save();
+        //     return view('admin::createnewadminsuccess');
 
-        return view('admin::createnewadminsuccess');
+        // }else{
+        //     echo $image_assets_path;
+        //     echo $upload_assets_path ;
+        //     echo $success;
+        //     exit();
+        // }
+        
 
-        // $newadmin->image = $request->image;
+        
 
 
     }

@@ -85,7 +85,7 @@
                     <div  class="form-group">
                          {{ Form::label('Task','',['class' => 'col-sm-3 control-label'])}}                        
                         <div class="col-sm-6">
-                            {{Form::text('detail','',['class'=>'form-control'])}}                           
+                            {{Form::text('detail','',['class'=>'form-control','value'=>''])}}                           
                         </div>
                     </div>
                     <div class="form-group">                        
@@ -125,16 +125,17 @@
                     <tbody id="choosedate" class="animated zoomIn" >
                         @foreach ($tasks as $task) 
                         <tr id="{{'trid-'.$task->id}}" > 
-                            <td class="table-text" id="choosedate">
-                                <div>{{ $task->detail }}</div>
+                            <td class="table-text" " value="{{$task->detail}}">
+                                <div id="detail-{{$task->id}}">{{ $task->detail }}</div>
                             </td>
                             <td> 
                             <!-- <form action="{{ url('/users/'.$task->id.'/todolist/delete/'.$task->user_id) }}" method="post"> -->
                                 {{ csrf_field() }}
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-primary" id=""  value="">
+                                    <button type="submit" class="btn btn-primary" id="edit-{{$task->id}}"  value="">
                                         <i class="fa fa-btn fa-trash"></i>Edit
                                     </button>
+                                    
                                     <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  value="{{$task->id}}">
                                         <i class="fa fa-btn fa-trash"></i>Delete
                                     </button>
@@ -147,6 +148,37 @@
                                     }
                                 });
                             $(function($){
+                                
+                                    $("#edit-{{$task->id}}").click(function(){
+                                        swal({
+                                            title:'Edit To do list',
+                                            html:'<input id="input-{{$task->id}}" class="swal2-input" ">' ,
+                                            // inputValue:"{{$task->detail}}",
+                                            // inputId:"input-{{$task->id}}",
+                                            // input:'text',
+                                            // inputValue:"{{$task->detail}}",
+                                            showCancelButton: true,
+                                            
+                                            inputValidator: (value) => {
+                                                return 'You need to write something!'
+                                            },
+                                            preConfirm: (input)=>{
+                                                return fetch("http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->user_id ?>+"/todolist/edittodolist/"+<?php echo $task->id ?>+"/"+$("#input-{{$task->id}}").val())
+                                                .then(response=>{
+                                                   return response.json();
+                                                })                                                
+                                            }
+                                            
+                                        }).then((result)=>{
+                                           
+                                            
+                                            $("#detail-{{$task->id}}").html(result.value.tasks);
+                                            
+                                        })
+                                            
+                                        
+                                        
+                                    })
                                     $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
                                         // alert($("#deletebutton-"+<?php echo $task->id ?>).val());
                                         $.ajax({

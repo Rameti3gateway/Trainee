@@ -116,7 +116,8 @@
                         <div class="form-group">
                             <label for="image" class="col-md-4 control-label">Upload Image</label>
                             <div class="col-md-6">
-                                {{Form::file('image', null)}}
+                                <input type="file" name="pro_image" />
+                                <!-- {{Form::file('image', null)}} -->
                             </div>
                             
                         </div>

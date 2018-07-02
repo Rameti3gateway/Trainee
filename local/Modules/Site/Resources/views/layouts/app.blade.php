@@ -14,6 +14,8 @@
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
     {{ Html::script(('../assets/site/js/app.js')) }}    
+    {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js'))}}
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
        
     <!-- Styles home -->    
     
