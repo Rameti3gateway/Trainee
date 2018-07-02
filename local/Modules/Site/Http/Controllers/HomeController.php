@@ -14,6 +14,11 @@ class HomeController extends Controller
     }
     public function index()
     {
-        return view('site::login-after.home');
+        //Styles home 
+        $acss = array('../assets/site/css/home/home.css');
+        $this->data = array(
+            'style' => $acss
+        );       
+        return view('site::login-after.home',$this->data);
     }
 }

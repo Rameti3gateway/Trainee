@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+       
 </head>
 <body onload="startTime()">   
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -65,7 +66,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>    
      @yield('content')
     <!-- Scripts -->  
     <script src="{{ asset('js/app.js') }}"></script>   

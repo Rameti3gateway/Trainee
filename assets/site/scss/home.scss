@@ -1,0 +1,38 @@
+.home-main-content{  
+    text-align: center; 
+    
+    img{
+        width: 120px;
+        height: 120px;
+    } 
+    .welcome-site{                
+        text-align: center;                               
+    }
+    .detial-home{
+        text-align: center;          
+    }   
+    
+    //animated.css
+   
+}
+{
+    box-sizing: border-box;
+}
+
+.zoom {
+    padding: 50px;
+    background-color: green;
+    transition: transform .2s;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+
+
+                  

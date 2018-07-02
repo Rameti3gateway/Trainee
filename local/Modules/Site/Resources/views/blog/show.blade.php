@@ -1,6 +1,6 @@
 @extends('site::layouts.app')
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid  animated zoomIn">
     <div class="row">
         <div class="col-md-6">
             <!-- <div class="container">

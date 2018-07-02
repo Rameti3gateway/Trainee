@@ -1,40 +1,102 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-    <title>Jumbotron Template for Bootstrap</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
-  </head>
-  <body>
-    <main role="main">
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
+    <title> @yield('title')</title>
+    
+    <!-- Styles -->
+    <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}   -->
+    {{ Html::style(('../assets/site/css/themes/app.css')) }}
+    <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
+    {{ Html::script(('../assets/site/js/app.js')) }}
+       
+    <!-- Styles home -->    
+    
+
+    <!-- Styles-->
+    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
+
+    <link rel="stylesheet" href="../assets/site/welcometemplete/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/site/welcometemplete/css/animate.min.css">
+
+  	<link rel="stylesheet" href="../assets/site/welcometemplete/css/et-line-font.css">
+	<link rel="stylesheet" href="../assets/site/welcometemplete/css/font-awesome.min.css">
+
+  	<link rel="stylesheet" href="../assets/site/welcometemplete/css/vegas.min.css">
+	<link rel="stylesheet" href="../assets/site/welcometemplete/css/style.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Rajdhani:400,500,700' rel='stylesheet' type='text/css'>
+    
+       
+ </head>
+<body> 
+     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
-          <h1 class="display-3">Welcome Name</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        </div>
-      </div>    
-      </div> <!-- /container -->
-    </main>
-    @yield('content')
-    <footer class="container">
-      <p>&copy; Company 2017</p>
-    </footer>
+            <div class="navbar-header">
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/site') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+            </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-  </body>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('site/login') }}">Login</a></li>
+                        <li><a href="{{ url('site/register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>       
+      @yield('content')  
+        <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <!-- javscript js -->
+    <script src="../assets/site/welcometemplete/js/jquery.js"></script>
+    <!-- <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script> -->
+    <script src="../assets/site/welcometemplete/js/vegas.min.js"></script>
+
+    <script src="../assets/site/welcometemplete/js/wow.min.js"></script>
+    <script src="../assets/site/welcometemplete/js/smoothscroll.js"></script>
+    <script src="../assets/site/welcometemplete/js/custom.js"></script>  
+</body>
 </html>

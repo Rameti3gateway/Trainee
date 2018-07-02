@@ -1,0 +1,22 @@
+{
+  "name": "assets",
+  "homepage": "https://github.com/Rameti3gateway/Trainee",
+  "authors": [
+    "Ramet <Ramet.i3gateway@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "animate.css": "^3.5.2",
+    "jquery": "^3.3.1"
+  }
+}
