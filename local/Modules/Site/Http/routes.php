@@ -36,8 +36,13 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::post('/{id}/todolist/task','TodolistController@store');
         Route::post('/{task}/todolist/delete/{id}','TodolistController@destroy');
         Route::post('/{id}/todolist/choose','TodolistController@show');
+        Route::get('/{id}/todolist/{taskid}/edittodolist/{input}','TodolistController@edittodolist');
+
+        Route::get('/{id}/report','TodolistController@PDFController');
     
     });
+    
+    
     //admin
 // Route::prefix('/admin')->group(function(){
 // 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
