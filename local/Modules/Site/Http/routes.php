@@ -47,4 +47,5 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
 // 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
 //     });
 });
+//test commit
 

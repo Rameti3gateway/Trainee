@@ -9,6 +9,7 @@ use App\Tasks;
 use App\Times;
 use Auth;
 use Carbon\Carbon;
+date_default_timezone_set("Asia/Bangkok");
 class TodolistController extends Controller
 {  /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class TodolistController extends Controller
             return redirect('/home');
 
         }else{
-            date_default_timezone_set("Asia/Bangkok");
+           
             $mydate = date('Y-m-d');
             $id = Auth::user()->id;
             //check in only
@@ -163,6 +164,7 @@ class TodolistController extends Controller
         $data['recentdate']= $task->date;
         
         $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
+<<<<<<< HEAD
         
         $url = "site/users/$id/todolist";           
         // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
@@ -173,6 +175,12 @@ class TodolistController extends Controller
         // exit();
         // return ['data', $query];
 
+=======
+
+        $url = "/site/users/$id/todolist";
+        return redirect($url);
+        
+>>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
         
         
     }

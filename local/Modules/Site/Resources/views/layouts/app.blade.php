@@ -10,14 +10,36 @@
     <title> @yield('title')</title>
 
     <!-- Styles -->
-    <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}   -->
+    <style>
+        .floating-menu {
+            padding: 5px;
+            margin-top: 150px;
+            margin-left:120px;
+            position: fixed;
+            z-index: 10;
+            top: 100px;
+            left: 0;
+        }
+        
+    </style>
+    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}  
+    {{--  {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    --}}
+     
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
-    <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
+    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
     {{ Html::script(('../assets/site/js/app.js')) }}    
+<<<<<<< HEAD
     {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js'))}}
     <!-- <script src="sweetalert2.all.min.js"></script> -->
+=======
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
+   
+>>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
        
     <!-- Styles home -->    
+   
+ 
+   
     
 
     <!-- Styles-->
@@ -70,10 +92,10 @@
     <div class="contrianer">
          @yield('content')         
     </div>   
-    <!-- Scripts -->  
-    <!-- {{ Html::script(('../assets/site/js/app.js')) }}     -->
-    <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
+   
+    {{--  {{ Html::script(('../assets/site/js/app.js')) }}  
+    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }} 
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}  --}}
 </body>
 </html>

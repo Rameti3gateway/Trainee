@@ -13,7 +13,7 @@ use App\Admin;
 use Khill\Lavacharts\Lavacharts;
 use Lava;
 use Chart;
-use Illuminate\Support\Facades\Input;
+
 
 class AdminController extends Controller
 {
@@ -46,13 +46,6 @@ class AdminController extends Controller
         $data['choosedate']->prepend("choosedate");
 
         $queryweek = Times::select('date')->where('user_id','=',$userid)->groupBy('date')->get()->groupBy(function($date){return Carbon::parse($date->date)->format('W');});
-        // $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W');});
-        
-        // $arr = [];
-        // foreach ($qw as $key => $value) {
-        //     $interval = $value[0]."=>".$value[count($value)-1];
-        //     $arr["w".$key] = $interval;
-        // }
         $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m');});
         foreach ($qw as $key => $value) {
             $month = Carbon::parse($value[0])->format('F');

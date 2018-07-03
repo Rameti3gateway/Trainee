@@ -4,8 +4,8 @@
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-    }
-});
+        }
+    });
     $(function($){
         $('body').on('change','#selectdate',function(){
 
@@ -64,6 +64,7 @@
         });   
     }); 
 </script>
+
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
@@ -85,12 +86,16 @@
                     <div  class="form-group">
                          {{ Form::label('Task','',['class' => 'col-sm-3 control-label'])}}                        
                         <div class="col-sm-6">
+<<<<<<< HEAD
                             {{Form::text('detail','',['class'=>'form-control','value'=>''])}}                           
+=======
+                        {{Form::text('detail','',['class'=>'form-control'])}}                           
+>>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
                         </div>
                     </div>
                     <div class="form-group">                        
                         <div class="col-sm-6 col-sm-offset-3">
-                            {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}
+                        {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}
                         </div>
                     </div>
 
@@ -105,7 +110,7 @@
 
                 </form>
 
-            </form>
+           
         </div>
     </div>    
 
@@ -113,9 +118,7 @@
     <div  id="displaytask">
         @if (count($tasks) )
         <div class="panel panel-default ">
-            <div class="panel-heading">
-                Current Tasks 
-            </div>
+            <div class="panel-heading">Current Tasks </div>
             <div class="panel-body">
                 <table class="table table-striped task-table">
                     <thead>
@@ -147,6 +150,7 @@
                                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                                     }
                                 });
+<<<<<<< HEAD
                             $(function($){
                                 
                                     $("#edit-{{$task->id}}").click(function(){
@@ -192,19 +196,44 @@
                                                 }else{
                                                     $("#trid-"+<?php echo $task->id ?>).empty();
                                                 }
+=======
+                                $(function($){
+                                        $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
+                                            // alert($("#deletebutton-"+<?php echo $task->id ?>).val());
+                                            $.ajax({
+                                                'type':'POST',
+                                                'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
+                                                'cache':false,
+                                                'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
+                                                'success':function(data){
+                                                    if(data.count == 0){
+                                                        $("#displaytask").empty();
+                                                    }else{
+                                                        $("#trid-"+<?php echo $task->id ?>).empty();
+                                                    }
+>>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
 
-                                            }
-                                        })
-                                    });
-                            });
+                                                }
+                                            })
+                                        });
+                                });
                             </script>
                             </td> 
                         </tr> 
                         @endforeach  
-                
-            </tbody>
-        </table> 
+                    </tbody>
+                </table>  
+            </div>
+        </div>  
+        @endif 
     </div> 
+    <div class="floating-menu">
+        <a href="{{url('/site/home')}}"><button type="button" class="btn btn-dark btn-lg " >Back</button></a>
+        
+    </div>
+    
 </div> 
-        @endif      
+                        
+             
+
 @endsection

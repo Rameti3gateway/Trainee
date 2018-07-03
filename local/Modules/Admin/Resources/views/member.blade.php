@@ -111,6 +111,10 @@
             </div> 
         </div> 
     </div>
+
+    <div class="floating-menu">
+        <a href="{{url('/admin')}}"><button type="button" class="btn btn-dark btn-lg " >Back</button></a>
+    </div>
 </div>
 </body>
 @stop
