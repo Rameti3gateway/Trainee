@@ -22,23 +22,17 @@
         }
         
     </style>
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}  
-    {{--  {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    --}}
+    <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}  
+    {{--  {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    --}} -->
      
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
     {{ Html::script(('../assets/site/js/app.js')) }}    
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
-   
-       
-    <!-- Styles home -->    
-   
- 
-   
+    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }}      
     
-
     <!-- Styles-->
-    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
+   
        
  </head>
 <body class="bg-body"onload="startTime()">   
@@ -68,6 +62,13 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    @php
+                                        $id = Auth::user()->id;
+                                        $url = "site/users/$id/report";
+                                    @endphp
+                                    <a href="{{ url($url) }}">Export Report</a>                                    
+                                </li>
+                                <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -88,8 +89,9 @@
          @yield('content')         
     </div>   
    
-    {{--  {{ Html::script(('../assets/site/js/app.js')) }}  
+    <!-- {{--  {{ Html::script(('../assets/site/js/app.js')) }}   -->
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }} 
+    <!-- {{ Html::script(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.js')) }}  -->
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}  --}}
 </body>

@@ -16,8 +16,8 @@ class PDFController extends Controller
      * @return Response
      */
     public function index()
-    {
-        return view('site::Login-after/pdf');
+    {   
+        return view('site::Login-after.pdf');
     }
 
     /**

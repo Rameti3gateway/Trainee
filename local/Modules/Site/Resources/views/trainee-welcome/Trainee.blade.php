@@ -149,6 +149,8 @@
             </div>
         </footer>
     </div>
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 @endsection
 
 
