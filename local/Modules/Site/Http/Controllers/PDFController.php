@@ -18,14 +18,9 @@ class PDFController extends Controller
      * @return Response
      */
     public function index()
-<<<<<<< HEAD
     {
         
         return view('site::Login-after/pdf');
-=======
-    {   
-        return view('site::Login-after.pdf');
->>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
     }
 
     /**
@@ -35,13 +30,7 @@ class PDFController extends Controller
     public function PDFcheckincheckout($id)
     {
         $date = "2018";
-        // $data = [];
-        // $checkin = Times::where('user_id','=',$id)->where('time_checkin','!=',null)->get()->groupBy('date');
-        // $checkout = Times::where('user_id','=',$id)->where('time_checkout','!=',null)->get()->groupBy('date');
-
-
         $datadata = [];
-        
         $checkintime;
         $checkouttime;
         $check = Times::where('user_id','=',$id)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('Y');});
@@ -124,6 +113,31 @@ class PDFController extends Controller
         
         $pdf = PDF::loadView('site::Login-after/todolistpdf', compact('datadata','profile'));
         return $pdf->download('todolist.pdf');
+    }
+    public function PDFcheckincheckoutChooseyear($id){
+        $check = Times::where('user_id','=',$id)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('Y');});
+        $data = [];
+        foreach ($check as $key => $value) {
+            array_push($data,$key);
+        }
+        return response()->json(['data' => $data]);
+    }
+    public function PDFcheckincheckoutChoosemonth($id){
+        $check = Times::where('user_id','=',$id)->groupBy('date')->pluck('date','date')->groupBy(function($date){return Carbon::parse($date)->format('F Y');});
+        $data = [];
+        foreach ($check as $key => $value) {
+            array_push($data,$key);
+        }
+        return response()->json(['data' => $data]);
+    }
+    
+    public function PDFcheckincheckoutChoose($id){
+        $data = $_POST['data'];
+        if($data == "year"){    
+            return $this->PDFcheckincheckoutChooseyear($id);
+        }elseif($data=="month" || $data=="interval"){
+            return $this->PDFcheckincheckoutChoosemonth($id);
+        }
     }
 
     /**
