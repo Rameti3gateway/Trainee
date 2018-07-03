@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+      
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -15,8 +16,7 @@
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
     {{ Html::script(('../assets/site/js/app.js')) }}
        
-    <!-- Styles home -->    
-    
+    <!-- Styles home -->        
 
     <!-- Styles-->
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
@@ -47,7 +47,7 @@
                 </button>
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/site') }}">
-                    {{ config('app.name', 'Laravel') }}
+                   {{ config('app.Home', 'Home') }}
                 </a>
             </div>
 
@@ -88,7 +88,7 @@
         </div>
     </nav>       
       @yield('content')  
-        <!-- Back top -->
+    <!-- Back top -->
     <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
     <!-- javscript js -->
     <script src="../assets/site/welcometemplete/js/jquery.js"></script>
