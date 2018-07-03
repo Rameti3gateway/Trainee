@@ -22,13 +22,19 @@
         }
         
     </style>
+<<<<<<< HEAD
     <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}    4 -->
    
+=======
+    <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}  
+    {{--  {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    --}} -->
+>>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
      
     {{ Html::style(('../assets/site/css/themes/app.css')) }}
     <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
     {{ Html::script(('../assets/site/js/app.js')) }}    
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
+<<<<<<< HEAD
     {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
    
        
@@ -36,10 +42,12 @@
    
  
    
+=======
+    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }}      
+>>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
     
-
     <!-- Styles-->
-    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
+   
        
  </head>
 <body class="bg-body"onload="startTime()">   
@@ -69,6 +77,13 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    @php
+                                        $id = Auth::user()->id;
+                                        $url = "site/users/$id/report";
+                                    @endphp
+                                    <a href="{{ url($url) }}">Export Report</a>                                    
+                                </li>
+                                <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -89,8 +104,9 @@
          @yield('content')         
     </div>   
    
-    {{--  {{ Html::script(('../assets/site/js/app.js')) }}  
+    <!-- {{--  {{ Html::script(('../assets/site/js/app.js')) }}   -->
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }} 
+    <!-- {{ Html::script(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.js')) }}  -->
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}  --}}
 </body>

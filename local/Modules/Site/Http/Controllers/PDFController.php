@@ -18,9 +18,14 @@ class PDFController extends Controller
      * @return Response
      */
     public function index()
+<<<<<<< HEAD
     {
         
         return view('site::Login-after/pdf');
+=======
+    {   
+        return view('site::Login-after.pdf');
+>>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
     }
 
     /**

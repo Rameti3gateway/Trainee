@@ -1,10 +1,21 @@
 @extends('site::layouts.app')
+<style>
+   
+</style>
 @section('content')
+<<<<<<< HEAD
 @php                 
     $id =  Auth::user()->id;
     $url = "site/users/$id/report/checkincheckout";   
     $url2 = "site/users/$id/report/todolist";                     
 @endphp 
+=======
+@php
+    $id = Auth::user()->id;
+    $url = "/site/users/$id/report/checkincheckout";
+    $url2 = "/site/users/$id/report/todolist";
+@endphp
+>>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
 <div class="container">
     <div class="row text-center mt-5 mb-5">
         <div class="col">
@@ -13,6 +24,7 @@
     </div>      
     <div class="row text-center"> 
         <div class="col-lg-6 ">                             
+<<<<<<< HEAD
            
             <div id="selecttor">{{ Form::select('size', ['year' => 'Year', 'month' => 'Month','interval'=>'Interval'], null, ['placeholder' => 'Choose','class'=>'form-control','id'=>'selecttoryearmonthinterval']) }}</div>
             <div id="selectyear">{{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Year','class'=>'form-control','id'=>'selecttoryear']) }}</div>   
@@ -58,4 +70,15 @@
 </div> 
 
 
+=======
+            {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Year','class'=>'form-control']) }}          
+            <a href="{{ url("$url") }}"><button class="btn btn-primary mt-5">Checkin&Checkout Report</button> </a>
+        </div>      
+        <div class="col-lg-6">   
+            {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Month','class'=>'form-control']) }}
+             <a href="{{ url("$url2") }}"><button class="btn btn-primary mt-5">Todolist Report</button> </a>
+         </div>
+    </div>  
+</div> 
+>>>>>>> 7270924b1f75e0f9559821f5761f4b91782f742b
 @endsection
