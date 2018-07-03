@@ -38,7 +38,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::post('/{id}/todolist/choose','TodolistController@show');
         Route::get('/{id}/todolist/{taskid}/edittodolist/{input}','TodolistController@edittodolist');
 
-        Route::get('/{id}/report','TodolistController@PDFController');
+        Route::get('/{id}/report','PDFController@index');
+        Route::get('/{id}/report/checkincheckout','PDFController@PDFcheckincheckout');
+        Route::get('/{id}/report/todolist','PDFController@PDFtodolist');
     
     });
     

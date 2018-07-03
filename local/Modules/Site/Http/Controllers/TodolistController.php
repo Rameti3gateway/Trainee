@@ -169,4 +169,11 @@ class TodolistController extends Controller
         }
 
     }
+    public function edittodolist($id,$taskid,$input){
+        $edittask = Tasks::find($taskid);
+        $edittask->detail = $input;
+        $edittask->save();
+        return response()->json(['data'=>$input]);
+
+    }
 }
