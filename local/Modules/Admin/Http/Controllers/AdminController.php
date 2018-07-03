@@ -13,6 +13,7 @@ use App\Admin;
 use Khill\Lavacharts\Lavacharts;
 use Lava;
 use Chart;
+date_default_timezone_set("Asia/Bangkok");
 
 class AdminController extends Controller
 {
@@ -45,13 +46,6 @@ class AdminController extends Controller
         $data['choosedate']->prepend("choosedate");
 
         $queryweek = Times::select('date')->where('user_id','=',$userid)->groupBy('date')->get()->groupBy(function($date){return Carbon::parse($date->date)->format('W');});
-        // $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W');});
-        
-        // $arr = [];
-        // foreach ($qw as $key => $value) {
-        //     $interval = $value[0]."=>".$value[count($value)-1];
-        //     $arr["w".$key] = $interval;
-        // }
         $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m');});
         foreach ($qw as $key => $value) {
             $month = Carbon::parse($value[0])->format('F');
@@ -195,21 +189,8 @@ class AdminController extends Controller
         return view('admin::createnewadmin');
     }
     public function createnewadminprocess(Request $request,$id){
-        $ext = pathinfo(basename($_FILES['image']['name']) ,PATHINFO_EXTENSION);
-        // random new name
-        $new_image_name = 'img_'.uniqid().".".$ext;
-        // $image_path = "../profile-image/" ;
-        $image_assets_path = "../assets/site/img/profile-image/";
-        // $upload_path = $image_path.$new_image_name;
-        $upload_assets_path = $image_assets_path.$new_image_name;
-        // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
-        $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_assets_path);
-        if($success==FALSE){            
-            // echo $upload_path;
-            echo $upload_assets_path;
-            exit();
-        }
-        $pro_image = $new_image_name;
+        $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move('../assets/site/img/profile-image/admin-image', $photoName);
 
         $newadmin = new User;
         $newadmin->name = $request->name;
@@ -217,7 +198,7 @@ class AdminController extends Controller
         $newadmin->email = $request->email;
         $newadmin->gender = $request->gender;
         $newadmin->birt_date = $request->birt_date;
-       
+        $newadmin->image = $photoName;
         $newadmin->password = bcrypt($request->password) ;
 
         $newadmin->role = "admin";
