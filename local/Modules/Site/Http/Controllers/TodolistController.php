@@ -18,6 +18,7 @@ class TodolistController extends Controller
      */
     public function index($id)
     {
+        
         // $id = Auth::user()->id;
        
         $date = Times::select('date')->where('user_id','=',$id)->get();
