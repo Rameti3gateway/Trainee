@@ -18,6 +18,7 @@
     "bootstrap": "^4.1.1",
     "animate.css": "^3.5.2",
     "jquery": "^3.3.1",
-    "chart.js": "^2.7.2"
+    "chart.js": "^2.7.2",
+    "sweetalert2": "^7.24.4"
   }
 }
