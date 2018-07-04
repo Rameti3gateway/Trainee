@@ -41,6 +41,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::get('/{id}/report','PDFController@index');
         Route::get('/{id}/report/checkincheckout','PDFController@PDFcheckincheckout');
         Route::get('/{id}/report/todolist','PDFController@PDFtodolist');
+        Route::post('/{id}/report/checkincheckout/choose','PDFController@PDFcheckincheckoutChoose');
     
     });
     

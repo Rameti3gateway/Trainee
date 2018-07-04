@@ -125,13 +125,13 @@
                         @foreach ($tasks as $task) 
                         <tr id="{{'trid-'.$task->id}}" > 
                             <td class="table-text" id="choosedate">
-                                <div>{{ $task->detail }}</div>
+                                <div id="inputtodolist-{{$task->id}}">{{ $task->detail }}</div>
                             </td>
                             <td> 
                             <!-- <form action="{{ url('/users/'.$task->id.'/todolist/delete/'.$task->user_id) }}" method="post"> -->
                                 {{ csrf_field() }}
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-primary" id=""  value="">
+                                    <button type="submit" class="btn btn-primary" id="editbutton-{{$task->id}}"  value="">
                                         <i class="fa fa-btn fa-trash"></i>Edit
                                     </button>
                                     <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  value="{{$task->id}}">
@@ -163,6 +163,24 @@
                                                 }
                                             })
                                         });
+                                        $("#editbutton-{{$task->id}}").click(function(){
+                                            swal({
+                                                title: 'Edit To do list',
+                                                input:'text',
+                                                showCancelButton: true,
+                                                preConfirm:(input)=>{
+                                                    return fetch("/Laravel/Trainee/local/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
+                                                    .then(response =>{
+                                                        return response.json();
+                                                    })
+                                                   
+                                
+                                                }  
+                                            }).then(response =>{
+                                                $("#inputtodolist-{{$task->id}}").html(response.value.data);
+                                            })
+
+                                        })
                                 });
                             </script>
                             </td> 
