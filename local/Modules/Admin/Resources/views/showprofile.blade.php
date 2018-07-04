@@ -1,22 +1,21 @@
 @extends('site::layouts.app')
 <style>
     .container-fluid{
-        margin-top: 4em;
+        margin-top: 1em;
     }
     .show-profile{
          animation-delay: 0.1s; 
     }
     .to-do-list{
-         animation-delay: 0.2s;        
+         animation-delay: 0.1s;        
     }  
     .graph{
-         animation-delay: 0.3s;
+         animation-delay: 0.2s;
     }
 </style>
 @section('content')
 <div class="container-fluid">
     <div class="row">
-
         <!-- show profile -->
         <div class="col-md-6 col-md-offset-3 animated zoomIn show-profile">
             <div class="panel panel-default">
@@ -41,7 +40,7 @@
                         <?php } ?>
                     </div>
                 </div>
-                <div class="panel-body">
+                <!-- <div class="panel-body">
                     <label for="id_card" class="col-md-4 control-label">ID Card : </label>
                     <div class="col-md-6">
                         <?php if ($blog->id_card == null) { ?>
@@ -50,7 +49,7 @@
                         <p>{{$blog->id_card}}</p>
                         <?php } ?>
                     </div>
-                </div>
+                </div> -->
                 <div class="panel-body">
                     <label for="gender" class="col-md-4 control-label">Gender : </label>
                     <div class="col-md-6">
@@ -61,46 +60,7 @@
                         <?php } ?>
                     </div>
                 </div>
-                <div class="panel-body">
-                    <label for="birt_date" class="col-md-4 control-label">Birtday Date : </label>
-                    <div class="col-md-6">
-                        <?php if ($blog->birt_date == null) { ?>
-                        <p>-</p>
-                        <?php } else { ?>
-                        <p>{{$blog->birt_date}}</p>
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <label for="university" class="col-md-4 control-label">University : </label>
-                    <div class="col-md-6">
-                        <?php if ($blog->university == null) { ?>
-                        <p>-</p>
-                        <?php } else { ?>
-                        <p>{{$blog->university}}</p>
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <label for="faculty" class="col-md-4 control-label">Faculty : </label>
-                    <div class="col-md-6">
-                        <?php if ($blog->faculty == null) { ?>
-                        <p>-</p>
-                        <?php } else { ?>
-                        <p>{{$blog->faculty}}</p>
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <label for="major" class="col-md-4 control-label">Major : </label>
-                    <div class="col-md-6">
-                        <?php if ($blog->major == null) { ?>
-                        <p>-</p>
-                        <?php } else { ?>
-                        <p>{{$blog->major}}</p>
-                        <?php } ?>
-                    </div>
-                </div>                
+                         
             </div>    
         </div>
 
@@ -204,10 +164,7 @@
                                             'url':url,
                                             'cache':false,
                                             'data':{data:$("#formweekormonth").val()},
-                                            'success':function(response){
-                                                
-                                                
-
+                                            'success':function(response){    
                                                 var ctx = document.getElementById("showgraph").getContext("2d");;
                                                 var mychart = new Chart(ctx,{
                                                     type: 'line',
@@ -240,30 +197,21 @@
                                                     },
                                                     options: {
                                                         scales: {
-                                                            yAxes: [{
-                                                                
-                                                                
-                                                            
-                                                                
+                                                            yAxes: [{  
                                                             }]
                                                         }
                                                     }
-                                                })
-                                                                                    
-                                                                                    
+                                                })                             
                                             }
                                         })
 
                                     }else{
                                         $("#showgraph").hide();
-                                    }
-                                    
-                                                                    
+                                    }                       
                                 })
-
                             }) 
                         </script>                    
-                </div> 
+                    </div> 
                 </div>
                               
             </div>
@@ -273,7 +221,7 @@
                     $url = "admin/$id/dashboard";
                 ?>
                 <div class="text-center">
-                    <a class="btn btn-primary" name="edit"  href="{{ url($url) }}">Back</a>  
+                    <a class="btn btn-primary btn-lg" name="edit"  href="{{ url($url) }}">Back</a>  
                 </div>                                           
             </div>
         </div>
