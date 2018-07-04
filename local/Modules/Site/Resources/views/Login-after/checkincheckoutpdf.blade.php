@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <title></title>
     <style>
-        table, th, td {
+        table,th,td{
+            border-collapse: collapse;
             border: 1px solid black;
+            margin-left: 45px;
         }
-        </style>
+        p{
+            text-align: left;
+            margin-left:65px;
+        }
+        th{
+            background-color: darkgray;
+        }
+    </style>
   </head>
   <body>
   <div class="row" style="text-align: center">
@@ -15,7 +24,7 @@
     <h4>ID: {{$profile->id}} &nbsp; &nbsp; Name: {{$profile->name}}</h4>
   </div>
 
-      <table  style="width:100%;text-align: center;">
+      <table  style="width:90%;text-align: center;">
           <tr>
               <th>
                   Date

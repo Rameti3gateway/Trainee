@@ -1,13 +1,27 @@
 @extends('site::layouts.app')
 @section('content')
+<style>
+ 
+</style>
 <div class="container-fluid  animated zoomIn">
     <div class="row">
-        <div class="col-md-6">
-            <!-- <div class="container">
-                 <img src="/img/profile-image/{{$blog->image}}"> 
-            </div> -->
+        <div class="col-lg-6">
+                @if($blog->image == null)
+                    <div  class="col-lg-8">
+                            <div  class="col-lg-8 col-lg-offset-3">
+                        <img src="/Laravel/Trainee/assets/site/img/blank-profile-picture-973460_960_720.png" class="img-responsive img-thumbnail"> 
+                    </div> 
+                    </div>   
+                
+                @else   
+                    <div class="container">
+                        <img src="/Laravel/Trainee/assets/site/img/profile-image/user-image/{{$blog->image}}" class="img-responsive img-thumbnail"> 
+                    </div>
+                @endif
+            
         </div>
-        <div class="col-md-6 col-md-offset-3">
+        <!-- col-md-offset-3 -->
+        <div class="col-lg-5   profile">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Your Profile</strong></div>
                 <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">

@@ -3,7 +3,19 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <!-- show profile -->
+        <div class="col-md-6">
+            
+                @if($blog->image == null){
+                    hhhhhhhhhh
+                
+                @else   
+                    <div class="container">
+                        <img src="/Laravel/Trainee/assets/site/img/profile-image/admin-image/{{$blog->image}}"> 
+                    </div>
+                @endif
+           
+           
+        </div>
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Profile</strong></div>              
