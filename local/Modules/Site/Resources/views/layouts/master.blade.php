@@ -89,7 +89,7 @@
     
     <!-- javscript js -->
     <script src="../assets/site/welcometemplete/js/jquery.js"></script>
-    <!-- <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script> -->
+    <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script>
     <script src="../assets/site/welcometemplete/js/vegas.min.js"></script>
 
     <script src="../assets/site/welcometemplete/js/wow.min.js"></script>
