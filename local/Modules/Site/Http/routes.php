@@ -39,8 +39,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::get('/{id}/todolist/{taskid}/edittodolist/{input}','TodolistController@edittodolist');
 
         Route::get('/{id}/report','PDFController@index');
-        Route::get('/{id}/report/checkincheckout','PDFController@PDFcheckincheckout');
-        Route::get('/{id}/report/todolist','PDFController@PDFtodolist');
+        Route::get('/{id}/report/checkincheckout/{type}/{detail}','PDFController@PDFcheckincheckout');
+        Route::get('/{id}/report/checkincheckout/{type}/{detail1}/{detail2}','PDFController@PDFcheckincheckoutinterval');
+
+        Route::get('/{id}/report/todolist/{data}','PDFController@PDFtodolist');
         Route::post('/{id}/report/checkincheckout/choose','PDFController@PDFcheckincheckoutChoose');
     
     });

@@ -1,6 +1,12 @@
 @extends('site::layouts.app')
+<style>
+.card{
+    text-align: center;
+}
+
+</style>
 @section('content')
-<div class="container-fluid  animated zoomIn">
+<div class="container-fluid  animated fadeIn">
     <div class="row">
         <div class="col-md-6">
             <!-- <div class="container">
@@ -11,7 +17,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Your Profile</strong></div>
                 <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
-                    <div class="panel-body ">
+                     <div class="panel-body " style="text-align:center">
+                     <h2>User Profile Card</h2>   
+                        @if($blog->image != null)
+                            @if($blog->type == "facebook" || $blog->type == "google" )
+                                
+                                <img src="{{$blog->image}}" alt="photo" style="width:20%">
+                            @else
+                                <img src="{{ url('../assets/site/img/profile-image/user-image/<?php echo $blog->image ?>') }}" alt="photo" style="width:20%">
+                            @endif
+                            
+                        @else 
+                            <img src="{{ url('../assets/site/img/profile-image/default.jpg') }}" alt="photo" style="width:20%">
+                        @endif
+                         
+                    
+                     </div>
+                    <div class="panel-body "style="text-align:center">
+                      
                         <label for="name" class="col-md-4 control-label">Name : </label>
                         <div class="col-md-6">
                             <?php if (Auth::user()->name == null) { ?>
@@ -97,8 +120,8 @@
                             $url = "site/users/$id/edit";
                         @endphp 
                         <div class="text-center">
-                            <a class="btn btn-primary" name="edit"  href="{{ url('site/home') }}">Back</a>  
-                            <a class="btn btn-danger" name="edit"  href="{{ url($url) }}">Edit</a>    
+                            <a class="btn btn-primary btn-lg" name="edit"  href="{{ url('site/home') }}">Back</a>  
+                            <a class="btn btn-danger btn-lg" name="edit"  href="{{ url($url) }}">Edit</a>    
                         </div>                                           
                     </div>
                 </form>

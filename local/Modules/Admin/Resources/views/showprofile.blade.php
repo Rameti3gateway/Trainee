@@ -16,8 +16,25 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
+<<<<<<< HEAD
         <!-- show profile -->
         <div class="col-md-6 col-md-offset-3 animated zoomIn show-profile">
+=======
+        <div class="col-md-6">
+            
+                @if($blog->image == null){
+                    hhhhhhhhhh
+                
+                @else   
+                    <div class="container">
+                        <img src="/Laravel/Trainee/assets/site/img/profile-image/admin-image/{{$blog->image}}"> 
+                    </div>
+                @endif
+           
+           
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+>>>>>>> 91427c978dfd65300f420d1abb7779802d7d9412
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Profile</strong></div>              
                 <div class="panel-body ">
