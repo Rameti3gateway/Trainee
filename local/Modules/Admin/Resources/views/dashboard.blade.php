@@ -23,7 +23,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-1">
-                        <i class="fa fa-comments fa-5x">No.</i>
+                        No.
                     </div>
                     <div class="col-xs-11 text-center">
                         

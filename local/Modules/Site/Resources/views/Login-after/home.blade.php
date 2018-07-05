@@ -16,7 +16,7 @@
                         echo "Welcome ".$name;                 
                     @endphp
                 </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex alias aut earum laboriosam neque. Culpa quia quidem expedita sint nisi nihil nostrum officiis ratione! Laborum aspernatur at non dolor voluptas?</p>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex alias aut earum laboriosam neque. Culpa quia quidem expedita sint nisi nihil nostrum officiis ratione! Laborum aspernatur at non dolor voluptas?</p> -->
                 <p>{{ date('d F Y') }}</p> 
                 <p id="txt"></p>                                        
             </div>

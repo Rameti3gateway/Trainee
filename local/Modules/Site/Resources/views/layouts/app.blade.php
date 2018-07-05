@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles link-->
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }} 
+    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}
+    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>  -->
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
     
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   

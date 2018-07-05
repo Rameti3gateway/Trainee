@@ -18,7 +18,7 @@
                             <table class="table ">
                                 <tbody>
                                     <div class="col-lg-2 text-center">
-                                        <i class="fa fa-comments fa-5x">No.</i>
+                                        No.
                                     </div>
                                     <div class="col-lg-6 text-center">
                                         <div>Name</div>
@@ -34,52 +34,49 @@
                                         <td class="col-xs-1">
                                             <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
                                                 <button type="submit" class="btn btn-warning" >
-                                                    <a class="fa fa-btn fa-trash"></a>Edit
+                                                    Edit
                                                 </button>
                                             </form>
                                         </td>
                                         <td class="col-xs-3">                                          
                                            
                                             <!-- Trigger the modal with a button -->
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{$member->user_id}}">Delete</button>
-                                            
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal-{{$member->user_id}}" role="dialog">
-                                                <div class="modal-dialog">                                                
-                                                <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                Delete
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Do you really want to delete {{$member->name}}</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal" id="deletebutton-{{$member->user_id}}">Yes</button>
-                                                        </div>
-                                                    </div>                                                
-                                                </div>
-                                            </div>                                                    
-                                            
+                                            <button type="button" class="btn btn-danger" id="deletebutton-{{$member->user_id}}">Delete</button>
                                             <script>
-                                                $.ajaxSetup({
-                                                headers: {
-                                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                                                }
-                                                });
-                                                $(function($){                                                    
-                                                    $("#deletebutton-{{$member->user_id}}").click(function(){   
-                                                        $.ajax({
-                                                            'type':'post',
-                                                            'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
-                                                            'cache':false,
-                                                            'data':{date:""},
-                                                            'success':function(data){
-                                                                $("#admin-{{$member->id}}").empty();  
-                                                            },
-                                                        })
+                                                $(function($){
+                                                     $.ajaxSetup({
+                                                        headers: {
+                                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                                                        }
+                                                    });                                                    
+                                                    $("#deletebutton-{{$member->user_id}}").click(function(){
+                                                        alert
+                                                        swal({
+                                                            title: 'Are you sure delete?',
+                                                           
+                                                            type: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Yes, delete it!'
+                                                            }).then((result) => {
+                                                            if (result.value) {  
+                                                                swal(
+                                                                    'Deleted!',
+                                                                    'Your task has been deleted.',
+                                                                    'success'
+                                                                )
+                                                               $.ajax({
+                                                                    'type':'post',
+                                                                    'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'cache':false,
+                                                                    'data':{date:""},
+                                                                    'success':function(data){
+                                                                        $("#admin-{{$member->id}}").empty();  
+                                                                    },
+                                                                })
+                                                            }   
+                                                        })                                                        
                                                     }) 
                                                 })
                                             </script>

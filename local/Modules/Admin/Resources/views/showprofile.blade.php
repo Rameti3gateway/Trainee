@@ -16,25 +16,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-<<<<<<< HEAD
         <!-- show profile -->
         <div class="col-md-6 col-md-offset-3 animated zoomIn show-profile">
-=======
-        <div class="col-md-6">
-            
-                @if($blog->image == null){
-                    hhhhhhhhhh
-                
-                @else   
-                    <div class="container">
-                        <img src="/Laravel/Trainee/assets/site/img/profile-image/admin-image/{{$blog->image}}"> 
-                    </div>
-                @endif
-           
-           
-        </div>
-        <div class="col-md-6 col-md-offset-3">
->>>>>>> 91427c978dfd65300f420d1abb7779802d7d9412
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Profile</strong></div>              
                 <div class="panel-body ">
@@ -87,7 +70,11 @@
                 <div class="panel panel-default">                    
                     <div class="panel-body">
                         <div class="panel-heading">
-                            <strong>To do list</strong> {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}</div>
+                            <strong>To do list</strong> 
+                            <!-- <?php 
+                                 $val = Carbon::parse($val)->format("d F Y");
+                            ?> -->
+                            {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}</div>
                         <table class="table table-striped task-table">
                             <tbody id="choosedate" >
                                 <script type="text/javascript">

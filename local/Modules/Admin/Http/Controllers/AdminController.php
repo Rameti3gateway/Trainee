@@ -35,7 +35,7 @@ class AdminController extends Controller
         return view('admin::dashboard',$data);
     }
 
-    public function member(){
+    public function member(){ 
         $member = Admin::all();
         return view('admin::member',compact('member',$member));
     }
@@ -52,7 +52,6 @@ class AdminController extends Controller
             $arr["m".$key] = $month;
             
         }
-        
         return view('admin::showprofile',$data);
 
     }
@@ -146,11 +145,7 @@ class AdminController extends Controller
                 }
             } 
         }
-        
-       
-        // $date = ["12","13","14","15","16"];
-        // $timechin = [11,12,13,14,15];
-        // $timechout = [20,21,22,23,24];
+
         
         return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout]);
         
@@ -213,69 +208,11 @@ class AdminController extends Controller
         $admin->password = $newadmin->password;
         $admin->save();
 
-        return view('admin::createnewadminsuccess');
-
-        // $newadmin->image = $request->image;
-
-
+        return $this->member();
     }
     public function deleteadmin($id,$userid){
         Admin::where('user_id','=',$userid)->delete();
         User::find($userid)->delete();
 
-    }
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-
-
-    public function create()
-    {
-        return view('admin::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
     }
 }
