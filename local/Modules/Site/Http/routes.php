@@ -9,8 +9,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
     //  Route::get('/users/{id}', function () {
     //     return view('site::blog.show');
     // });
+
+
+    // forgotpassword
     Route::get('password/reset','ResetPasswordController@index');
-    Route::post('password/reset/ok','ResetPasswordController@create');
+    Route::get('password/reset/{token}','ResetPasswordController@reset');
+    //////////////////////    
+    
+
     Route::get('/home','HomeController@index');
 
     //facebook Auth
