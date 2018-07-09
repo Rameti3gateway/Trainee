@@ -71,9 +71,7 @@
                     <div class="panel-body">
                         <div class="panel-heading">
                             <strong>To do list</strong> 
-                            <!-- <?php 
-                                 $val = Carbon::parse($val)->format("d F Y");
-                            ?> -->
+                           
                             {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}</div>
                         <table class="table table-striped task-table">
                             <tbody id="choosedate" >

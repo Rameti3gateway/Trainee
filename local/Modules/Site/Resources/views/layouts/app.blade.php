@@ -100,6 +100,6 @@
          @yield('content')         
     </div>         
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }} }}
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
 </body>
 </html>
