@@ -51,10 +51,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- Branding Image -->                
-                    <a class="navbar-brand" href="{{ url('/site') }}">
-                        {{ config('app.Home', 'Home') }}
-                    </a>
+                <!-- Branding Image -->
+                    @if(Auth::check() && Auth::user()->role == 'admin')
+                        <a class="navbar-brand" href="{{ url('/admin') }}">
+                            {{ config('app.Home', 'Home') }}
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/site') }}">
+                            {{ config('app.Home', 'Home') }}
+                        </a>
+                    @endif                
+                    
                 
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">               

@@ -34,7 +34,7 @@
                 <div class="col-md-6 animated slideInUp">
                     @php                 
                         $id =  Auth::user()->id;
-                        $urltasklist = "site/users/$id/todolist";                     
+                        $urltasklist = "site/users/$id/todolist/?date=";                     
                     @endphp 
                 <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}"></a> 
                     <h3><a href="{{url($urltasklist)}}">Task list</a></h3>
