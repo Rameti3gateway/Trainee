@@ -9,8 +9,32 @@
                     $id=Auth::user()->id;
                     $url = "site/users/$id";
                 @endphp
-                 <form method="post" action="{{url($url)}}">{{ csrf_field() }}
-        
+                 <form method="post" action="{{url($url)}}" enctype="multipart/form-data"> {{ csrf_field()}}                    
+                      <div class="panel-body " style="text-align:center">
+                        <h2>User Profile Card</h2>   
+
+                        @if($profile->type == "facebook" || $profile->type == "google" )                                
+                            @if(strstr($profile->image,'_',true) == 'user')
+                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                            @else
+                                <img src="{{$profile->image}}" alt="photo" style="width:20%">
+                            @endif
+                        @elseif($profile->type == 'general')
+                            @if($profile->image == null)
+                                <img src="{{ url('../assets/site/img/profile-image/default.jpg') }}" alt="photo" style="width:20%">
+                            @else
+                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                            @endif
+                            
+                        @endif                        
+                       
+                     </div>
+                     <div class="panel-body ">
+                        {{Form::label('null','Image :',['class'=>'col-md-4 control-label'])}}                      
+                        <div class="col-md-6">
+                            {{Form::file('image', null)}}                             
+                        </div>
+                    </div>
                     <div class="panel-body ">
                         {{Form::label('null','Name :',['class'=>'col-md-4 control-label'])}}                        
                         <div class="col-md-6">
@@ -53,13 +77,7 @@
                              {{Form::text('major', $profile->major,['class'=>'form-control'])}}
                         </div>
                     </div>
-                    <div class="panel-body ">
-                         <!-- <div class="text-center">
-                            <a class="btn btn-primary" name="edit"  href="{{ url('site/home') }}">Cancel</a> 
-                        </div>                    -->
-                        <!-- <div class="col-md-6">
-                            {{Form::submit('SUBMIT',['class'=>'btn btn-primary'])}}
-                       </div> -->
+                    <div class="panel-body ">                        
                         {{Form::label('','',['class'=>'col-md-4 control-label'])}}    
                         <div class="col-md-6">
                             {{Form::submit('SUBMIT',['class'=>'btn btn-primary'])}}
