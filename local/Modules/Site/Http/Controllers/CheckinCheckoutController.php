@@ -89,13 +89,12 @@ class CheckinCheckoutController extends Controller
         $current = Carbon::now();
         
         $checkin = new Times;
-        // $checkin->date = $current->toDateString();
-        $checkin->date = "2019-10-10";
+        $checkin->date = $current->toDateString();
+        // $checkin->date = "2019-10-10";
         $checkin->user_id = $id;
         $checkin->time_checkin = $current;
         $checkin->save();
-        echo "check in success";
-        
+        echo "check in success";        
     
         // return response()->json(['tasks'=> $tasks]);
     }
@@ -105,13 +104,12 @@ class CheckinCheckoutController extends Controller
         date_default_timezone_set("Asia/Bangkok");
         $current = Carbon::now();
         $checkout = new Times;
-        // $checkout->date = $current->toDateString();
-        $checkout->date = "2019-10-10";
+        $checkout->date = $current->toDateString();
+        // $checkout->date = "2019-10-10";
         $checkout->user_id = $id;
         $checkout->time_checkout = $current;
         $checkout->save();
-        echo "check out success";
-        
+        echo "check out success";        
          
         // return response()->json(['tasks'=> $tasks]);
         
