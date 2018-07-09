@@ -18,6 +18,7 @@ class TodolistController extends Controller
      */
     public function index($id)
     {
+        $data['date'] = $_GET['date'];
         
         // $id = Auth::user()->id;
        
@@ -32,9 +33,15 @@ class TodolistController extends Controller
             $mydate = date('Y-m-d');
             $id = Auth::user()->id;
             //check in only
+
+            if( $data['date'] == null){
+                $data['recentdate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(1)->pluck('date','date');
+            }else{
+                $data['recentdate'] = $data['date'];
+            }
             
             $data['choosedate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(5)->pluck('date','date');
-            $data['recentdate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(1)->pluck('date','date');
+            
             
             $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 
@@ -156,7 +163,7 @@ class TodolistController extends Controller
         
         $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 
-        $url = "/site/users/$id/todolist";
+        $url = "/site/users/$id/todolist/?date=$task->date";
         return redirect($url);
         
         
