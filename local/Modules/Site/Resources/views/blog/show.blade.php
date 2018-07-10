@@ -1,9 +1,4 @@
 @extends('site::layouts.app')
-<style>
-.card{
-    text-align: center;
-}
-</style>
 @section('content')
 <div class="container-fluid  animated fadeIn">
     <div class="row">      

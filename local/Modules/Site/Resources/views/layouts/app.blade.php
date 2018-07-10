@@ -6,15 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">   
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title> @yield('title')</title>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- Styles link-->
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}
-    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>  -->
+    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
     
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
@@ -22,23 +18,12 @@
         
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
     {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
-   <!-- Links laravel -->
-    <!-- {{ Html::style(('../assets/site/css/themes/app.css')) }} -->
-    <!-- {{ Html::script(('../assets/site/js/app.js')) }}    -->
-
-    <!-- Styles -->
-    <style>
-        .floating-menu {
-            padding: 5px;
-            margin-top: 150px;
-            margin-left:120px;
-            position: fixed;
-            z-index: 10;
-            top: 100px;
-            left: 0;
-        }
-        
-    </style>
+    
+    {{ Html::style(('../assets/bower_components/components-font-awesome/css/fontawesome.min.css')) }}
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+     <!-- Links laravel -->
+    {{ Html::style(('../assets/site/css/themes/app.css')) }}  
  </head>
 <body class="bg-body"onload="startTime()">   
     <nav class="navbar-inverse">
@@ -60,9 +45,7 @@
                         <a class="navbar-brand" href="{{ url('/site') }}">
                             {{ config('app.Home', 'Home') }}
                         </a>
-                    @endif                
-                    
-                
+                    @endif      
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">               
 
