@@ -1,0 +1,11 @@
+table, th, td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-left: 45px; }
+
+p {
+  text-align: left;
+  margin-left: 65px; }
+
+th {
+  background-color: darkgray; }
