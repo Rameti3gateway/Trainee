@@ -13,6 +13,7 @@
          animation-delay: 0.2s;
     }
 </style>
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -123,7 +124,7 @@
                             {{ Form::select('date',array(''=>'Select'), null , ['class' => 'form-control','id'=>'formweekormonth']) }}
                         </div>
                     <canvas  id="showgraph"></canvas >                    
-                    <div id="temps_div"></div>                    
+                                     
                         <script>
                             $("#divweekormonth").hide();
                             $("#showgraph").hide();
@@ -133,6 +134,9 @@
                                 }
                             });
                             $(function($){
+                                function epoch_to_hh_mm_ss(epoch) {
+                                    return new Date(epoch*1000).toISOString().substr(12, 7)
+                                }
                                 $("#selectweekormonth").change(function(){
                                     if($("#selectweekormonth").val() == ''){
                                         $("#divweekormonth").hide();
@@ -167,44 +171,119 @@
                                             'cache':false,
                                             'data':{data:$("#formweekormonth").val()},
                                             'success':function(response){    
-                                                var ctx = document.getElementById("showgraph").getContext("2d");;
-                                                var mychart = new Chart(ctx,{
-                                                    type: 'line',
+                                               
+                                                var timechin = response.timechin;
+                                                var timechout = response.timechout;
+                                                var date = response.date;
+                                                
+                                              
+                                                var ctx = document.getElementById("showgraph").getContext("2d");
+                                                var chart = new Chart(ctx, {
+                                                    type: "line",
                                                     data: {
-                                                        labels: response.date,
-                                                        datasets: [{
-                                                            label: 'Time Checkin',
-                                                            data: response.timechin,
-                                                            fill: false,
-                                                            backgroundColor: [ 
-                                                                'rgba(255, 206, 86, 0.2)',
-                                                            ],
-                                                            borderColor: [
-                                                                'rgba(255, 206, 86, 1)',
-                                                            ],
-                                                            borderWidth: 2
-                                                        },{
-                                                            label: 'Time Checkout',
-                                                            data:response.timechout,
-                                                            fill: false,
-                                                            backgroundColor: [      
-                                                                'rgba(255, 206, 86, 0.2)',
-                                                            ],
-                                                            borderColor: [
-                                                                'rgba(54, 162, 235, 1)',
-                                                            
-                                                            ],
-                                                            borderWidth: 2
-                                                        }]
+                                                        datasets: [
+                                                            {
+                                                                y: moment("00:00:05", "HH:mm:ss"),
+                                                                x: "Phase 1",
+                                                                data: {
+                                                                title: "Phase 1",
+                                                                pass: false
+                                                                }
+                                                            },
+                                                            {
+                                                                y: moment("00:00:22", "HH:mm:ss"),
+                                                                x: "Phase 2",
+                                                                data: {
+                                                                title: "Phase 2",
+                                                                pass: false
+                                                                }
+                                                            },
+
+                                                        ]
                                                     },
                                                     options: {
+                                                        responsive: true,
+                                                        unitStepSize: 10,
+                                                       
+                                                        showLines:false,
+                                                        title: {
+                                                        display: true,
+                                                        text: "Chart Time Check in & Check out"
+                                                        },
                                                         scales: {
-                                                            yAxes: [{  
-                                                            }]
+                                                        yAxes: [
+                                                            {
+                                                            type: "time",
+                                                            display: true,
+                                                            scaleLabel: {
+                                                                display: true,
+                                                                labelString: "Time"
+                                                            },
+                                                            time: {
+                                                                unit: "second"
+                                                            },
+                                                                        displayFormats: {
+                                                                            quarter: 'h:mm:ss a'
+                                                                        },
+                                                            ticks: {
+                                                                major: {
+                                                                fontStyle: "bold",
+                                                                fontColor: "#FF0000"
+                                                                }
+                                                            }
+                                                            }
+                                                        ],
+                                                        xAxes: [
+                                                            {
+                                                            display: true,
+                                                            scaleLabel: {
+                                                                display: true,
+                                                                labelString: "Date"
+                                                            }
+                                                            }
+                                                        ]
                                                         }
                                                     }
-                                                })                             
+                                                })
+                                                // var mychart = new Chart(ctx,{
+                                                //     type: 'line',
+                                                   
+                                                //     data: {
+                                                //         labels: response.date,
+                                                //         datasets: [{
+                                                //             label: 'Time Checkin',
+                                                //             data: response.timechin,
+                                                //             fill: false,
+                                                //             backgroundColor: 'rgb(255,0,0)',
+                                                //             pointRadius:5,
+                                                //             pointBackgroundColor:'rgb(255,0,0)',
+                                                //         },{
+                                                //             label: 'Time Checkout',
+                                                //             data:response.timechout,
+                                                //             fill: false,
+                                                //             backgroundColor: 'rgb(0,0,255)',
+                                                //             pointRadius:5,
+                                                //             pointBackgroundColor:'rgb(0,0,255)',
+                                                           
+                                                //         }]
+                                                //     },
+                                                //     options: {
+                                                //         showLines:false,
+                                                //         scales: {
+                                                //             type: 'time',
+                                                //             time: {
+                                                //                 displayFormats: {
+                                                //                     quarter: 'h:mm:ss a'
+                                                //                 }
+                                                //             }
+                                                //         },
+                                                       
+                                                //     },
+                                                    
+                                                // });                           
                                             }
+
+                                            
                                         })
 
                                     }else{
@@ -224,7 +303,8 @@
                 ?>
                 <div class="text-center">
                     <a class="btn btn-primary btn-lg" name="edit"  href="{{ url($url) }}">Back</a>  
-                </div>                                           
+                </div>  
+                                                 
             </div>
         </div>
     </div>
