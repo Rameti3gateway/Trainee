@@ -5,6 +5,7 @@ namespace Modules\Site\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use Auth;
 
@@ -68,6 +69,7 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     { 
         $image = $request->image;
+       
         $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
         $image->move('../assets/site/img/profile-image/user-image', $photoName);
         

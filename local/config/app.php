@@ -186,6 +186,7 @@ return [
         //   Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         //   ConsoleTVs\Charts\ChartsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        
     ],
 
     /*
