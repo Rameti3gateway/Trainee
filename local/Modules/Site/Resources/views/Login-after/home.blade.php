@@ -16,7 +16,7 @@
                         echo "Welcome ".$name;                 
                     @endphp
                 </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex alias aut earum laboriosam neque. Culpa quia quidem expedita sint nisi nihil nostrum officiis ratione! Laborum aspernatur at non dolor voluptas?</p>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex alias aut earum laboriosam neque. Culpa quia quidem expedita sint nisi nihil nostrum officiis ratione! Laborum aspernatur at non dolor voluptas?</p> -->
                 <p>{{ date('d F Y') }}</p> 
                 <p id="txt"></p>                                        
             </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-6 animated slideInUp">
                     @php                 
                         $id =  Auth::user()->id;
-                        $urltasklist = "site/users/$id/todolist";                     
+                        $urltasklist = "site/users/$id/todolist/?date=";                     
                     @endphp 
                 <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}"></a> 
                     <h3><a href="{{url($urltasklist)}}">Task list</a></h3>

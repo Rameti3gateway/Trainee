@@ -17,13 +17,13 @@
 @section('content')
   <!-- This view is loaded from module: {!! config('admin.name') !!} -->
 <body>
-	<div class="container text-center ">
-        <h1 class="text-center text-success checkinout">Admin</h1>
+	<div class="container text-center animated zoomIn">
+        <h1 class="text-center text-success checkinout"><strong>Admin</strong></h1>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-1">
-                        <i class="fa fa-comments fa-5x">No.</i>
+                        No.
                     </div>
                     <div class="col-xs-11 text-center">
                         
@@ -33,8 +33,7 @@
             </div>
             <div class="panel-body">
               <table class="table ">
-                <tbody>
-                  
+                <tbody>                  
                     @foreach( $users as $user )
                         <?php 
                           $id = Auth::user()->id;
@@ -42,13 +41,11 @@
                         ?>
                     <tr>
                       <td class="text-center"><a href="{{ url($url) }}">{{$user->id}}</a></td>
-                      <td><a href="#" >{{$user->name}}</a></td>
+                      <td><a href="{{ url($url) }}" >{{$user->name}}</a></td>
                     </tr>
-                    @endforeach
-                  
+                    @endforeach                  
                 </tbody>
-              </table>
-              
+              </table>              
             </div>           
         </div>
         <div class="panel-body">
@@ -56,8 +53,8 @@
                 $id =  Auth::user()->id ;
                 $url = "admin/";
             ?>
-            <div class="text-center">
-                <a class="btn btn-primary" name="edit"  href="{{ url($url) }}">Back</a>  
+            <div class="text-center col-lg-4 col-lg-offset-4">
+                <a class="btn btn-primary btn-lg btn-block" name="edit"  href="{{ url($url) }}">Back</a>  
             </div>                                           
         </div>
     </div>

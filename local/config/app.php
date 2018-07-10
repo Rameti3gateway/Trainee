@@ -185,6 +185,8 @@ return [
 
         //   Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         //   ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        
     ],
 
     /*
@@ -239,6 +241,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         // 'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
         // 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

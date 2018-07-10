@@ -18,6 +18,8 @@ class TodolistController extends Controller
      */
     public function index($id)
     {
+        $data['date'] = $_GET['date'];
+        
         // $id = Auth::user()->id;
        
         $date = Times::select('date')->where('user_id','=',$id)->get();
@@ -31,9 +33,15 @@ class TodolistController extends Controller
             $mydate = date('Y-m-d');
             $id = Auth::user()->id;
             //check in only
+
+            if( $data['date'] == null){
+                $data['recentdate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(1)->pluck('date','date');
+            }else{
+                $data['recentdate'] = $data['date'];
+            }
             
             $data['choosedate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(5)->pluck('date','date');
-            $data['recentdate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(1)->pluck('date','date');
+            
             
             $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 
@@ -164,23 +172,10 @@ class TodolistController extends Controller
         $data['recentdate']= $task->date;
         
         $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
-<<<<<<< HEAD
-        
-        $url = "site/users/$id/todolist";           
-        // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
-        return redirect($url);
-        // return view('site::Login-after.tasks',$data);
-        // return response()->json(['data'=>$query,'Content-Type' => 'text/html']);
-        // echo "555555";
-        // exit();
-        // return ['data', $query];
 
-=======
-
-        $url = "/site/users/$id/todolist";
+        $url = "/site/users/$id/todolist/?date=$task->date";
         return redirect($url);
         
->>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
         
         
     }
@@ -190,6 +185,13 @@ class TodolistController extends Controller
         foreach ($data as $value) {
             echo $value;
         }
+
+    }
+    public function edittodolist($id,$taskid,$input){
+        $edittask = Tasks::find($taskid);
+        $edittask->detail = $input;
+        $edittask->save();
+        return response()->json(['data'=>$input]);
 
     }
 }

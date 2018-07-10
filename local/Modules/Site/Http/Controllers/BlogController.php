@@ -5,6 +5,7 @@ namespace Modules\Site\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use Auth;
 
@@ -67,7 +68,12 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     { 
-        // echo "Testt" or die;        
+        $image = $request->image;
+       
+        $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
+        $image->move('../assets/site/img/profile-image/user-image', $photoName);
+        
+        
         $profile = User::find($id);
         $profile->name = $request->name;
         $profile->id_card = $request->id_card;
@@ -76,6 +82,7 @@ class BlogController extends Controller
         $profile->major = $request->major;
         $profile->faculty = $request->faculty;
         $profile->birt_date = $request->birt_date;
+        $profile->image = $photoName;
         $profile->save();
             $id=Auth::user()->id;
             $url = "site/users/$id";           

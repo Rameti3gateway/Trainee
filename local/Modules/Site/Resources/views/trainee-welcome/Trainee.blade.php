@@ -6,13 +6,17 @@
         <section id="home">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-4">
+                    <div class="col-md-5 col-md-offset-4">
                         <img src="../assets/site/welcometemplete/images/about-img.png" class="img-responsive wow fadeInUp" alt="About">
-                    </div>
-                    <div class="col-md-offset-2 col-md-8 col-sm-12">                        
-                        <div class="home-thumb">                            
-                            <h1 class="animated fadeInUp" data-animated-delay="0.4s">Trainee Systems</h1>
-                            <h3 class="animated fadeInUp" data-wow-delay="0.1s">Lorem, ipsum dolor sit amet consectetur atque dignissimos distinctio ab aliquid voluptas quisquam incidunt a, soluta ducimus explicabo, est similique </h3>
+                    </div> 
+                    <div class="col-md-5 col-md-offset-4">
+                        <h1 class="animated fadeInUp" data-animated-delay="0.4s">Trainee Systems</h1>
+                    </div>                      
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-4">
+                        @if(Auth::check())                         
+                            <a href="{{ url('site/home')}}" ><button class="btn btn-lg"> Click To Site</button></a>
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -103,7 +107,7 @@
                         <div class="contact-form wow fadeInUp" data-wow-delay="1.0s">
                             <div class="text-center">
                                 @if (Auth::guest())
-                                <button class="btn btn-primary btn-lg" href="{{ url('site/register') }}">Register</button>
+                                    <button class="btn btn-primary btn-lg" href="{{ url('site/register') }}">Register</button>
                                 @endif
                             </div>                           
                         </div>
@@ -123,11 +127,10 @@
                         <h2>comila</h2>
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut. Etiam a tellus magna.</p>
-                            <p class="copyright-text">Copyright &copy; 2016 Your Company <br>
-                            Designed by <a rel="nofollow" href="http://www.google.com/+templatemo" target="_parent">Templatemo</a></p>
+                            <p class="copyright-text">Copyright &copy; 2016 I3GATWAY DIGITAL AGENCY <br>
+                            Designed by <a rel="nofollow" href="#">***</a></p>
                         </div>
-                    </div>
-                    <div class="col-md-1 col-sm-1"></div>
+                    </div>                    
                         <div class="col-md-4 col-sm-5">
                             <h2>Our Studio</h2>
                             <p class="wow fadeInUp" data-wow-delay="0.6s">
@@ -141,29 +144,13 @@
                                 <li><a href="#" class="fa fa-behance wow bounceIn" data-wow-delay="1.4s"></a></li>
                                 <li><a href="#" class="fa fa-dribbble wow bounceIn" data-wow-delay="1.6s"></a></li>
                             </ul>
-                        </div>
+                        </div>                       
                 </div>
             </div>
         </footer>
-
-        <!-- modal -->
-        <!-- <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modal-popup">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title">Our Newsletter</h2>
-                </div>
-                <form action="#" method="post">
-                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Full Name">
-                <input name="email" type="text" class="form-control" id="email" placeholder="Email Address">
-                <input name="submit" type="submit" class="form-control" id="submit" value="Subscribe Now">
-                </form>
-                <p>Thank you for your visiting!</p>
-            </div>
-        </div>
-        </div> -->
     </div>
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 @endsection
 
 

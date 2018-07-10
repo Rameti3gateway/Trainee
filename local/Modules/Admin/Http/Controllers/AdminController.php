@@ -35,7 +35,7 @@ class AdminController extends Controller
         return view('admin::dashboard',$data);
     }
 
-    public function member(){
+    public function member(){ 
         $member = Admin::all();
         return view('admin::member',compact('member',$member));
     }
@@ -52,7 +52,6 @@ class AdminController extends Controller
             $arr["m".$key] = $month;
             
         }
-        
         return view('admin::showprofile',$data);
 
     }
@@ -146,11 +145,7 @@ class AdminController extends Controller
                 }
             } 
         }
-        
-       
-        // $date = ["12","13","14","15","16"];
-        // $timechin = [11,12,13,14,15];
-        // $timechout = [20,21,22,23,24];
+
         
         return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout]);
         
@@ -189,126 +184,35 @@ class AdminController extends Controller
         return view('admin::createnewadmin');
     }
     public function createnewadminprocess(Request $request,$id){
-        
-        $ext = pathinfo(basename($_FILES['pro_image']['name']) ,PATHINFO_EXTENSION);
-        // random new name
-        $new_image_name = 'img_'.uniqid().".".$ext;
-        // $image_path = "../profile-image/" ;
-        if(Input::hasFile('file')){
-            $file=Input::file('file');
-            $file->move('../assets/site/img/admin-image/',$file->getClientOriginalName());
-            echo $file->getClientOriginalName();
-            exit();
-        }else{
-            echo "fail";
-        }
-        // $image_assets_path = "../assets/site/img/admin-image/";
-        // // $upload_path = $image_path.$new_image_name;
-        // $upload_assets_path = $image_assets_path.$new_image_name;
-        // // $success = move_uploaded_file($_FILES['image']['tmp_name'],$upload_path);
-        // $success = move_uploaded_file($_FILES['pro_image']['tmp_name'],$upload_assets_path);
-        // // if($success==FALSE){            
-        // //     // echo $upload_path;
-        // //     echo $upload_assets_path;
-        // //     exit();
-        // // }else{
-        // //     echo $success;
-        // //     exit();
+        $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move('../assets/site/img/profile-image/admin-image', $photoName);
 
-        // // }
-        // if($success){
-        //     $newadmin = new User;
-        //     $newadmin->name = $request->name;
-        //     $newadmin->id_card = $request->id_card;
-        //     $newadmin->email = $request->email;
-        //     $newadmin->gender = $request->gender;
-        //     $newadmin->birt_date = $request->birt_date;
-        
-        //     $newadmin->password = bcrypt($request->password) ;
-        //     $newadmin->image = $new_image_name;
-        //     $newadmin->role = "admin";
-        //     $newadmin->type = "general" ;
-        //     $newadmin->save();
+        $newadmin = new User;
+        $newadmin->name = $request->name;
+        $newadmin->id_card = $request->id_card;
+        $newadmin->email = $request->email;
+        $newadmin->gender = $request->gender;
+        $newadmin->birt_date = $request->birt_date;
+        $newadmin->image = $photoName;
+        $newadmin->password = bcrypt($request->password) ;
 
-        //     $admin = new Admin;
-        //     $admin->user_id = $newadmin->id;
-        //     $admin->name = $newadmin->name;
-        //     $admin->email = $newadmin->email;
-        //     $admin->role = $newadmin->role;
-        //     $admin->password = $newadmin->password;
-        //     $admin->save();
+        $newadmin->role = "admin";
+        $newadmin->type = "general" ;
+        $newadmin->save();
 
-        //     return view('admin::createnewadminsuccess');
+        $admin = new Admin;
+        $admin->user_id = $newadmin->id;
+        $admin->name = $newadmin->name;
+        $admin->email = $newadmin->email;
+        $admin->role = $newadmin->role;
+        $admin->password = $newadmin->password;
+        $admin->save();
 
-        // }else{
-        //     echo $image_assets_path;
-        //     echo $upload_assets_path ;
-        //     echo $success;
-        //     exit();
-        // }
-        
-
-        
-
-
+        return $this->member();
     }
     public function deleteadmin($id,$userid){
         Admin::where('user_id','=',$userid)->delete();
         User::find($userid)->delete();
 
-    }
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-
-
-    public function create()
-    {
-        return view('admin::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
     }
 }

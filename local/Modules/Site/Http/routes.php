@@ -9,8 +9,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
     //  Route::get('/users/{id}', function () {
     //     return view('site::blog.show');
     // });
+
+
+    // forgotpassword
     Route::get('password/reset','ResetPasswordController@index');
-    Route::post('password/reset/ok','ResetPasswordController@create');
+    Route::get('password/reset/{token}','ResetPasswordController@reset');
+    //////////////////////    
+    
+
     Route::get('/home','HomeController@index');
 
     //facebook Auth
@@ -36,10 +42,18 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
         Route::post('/{id}/todolist/task','TodolistController@store');
         Route::post('/{task}/todolist/delete/{id}','TodolistController@destroy');
         Route::post('/{id}/todolist/choose','TodolistController@show');
-        Route::get('/{id}/todolist/edittodolist/{taskid}/{data}','TodolistController@edittodolist');
-    
+        Route::get('/{id}/todolist/{taskid}/edittodolist/{input}','TodolistController@edittodolist');
+
+        Route::get('/{id}/report','PDFController@index');
+        Route::get('/{id}/report/checkincheckout/{type}/{detail}','PDFController@PDFcheckincheckout');
+        Route::get('/{id}/report/checkincheckout/{type}/{detail1}/{detail2}','PDFController@PDFcheckincheckoutinterval');
+
+        Route::get('/{id}/report/todolist/{data}','PDFController@PDFtodolist');
+        Route::post('/{id}/report/checkincheckout/choose','PDFController@PDFcheckincheckoutChoose');
     
     });
+    
+    
     //admin
 // Route::prefix('/admin')->group(function(){
 // 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

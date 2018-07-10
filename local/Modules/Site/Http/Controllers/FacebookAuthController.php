@@ -25,6 +25,6 @@ class FacebookAuthController extends Controller
         auth()->login($user);       
         return redirect()->to('site/home');
      
-         //dd( $user);
+        //  dd( $user);
     }
 }

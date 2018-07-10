@@ -9,6 +9,23 @@
 
     <title> @yield('title')</title>
 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Styles link-->
+    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}
+    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>  -->
+    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
+    
+    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
+    {{ Html::script(('../assets/bower_components/bootstrap/dist/js/bootstrap.min.js')) }} 
+        
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
+    {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
+   <!-- Links laravel -->
+    <!-- {{ Html::style(('../assets/site/css/themes/app.css')) }} -->
+    <!-- {{ Html::script(('../assets/site/js/app.js')) }}    -->
+
     <!-- Styles -->
     <style>
         .floating-menu {
@@ -22,39 +39,30 @@
         }
         
     </style>
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}  
-    {{--  {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    --}}
-     
-    {{ Html::style(('../assets/site/css/themes/app.css')) }}
-    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
-    {{ Html::script(('../assets/site/js/app.js')) }}    
-<<<<<<< HEAD
-    {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js'))}}
-    <!-- <script src="sweetalert2.all.min.js"></script> -->
-=======
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
-   
->>>>>>> 52010232750bf02bb2f99d0390f4bd055cd57932
-       
-    <!-- Styles home -->    
-   
- 
-   
-    
 
-    <!-- Styles-->
-    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
-       
  </head>
 <body class="bg-body"onload="startTime()">   
     <nav class="navbar-inverse">
         <div class="container">
             <div class="navbar-header">  
-
-                <!-- Branding Image -->                
-                    <a class="navbar-brand" href="{{ url('/site') }}">
-                        {{ config('app.Home', 'Home') }}
-                    </a>
+             <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Branding Image -->
+                    @if(Auth::check() && Auth::user()->role == 'admin')
+                        <a class="navbar-brand" href="{{ url('/admin') }}">
+                            {{ config('app.Home', 'Home') }}
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/site') }}">
+                            {{ config('app.Home', 'Home') }}
+                        </a>
+                    @endif                
+                    
                 
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">               
@@ -72,6 +80,13 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @php
+                                        $id = Auth::user()->id;
+                                        $url = "site/users/$id/report";
+                                    @endphp
+                                    <a href="{{ url($url) }}">Export Report</a>                                    
+                                </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -91,11 +106,8 @@
     </nav>
     <div class="contrianer">
          @yield('content')         
-    </div>   
-   
-    {{--  {{ Html::script(('../assets/site/js/app.js')) }}  
-    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }} 
+    </div>         
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}  --}}
+    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
 </body>
 </html>

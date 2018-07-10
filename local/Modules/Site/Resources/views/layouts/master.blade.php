@@ -3,21 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+      
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title> @yield('title')</title>
-    
-    <!-- Styles -->
-    <!-- {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.css')) }}   -->
-    {{ Html::style(('../assets/site/css/themes/app.css')) }}
-    <!-- {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}    -->
-    {{ Html::script(('../assets/site/js/app.js')) }}
-       
-    <!-- Styles home -->    
-    
-
+    <title> @yield('title')</title>    
     <!-- Styles-->
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
 
@@ -47,7 +38,7 @@
                 </button>
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/site') }}">
-                    {{ config('app.name', 'Laravel') }}
+                   {{ config('app.Home', 'Home') }}
                 </a>
             </div>
 
@@ -70,6 +61,13 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    @php
+                                        $id = Auth::user()->id;
+                                        $url = "site/users/$id/report";
+                                    @endphp
+                                    <a href="{{ url($url) }}">Export Report</a>                                    
+                                </li>
+                                <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -88,11 +86,10 @@
         </div>
     </nav>       
       @yield('content')  
-        <!-- Back top -->
-    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    
     <!-- javscript js -->
     <script src="../assets/site/welcometemplete/js/jquery.js"></script>
-    <!-- <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script> -->
+    <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script>
     <script src="../assets/site/welcometemplete/js/vegas.min.js"></script>
 
     <script src="../assets/site/welcometemplete/js/wow.min.js"></script>
