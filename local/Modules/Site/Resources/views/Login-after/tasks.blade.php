@@ -120,15 +120,7 @@
                     <div  class="form-group">
                             {{ Form::label('Task','',['class' => 'col-sm-3 control-label'])}}                        
                         <div class="col-sm-6">
-
-
-                            {{Form::text('detail','',['class'=>'form-control','value'=>''])}}                           
-
-                        {{Form::text('detail','',['class'=>'form-control'])}}                           
-
-
                             {{Form::text('detail','',['class'=>'form-control','autofocus'=>'autofocus','required'=>'required']) }} 
-
                         </div>
                     </div>
                     <div class="form-group">                        
@@ -162,31 +154,17 @@
                     <tbody id="choosedate" >
                         @foreach ($tasks as $task) 
                         <tr id="{{'trid-'.$task->id}}" > 
-
-                            <td class="table-text" " value="{{$task->detail}}">
-                                <div id="detail-{{$task->id}}">{{ $task->detail }}</div>
-
                             <td class="table-text " id="choosedate">
                                 <div id="inputtodolist-{{$task->id}}">{{ $task->detail }}</div>
-
                             </td>
                             <td> 
                                 {{ csrf_field() }}
                                 <div class="text-right">
-
-                                    <button type="submit" class="btn btn-primary" id="edit-{{$task->id}}"  value="">
-                                        <i class="fa fa-btn fa-trash"></i>Edit
-                                    </button>
-                                    
-                                    <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  value="{{$task->id}}">
-                                        <i class="fa fa-btn fa-trash"></i>Delete
-
                                     <button type="submit" class="btn btn-primary" id="editbutton-{{$task->id}}"  value="">
                                            <i><span class="glyphicon glyphicon-pencil"></span>Edit</i>
                                     </button>
                                     <button type="submit" class="btn btn-danger" id="{{'deletebutton-'.$task->id}}"  >
                                         <i><span class=""></span>Delete</i>
-
                                     </button>
                                 </div>       
                                 <script type="text/javascript">

@@ -99,16 +99,6 @@ class TodolistController extends Controller
         
 
     }
-    public function edittodolist($id,$taskid,$data){
-        $task = Tasks::find($taskid);
-        $task->detail = $data;
-        $task->save();
-
-        return response()->json(['tasks' => $task->detail ]);
-        
-
-        
-    }
 
     /**
      * Show the form for editing the specified resource.
