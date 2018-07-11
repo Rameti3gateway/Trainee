@@ -59,7 +59,7 @@ class BlogController extends Controller
         //  echo '555555555';
             if(User::where(''))
             $profile = User::find($id);
-            return view('site::blog.edit')->with('profile',$profile);
+            return view('site::blog.edit')->with('profile',$profile);           
     }
     /**
      * Update the specified resource in storage.
@@ -71,7 +71,7 @@ class BlogController extends Controller
         $image = $request->image;
        
         $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
-        $image->move('../assets/site/img/profile-image/user-image', $photoName);
+        $image->move('../upload/img/site/profile-image/', $photoName);
         
         
         $profile = User::find($id);

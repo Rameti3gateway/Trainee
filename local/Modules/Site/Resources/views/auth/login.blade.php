@@ -1,7 +1,7 @@
 @extends('site::layouts.app')
     {{ Html::style(('../assets/site/css/auth/login.css')) }}
 @section('content')
-<div class="container animated ZoomIn">
+<div class="container animated fadeIn">
     <div class="row" id="login-form">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
