@@ -7,21 +7,22 @@
                 <div class="panel-heading"><strong>Your Profile</strong></div>
                 <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                      <div class="panel-body " style="text-align:center">
-                     <h2>User Profile Card</h2>   
-                        @if($blog->type == "facebook" || $blog->type == "google" )                                
-                            @if(strstr($blog->image,'_',true) == 'user')
-                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$blog->image )}}" alt="photo" style="width:20%">
-                            @else
-                                <img src="{{$blog->image}}" alt="photo" style="width:20%">
-                            @endif
-                        @elseif($profile->type == 'general')
-                            @if($profile->image == null)
-                                <img src="{{ url('../assets/site/img/profile-image/default.jpg') }}" alt="photo" style="width:20%">
-                            @else
-                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$blog->image )}}" alt="photo" style="width:20%">
-                            @endif
-                            
-                        @endif            
+                        <h2>User Profile Card</h2>   
+                        <div class="animated zoomIn">
+                            @if($blog->type == "facebook" || $blog->type == "google" )                                
+                                @if(strstr($blog->image,'_',true) == 'user')
+                                    <img class="hvr-grow" src="{{url('../assets/site/img/profile-image/user-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                                @else
+                                    <img class="hvr-grow" src="{{$blog->image}}" alt="photo" style="width:20%">
+                                @endif
+                            @elseif($profile->type == 'general')
+                                @if($profile->image == null)
+                                    <img class="hvr-grow" src="{{ url('../assets/site/img/profile-image/default.jpg') }}" alt="photo" style="width:20%">
+                                @else
+                                    <img class="hvr-grow" src="{{url('../assets/site/img/profile-image/user-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                                @endif                            
+                            @endif   
+                        </div>         
                      </div>
                     <div class="panel-body "style="text-align:center">
                       

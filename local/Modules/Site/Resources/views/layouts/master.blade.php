@@ -10,21 +10,18 @@
 
     <title> @yield('title')</title>    
     <!-- Styles-->
-    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
-
-    <link rel="stylesheet" href="../assets/site/welcometemplete/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/site/welcometemplete/css/animate.min.css">
-
+    <!-- {{ Html::style(('../assets/bower_components/animate.css/animate.min.css')) }}  -->
+    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
+    	<link rel="stylesheet" href="../assets/site/welcometemplete/css/animate.min.css">
   	<link rel="stylesheet" href="../assets/site/welcometemplete/css/et-line-font.css">
-	<link rel="stylesheet" href="../assets/site/welcometemplete/css/font-awesome.min.css">
-
-  	<link rel="stylesheet" href="../assets/site/welcometemplete/css/vegas.min.css">
+	    <!-- <link rel="stylesheet" href="../assets/site/welcometemplete/css/font-awesome.min.css"> -->
+    {{ Html::style(('../assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
+  	    <!-- <link rel="stylesheet" href="../assets/site/welcometemplete/css/vegas.min.css"> -->
 	<link rel="stylesheet" href="../assets/site/welcometemplete/css/style.css">
+    {{ Html::style(('../assets/bower_components/hover/css/hover-min.css')) }}
 
 	<link href='https://fonts.googleapis.com/css?family=Rajdhani:400,500,700' rel='stylesheet' type='text/css'>
-    
-       
- </head>
+</head>
 <body> 
      <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -56,7 +53,8 @@
                         <li><a href="{{ url('site/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img width=25"px" height="25px" class="img-circle" src="http://i.imgur.com/bQ6Rroe.jpg" alt="profile">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">

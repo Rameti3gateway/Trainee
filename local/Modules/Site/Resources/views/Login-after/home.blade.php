@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
-    {{ Html::style(('../assets/bower_components/hover/css/hover-min.css')) }}
+@section('title','Welcome to Trainee system')      
     {{ Html::style(('../assets/site/css/home/home.css')) }}
 @section('title','Welcome to Trainee system')     
     @section('content')   
