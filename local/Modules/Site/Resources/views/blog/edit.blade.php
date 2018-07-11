@@ -1,6 +1,6 @@
 @extends('site::layouts.app')
 @section('content')
-<div class="container  animated zoomIn">
+<div class="container  animated fadeIn">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
@@ -15,15 +15,15 @@
 
                         @if($profile->type == "facebook" || $profile->type == "google" )                                
                             @if(strstr($profile->image,'_',true) == 'user')
-                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                                <img src="{{url('../upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
                             @else
                                 <img src="{{$profile->image}}" alt="photo" style="width:20%">
                             @endif
                         @elseif($profile->type == 'general')
                             @if($profile->image == null)
-                                <img src="{{ url('../assets/site/img/profile-image/default.jpg') }}" alt="photo" style="width:20%">
+                                <img src="{{ url('../upload/img/default.jpg') }}" alt="photo" style="width:20%">
                             @else
-                                <img src="{{url('../assets/site/img/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                                <img src="{{url('../upload/img/site/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
                             @endif
                             
                         @endif                        

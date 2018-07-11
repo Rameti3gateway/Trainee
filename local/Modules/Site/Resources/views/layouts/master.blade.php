@@ -54,7 +54,22 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img width=25"px" height="25px" class="img-circle" src="http://i.imgur.com/bQ6Rroe.jpg" alt="profile">
+                               @php
+                                    $loginUser = Auth::user();
+                               @endphp
+                                @if( $loginUser->type == "facebook" || $loginUser->type == "google")  
+                                    @if(strstr($loginUser->image,'_',true) == 'user')
+                                        <img width=25"px" height="25px" class="img-circle"  src="{{ url('../upload/img/site/profile-image/'.$loginUser->image ) }}" alt="photo" >
+                                    @else
+                                        <img width=25"px" height="25px" class="img-circle" src="{{ $loginUser->image }}" alt="photo">
+                                    @endif  
+                                @else
+                                    @if($loginUser->image == null)
+                                        <img width=25"px" height="25px" class="img-circle" src="{{ url('../upload/img/default.jpg') }}" alt="photo">
+                                    @else
+                                        <img width=25"px" height="25px" class="img-circle" src="{{url('../upload/img/site/profile-image/'.$loginUser->image )}}" alt="photo">
+                                    @endif  
+                                @endif    
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">

@@ -28,14 +28,21 @@
                     <a href="{{url($url)}}"><img src="{{url('../assets/site/img/login-after/user.png')}}" class="hvr-bounce-out"></a>
                     <h3><a href="{{url($url)}}">Profile</a></h3>
                 </div>
-                <div class="col-md-6 animated slideInUp hvr-float-shadow">
-                    @php                 
+                <div class="col-md-6 animated slideInUp hvr-float-shadow">  
+                    @php   
                         $id =  Auth::user()->id;
-                        $urltasklist = "site/users/$id/todolist/?date=";                     
-                    @endphp 
-                <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}" class="hvr-bounce-out"></a> 
-                    <h3><a href="{{url($urltasklist)}}">Task list</a></h3>
-                </div>           
+                        $urltasklist = "site/users/$id/todolist/?date=";  
+                    @endphp   
+                    @if($check == true)
+                        <a href="{{url('site/home')}}"><img src="{{ url('../assets/site/img/login-after/todo.png') }}" class="hvr-bounce-out"></a> 
+                        <h3><a href="{{url('site/home')}}">Task list</a></h3>
+                    @elseif($check == false)  
+                        
+                        <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}" class="hvr-bounce-out"></a> 
+                        <h3><a href="{{url($urltasklist)}}">Task list</a></h3>
+                    @endif  
+
+               </div>   
             </div>       
             <div class="row">
                 <div class="col animated slideInDown hvr-float-shadow">                
