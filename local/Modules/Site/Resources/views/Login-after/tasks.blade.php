@@ -1,5 +1,4 @@
 @extends('site::layouts.app')
-
 @section('content')
 <script type="text/javascript">
     $.ajaxSetup({
@@ -104,14 +103,16 @@
 
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8 ">
-        <div class="panel panel-default">
+        <div class="panel panel-default animated pulse">
             <div class="panel-heading">Task</div>
             <div class="panel-body">
+
                 <!-- Display Validation Errors -->
                 @php
                 $id =  Auth::user()->id;
                 $url = "users/$id/todolist/task";
                 @endphp 
+
                 <!-- New Task Form -->
                 <form action="http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/todolist/task" method="post" class="form-horizontal" id="addtaskform">
                     {{ csrf_field() }}
@@ -143,12 +144,12 @@
                             </button>
                         </div>
                     </div>
-                </form>   
-                    
+                </form>  
             </div>
-    </div>    
+    </div>  
+
     <!-- Current Tasks -->
-    <div  id="displaytask">
+    <div  id="displaytask" class="animated fadeIn">
         @if (count($tasks) )
         <div class="panel panel-default">
             <div class="panel-heading">Current Tasks </div>
@@ -187,136 +188,71 @@
                                         <i><span class=""></span>Delete</i>
 
                                     </button>
-                                </div>                               
-
-                            <script type="text/javascript">
-                                $.ajaxSetup({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                                    }
-                                });
-
-                            $(function($){
-                                
-                                    $("#edit-{{$task->id}}").click(function(){
-                                        swal({
-                                            title:'Edit To do list',
-                                            html:'<input id="input-{{$task->id}}" class="swal2-input" ">' ,
-                                            // inputValue:"{{$task->detail}}",
-                                            // inputId:"input-{{$task->id}}",
-                                            // input:'text',
-                                            // inputValue:"{{$task->detail}}",
-                                            showCancelButton: true,
-                                            
-                                            inputValidator: (value) => {
-                                                return 'You need to write something!'
-                                            },
-                                            preConfirm: (input)=>{
-                                                return fetch("http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->user_id ?>+"/todolist/edittodolist/"+<?php echo $task->id ?>+"/"+$("#input-{{$task->id}}").val())
-                                                .then(response=>{
-                                                   return response.json();
-                                                })                                                
-                                            }
-                                            
-                                        }).then((result)=>{
-                                           
-                                            
-                                            $("#detail-{{$task->id}}").html(result.value.tasks);
-                                            
-                                        })
-                                            
-                                        
-                                        
-                                    })
-                                    $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
-                                        // alert($("#deletebutton-"+<?php echo $task->id ?>).val());
-                                        $.ajax({
-                                            'type':'POST',
-                                            'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
-                                            'cache':false,
-                                            'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
-                                            'success':function(data){
-                                                if(data.count == 0){
-                                                    $("#displaytask").empty();
-                                                }else{
-                                                    $("#trid-"+<?php echo $task->id ?>).empty();
-                                                }
-
-                                $(function($){
-                                        $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
-
-                                            // alert($("#deletebutton-"+<?php echo $task->id ?>).val());
-                                            $.ajax({
-                                                'type':'POST',
-                                                'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
-                                                'cache':false,
-                                                'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
-                                                'success':function(data){
-                                                    if(data.count == 0){
-                                                        $("#displaytask").empty();
-                                                    }else{
-                                                        $("#trid-"+<?php echo $task->id ?>).empty();
-                                                    }
-
-
-
-                                           swal({
-                                                title: 'Are you sure delete?',
-                                                text: "Do you want to delete it!",
-                                                type: 'warning',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#3085d6',
-                                                cancelButtonColor: '#d33',
-                                                confirmButtonText: 'Yes, delete it!'
-                                                }).then((result) => {
-                                                if (result.value) {  
-                                                    swal(
-                                                        'Deleted!',
-                                                        'Your task has been deleted.',
-                                                        'success'
-                                                    )
-                                                    $.ajax({
-                                                    'type':'POST',
-                                                    'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
-                                                    'cache':false,
-                                                    'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
-                                                    'success':function(data){                                                                                                                                             
-                                                                if(data.count == 0){                                                        
-                                                                    $("#displaytask").empty();
-                                                                }else{
-                                                                    $("#trid-"+<?php echo $task->id ?>).empty();
-                                                                }
-                                                             }
-                                                    })
-
-                                                }
-                                            });                                                    
-                                        });
-                                        var oldvalue;
-                                        var count = 0;
-                                        $("#editbutton-{{$task->id}}").click(function(){
-                                            var data = "{{$task->detail}}";
-                                            console.log(data);
+                                </div>       
+                                <script type="text/javascript">
+                                    $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                                        }
+                                    });
+                                    $(function($){
+                                            $("#deletebutton-"+<?php echo $task->id ?>).click(function(){
                                             swal({
-                                                title: 'Edit To do list',
-                                                input:'text',
-                                                showCancelButton: true,
-                                                inputValue:(count == 0)? data:oldvalue,
-                                                preConfirm:(input)=>{
-                                                    return fetch("/Laravel/Trainee/local/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
-                                                    .then(response =>{
-                                                        return response.json();
-                                                    })   
-                                                }  
-                                            }).then(response =>{
-                                                oldvalue = response.value.data;
-                                                $("#inputtodolist-{{$task->id}}").html(response.value.data);
-                                            })
-                                            count = count + 1;
+                                                    title: 'Are you sure delete?',
+                                                    text: "Do you want to delete it!",
+                                                    type: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Yes, delete it!'
+                                                    }).then((result) => {
+                                                    if (result.value) {  
+                                                        swal(
+                                                            'Deleted!',
+                                                            'Your task has been deleted.',
+                                                            'success'
+                                                        )
+                                                        $.ajax({
+                                                        'type':'POST',
+                                                        'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
+                                                        'cache':false,
+                                                        'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
+                                                        'success':function(data){                                                                                                                                             
+                                                                    if(data.count == 0){                                                        
+                                                                        $("#displaytask").empty();
+                                                                    }else{
+                                                                        $("#trid-"+<?php echo $task->id ?>).empty();
+                                                                    }
+                                                                }
+                                                        })
+                                                    }
+                                                });                                                    
+                                            });
+                                            var oldvalue;
+                                            var count = 0;
+                                            $("#editbutton-{{$task->id}}").click(function(){
+                                                var data = "{{$task->detail}}";
+                                                console.log(data);
+                                                swal({
+                                                    title: 'Edit To do list',
+                                                    input:'text',
+                                                    showCancelButton: true,
+                                                    inputValue:(count == 0)? data:oldvalue,
+                                                    preConfirm:(input)=>{
+                                                        return fetch("/Laravel/Trainee/local/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
+                                                        .then(response =>{
+                                                            return response.json();
+                                                        })   
+                                                    }  
+                                                }).then(response =>{
+                                                    oldvalue = response.value.data;
+                                                    $("#inputtodolist-{{$task->id}}").html(response.value.data);
+                                                })
+                                                count = count + 1;
 
-                                        })
-                                });
-                            </script>
+                                            })
+                                    });
+                                </script>
                             </td> 
                         </tr> 
                         @endforeach  
@@ -328,10 +264,6 @@
     </div> 
     <div class="text-center">
         <a href="{{url('/site/home')}}"><button type="button" class="btn btn-primary btn-lg " >Back</button></a>    
-    </div>
-    
+    </div>    
 </div> 
-                        
-             
-
 @endsection

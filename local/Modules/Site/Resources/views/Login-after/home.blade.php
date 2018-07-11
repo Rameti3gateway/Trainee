@@ -1,14 +1,11 @@
 @extends('site::layouts.app')
-@section('title','Welcome to Trainee system')  
-    @if(isset($style))
-        @foreach($style as $css)
-                {{ Html::style(( $css ))}}
-        @endforeach
-    @endif
+@section('title','Welcome to Trainee system')      
+    {{ Html::style(('../assets/site/css/home/home.css')) }}
+@section('title','Welcome to Trainee system')     
     @section('content')   
     <div class="home-main-content">      
         <div class="jumbotron welcome-site ">
-            <div class="container class-room animated zoomIn">
+            <div class="container class-room animated zoomIn hvr-shadow">
                 <img src="{{url('../assets/site/img/login-after/classroom.png')}}"> 
                 <h2>
                     @php
@@ -23,30 +20,30 @@
         </div>    
         <div class="container detial-home">
             <div class="row">            
-                <div class="col-md-6 animated slideInUp">
+                <div class="col-md-6 animated slideInUp hvr-float-shadow">
                     @php                 
                         $id =  Auth::user()->id;
                         $url = "site/users/$id";                     
                     @endphp 
-                    <a href="{{url($url)}}"><img src="{{url('../assets/site/img/login-after/user.png')}}"></a>
+                    <a href="{{url($url)}}"><img src="{{url('../assets/site/img/login-after/user.png')}}" class="hvr-bounce-out"></a>
                     <h3><a href="{{url($url)}}">Profile</a></h3>
                 </div>
-                <div class="col-md-6 animated slideInUp">
+                <div class="col-md-6 animated slideInUp hvr-float-shadow">
                     @php                 
                         $id =  Auth::user()->id;
                         $urltasklist = "site/users/$id/todolist/?date=";                     
                     @endphp 
-                <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}"></a> 
+                <a href="{{url($urltasklist)}}"><img src="{{url('../assets/site/img/login-after/todo.png')}}" class="hvr-bounce-out"></a> 
                     <h3><a href="{{url($urltasklist)}}">Task list</a></h3>
                 </div>           
             </div>       
             <div class="row">
-                <div class="col animated slideInDown">                
+                <div class="col animated slideInDown hvr-float-shadow">                
                     @php                    
                         $id =  Auth::user()->id;
                         $urlch = "site/users/$id/checkinout";                     
                     @endphp 
-                    <a href="{{url($urlch)}}"><img src="{{url('../assets/site/img/login-after/check.png')}}"></a>                        
+                    <a href="{{url($urlch)}}"><img src="{{url('../assets/site/img/login-after/check.png')}}" class="hvr-bounce-out"></a>                        
                     <h3><a href="{{url($urlch)}}">Checkin-checkout</a></h3>  
                 </div> 
             </div>                

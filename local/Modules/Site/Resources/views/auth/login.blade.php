@@ -1,14 +1,8 @@
 @extends('site::layouts.app')
-<style>
-    .login-form{
-        animation-duration: 1s;
-        animation-delay:0.1s;
-    }
-            	
-</style>
+    {{ Html::style(('../assets/site/css/auth/login.css')) }}
 @section('content')
-<div class="container login-form animated ZoomIn">
-    <div class="row">
+<div class="container animated ZoomIn">
+    <div class="row" id="login-form">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
@@ -57,7 +51,7 @@
                                 <a class="btn btn-primary btn-block" href="{{ url('site/login/facebook') }}" >
                                     <span class="fa fa-facebook"></span> Sign in with Facebook
                                 </a>
-                                <a href="{{ url('site/login/google') }}" class="btn btn-danger btn-block">
+                                <a href="{{ url('site/login/google') }}" class="btn btn-default btn-block">
                                     <span class="fa fa-google "></span> Sign in with Google
                                </a>                                     
                                <a class="btn btn-link " href="{{url('site/password/reset')}}">

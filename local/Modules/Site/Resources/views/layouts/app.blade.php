@@ -12,16 +12,15 @@
     <!-- Styles link-->
     {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
     {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
-    
+    {{ Html::style(('../assets/bower_components/hover/css/hover-min.css')) }}
     {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
     {{ Html::script(('../assets/bower_components/bootstrap/dist/js/bootstrap.min.js')) }} 
         
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
     {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
     
-    {{ Html::style(('../assets/bower_components/components-font-awesome/css/fontawesome.min.css')) }}
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    
+    {{ Html::style(('../assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
+       
      <!-- Links laravel -->
     {{ Html::style(('../assets/site/css/themes/app.css')) }}  
  </head>
@@ -56,9 +55,10 @@
                         <li><a href="{{ url('site/login') }}">Login</a></li>
                         <li><a href="{{ url('site/register') }}">Register</a></li>
                         <li><a href="{{ url('admin/login') }}">Admin</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    @else                         
+                        <li class="dropdown">                        
+                            <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img width=25"px" height="25px" class="img-circle" src="http://i.imgur.com/bQ6Rroe.jpg" alt="profile">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">

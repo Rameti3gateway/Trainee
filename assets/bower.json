@@ -20,6 +20,7 @@
     "jquery": "^3.3.1",
     "chart.js": "^2.7.2",
     "sweetalert2": "^7.24.4",
-    "components-font-awesome": "^5.0.6"
+    "components-font-awesome": "4.7.0",
+    "hover": "^2.3.1"
   }
 }

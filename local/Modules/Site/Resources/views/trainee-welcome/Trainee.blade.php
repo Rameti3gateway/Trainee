@@ -1,5 +1,5 @@
 @extends('site::layouts.master')
-@section('title','Welcome to Trainee system')  
+@section('title','Home')  
 @section('content')
     <div>      
         <!-- home section -->

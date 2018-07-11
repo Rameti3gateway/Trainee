@@ -1,13 +1,8 @@
 @extends('site::layouts.app')
-<style>
-    .login-form{
-        animation-duration: 1s;
-        animation-delay:0.1s;
-    }
-</style>
+    {{ Html::style(('../assets/site/css/auth/register.css')) }}
 @section('content')
-<div class="container register-form animated ZoomIn">
-    <div class="row">
+<div class="container animated ZoomIn">
+    <div class="row" id="register-form">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
@@ -17,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Name<sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -30,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('id_card') ? ' has-error' : '' }}">
-                            <label for="id_card" class="col-md-4 control-label">ID Card</label>
+                            <label for="id_card" class="col-md-4 control-label">ID Card<sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input id="id_card" type="id_card" class="form-control" name="id_card" required>
@@ -44,7 +39,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address<sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -97,7 +92,7 @@
                         </div>
                         <!--  -->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Password<sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -111,7 +106,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password<sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -119,7 +114,7 @@
                         </div>
                         <!-- upload image -->
                         <div class="form-group">
-                            <label for="image" class="col-md-4 control-label">Upload Image</label>
+                            <label for="image" class="col-md-4 control-label">Upload Image<sup>*</sup></label>
                             <div class="col-md-6">
                                 {{Form::file('image', null)}}
                             </div>

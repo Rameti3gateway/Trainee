@@ -1,0 +1,8 @@
+.home-main-content {
+  text-align: center;
+  background-color: white; }
+  .home-main-content img {
+    width: 120px;
+    height: 120px; }
+  .home-main-content z.jumbotron {
+    background-color: #c7bfbf; }
