@@ -42,13 +42,24 @@ class AdminController extends Controller
     
     public function showprofile($id,$userid){
         $data['blog'] = User::find($userid);
-        $data['choosedate']= Times::select('date')->where('user_id','=',$userid)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->pluck('date','date');
-        $data['choosedate']->prepend("choosedate");
+        $data['choosedate']= Times::select('date')->where('user_id','=',$userid)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->pluck('date');
+        $arr = $data['choosedate'];
+        $arrayindex=[];
+        $arraydata=[];
+        array_push($arrayindex,"0");
+        array_push($arraydata,"Please select");
+        foreach($arr as $a){
+            $val = Carbon::parse($a)->format('d F Y');
+            array_push($arrayindex,$a);
+            array_push($arraydata,$val);
+        }
+        $data['choosedate'] = array_combine($arrayindex,$arraydata);
+        
 
-        $queryweek = Times::select('date')->where('user_id','=',$userid)->groupBy('date')->get()->groupBy(function($date){return Carbon::parse($date->date)->format('W');});
+        $queryweek = Times::select('date')->where('user_id','=',$userid)->groupBy('date')->get()->groupBy(function($date){return Carbon::parse($date->date)->format('W Y');});
         $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m');});
         foreach ($qw as $key => $value) {
-            $month = Carbon::parse($value[0])->format('F');
+            $month = Carbon::parse($value[0])->format('F Y');
             $arr["m".$key] = $month;
             
         }
@@ -65,16 +76,18 @@ class AdminController extends Controller
         $data = $_POST['data'];
         $arr = [];
         if($data == "week"){
-            $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W');});
+            $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W Y');});
             foreach ($qw as $key => $value) {
-                $interval = $value[0]."=>".$value[count($value)-1];
+                $a = Carbon::parse($value[0])->format('d F Y');
+                $b = Carbon::parse($value[count($value)-1])->format('d F Y');
+                $interval = $a." => ".$b;
                 $arr["w".$key] = $interval;
             }
 
         }elseif($data == "month"){
-            $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m');});
+            $qw = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m Y');});
             foreach ($qw as $key => $value) {
-                $month = Carbon::parse($value[0])->format('F');
+                $month = Carbon::parse($value[0])->format('F Y');
                 $arr["m".$key] = $month;
                 
             }
@@ -84,14 +97,14 @@ class AdminController extends Controller
     public function showgraph($id,$userid,$date){
 
         $data = $date;
-        
+        $test;
         $datadata = [];
         $datachin = [];
         $datachout = [];
 
         if($data[0] == 'w'){
             $data = substr($data,1);
-            $check = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W');});
+            $check = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('W Y');});
             foreach ($check as $key => $value) {
                 if($key == $data){
                     
@@ -99,47 +112,95 @@ class AdminController extends Controller
                         $timechin = Times::select('date','time_checkin')->where('user_id','=',$userid)->where('date','=',$val)->where('time_checkin','!=',null)->get();
                         $timechout = Times::select('date','time_checkout')->where('user_id','=',$userid)->where('date','=',$val)->where('time_checkout','!=',null)->get();
                         
-                        $timechin = $timechin[0];
-                        $timechout =$timechout[count($timechout)-1];
-                        $timedate = $timechin->date;
+                        if(count($timechin) != 0){
+                            $timechin = $timechin[0];
+                            $checkintime = Carbon::parse($timechin->time_checkin)->format("H:i:s");
+                        }else{
+                            $checkintime = null;
+                        }
+
+                        if(count($timechout) != 0){
+                            $timechout =$timechout[count($timechout)-1];
+                            $checkouttime = Carbon::parse($timechout->time_checkout)->format("H:i:s");
+                        }else{
+                            $checkouttime = null;
+                        }
+
+                        
+                        $timedate = $val;
 
                         
                         
-                        
-                        $checkintime = Carbon::parse($timechin->time_checkin)->format("H.i");
-                        $checkouttime = Carbon::parse($timechout->time_checkout)->format("H.i");
+        
                         array_push($datachin,$checkintime);
                         array_push($datachout,$checkouttime);
                         array_push($datadata,$timedate);
-                        // $graph = [$timechin->date,$timechin->time_checkin,$timechout->time_checkout];  
-                        // array_push($datagraph,$graph); 
-                        // $index = $index+1;
+                       
+                    }
+                    if(count($value) == 1){
+                        $date = new Carbon();
+                        $date->setISODate(substr($data, -4),substr($data,0,2)); // 2016-10-17 23:59:59.000000
+                        $start = $date->startOfWeek()->toDateString(); // 2016-10-17 00:00:00.000000
+                        $end = $date->endOfWeek()->toDateString(); // 2016-10-23 23:59:59.000000
+                        $test = $start;
+                        $valdate = $datadata[0];
+                        $a = Carbon::parse($valdate)->addDays(1)->toDateString();
+                        array_push($datadata,$a);
+                        array_push($datachin,null);
+                        array_push($datachout,null);
+                        
+                    }else{
+                        $test = null;
                     }
                    
                 }
             }
             
         }elseif($data[0] == 'm'){
+            $test = null;
             $data = substr($data,1);
-            $check = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m');});
+            $check = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m Y');});
             foreach ($check as $key => $value) {
                 if($key == $data){
                     
                     foreach($value as $val){
                         $timechin = Times::select('date','time_checkin')->where('user_id','=',$userid)->where('date','=',$val)->where('time_checkin','!=',null)->get();
                         $timechout = Times::select('date','time_checkout')->where('user_id','=',$userid)->where('date','=',$val)->where('time_checkout','!=',null)->get();
-                        $timechin = $timechin[0];
-                        $timechout =$timechout[count($timechout)-1];
-                        $timedate = $timechin->date;
+                        if(count($timechin) != 0){
+                            $timechin = $timechin[0];
+                            $checkintime = Carbon::parse($timechin->time_checkin)->format("H:i:s");
+                        }else{
+                            $checkintime = null;
+                        }
+
+                        if(count($timechout) != 0){
+                            $timechout =$timechout[count($timechout)-1];
+                            $checkouttime = Carbon::parse($timechout->time_checkout)->format("H:i:s");
+                        }else{
+                            $checkouttime = null;
+                        }
 
                         
-                        
-                        
-                        $checkintime = Carbon::parse($timechin->time_checkin)->format("H.i");
-                        $checkouttime = Carbon::parse($timechout->time_checkout)->format("H.i");
+                        $timedate = $val;
                         array_push($datachin,$checkintime);
                         array_push($datachout,$checkouttime);
                         array_push($datadata,$timedate);
+                    }
+                    if(count($value) == 1){
+                        $date = new Carbon();
+                        $date->setISODate(substr($data, -4),substr($data,0,2)); // 2016-10-17 23:59:59.000000
+                        $start = $date->startOfWeek()->toDateString(); // 2016-10-17 00:00:00.000000
+                        $end = $date->endOfWeek()->toDateString(); // 2016-10-23 23:59:59.000000
+                        $test = $start;
+                        $valdate = $datadata[0];
+                        $a = Carbon::parse($valdate)->addDays(1)->toDateString();
+                        array_push($datadata,$a);
+                        array_push($datachin,null);
+                        array_push($datachout,null);
+                        
+                        
+                    }else{
+                        $test = null;
                     }
                     
                 }
@@ -147,7 +208,7 @@ class AdminController extends Controller
         }
 
         
-        return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout]);
+        return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout,'test'=>$test]);
         
         
 
