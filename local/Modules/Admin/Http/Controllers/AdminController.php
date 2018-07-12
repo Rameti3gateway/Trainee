@@ -138,24 +138,16 @@ class AdminController extends Controller
                        
                     }
                     if(count($value) == 1){
-                       
                         $date = new Carbon();
                         $date->setISODate(substr($data, -4),substr($data,0,2)); // 2016-10-17 23:59:59.000000
                         $start = $date->startOfWeek()->toDateString(); // 2016-10-17 00:00:00.000000
                         $end = $date->endOfWeek()->toDateString(); // 2016-10-23 23:59:59.000000
                         $test = $start;
-                        if($datadata[0] != $start && $datadata[0] != $end){
-                            $a = Carbon::parse($start)->addDays(1);
-                            $b = Carbon::parse($end)->subDays(1);
-                            $test = $b;
-
-                        }elseif($datadata[0] == $start){
-                            $a = Carbon::parse($start)->addDays(1);
-                            $test = $a;
-                        }elseif($datadata[0] == $end){
-                            $b = Carbon::parse($end)->subDays(1);
-                            $test = $b;
-                        }
+                        $valdate = $datadata[0];
+                        $a = Carbon::parse($valdate)->addDays(1)->toDateString();
+                        array_push($datadata,$a);
+                        array_push($datachin,null);
+                        array_push($datachout,null);
                         
                     }else{
                         $test = null;
@@ -165,6 +157,7 @@ class AdminController extends Controller
             }
             
         }elseif($data[0] == 'm'){
+            $test = null;
             $data = substr($data,1);
             $check = Times::where('user_id','=',$userid)->groupBy('date')->pluck('date')->groupBy(function($date){return Carbon::parse($date)->format('m Y');});
             foreach ($check as $key => $value) {
@@ -192,6 +185,22 @@ class AdminController extends Controller
                         array_push($datachin,$checkintime);
                         array_push($datachout,$checkouttime);
                         array_push($datadata,$timedate);
+                    }
+                    if(count($value) == 1){
+                        $date = new Carbon();
+                        $date->setISODate(substr($data, -4),substr($data,0,2)); // 2016-10-17 23:59:59.000000
+                        $start = $date->startOfWeek()->toDateString(); // 2016-10-17 00:00:00.000000
+                        $end = $date->endOfWeek()->toDateString(); // 2016-10-23 23:59:59.000000
+                        $test = $start;
+                        $valdate = $datadata[0];
+                        $a = Carbon::parse($valdate)->addDays(1)->toDateString();
+                        array_push($datadata,$a);
+                        array_push($datachin,null);
+                        array_push($datachout,null);
+                        
+                        
+                    }else{
+                        $test = null;
                     }
                     
                 }

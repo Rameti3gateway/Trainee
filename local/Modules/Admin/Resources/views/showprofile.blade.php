@@ -215,7 +215,7 @@
                                                         datasets: [
                                                             {
                                                                 label: "Check in",
-                                                                backgroundColor: 'rgba(188, 229, 214, 0.7)',
+                                                                backgroundColor: '#3e95cd',
                                                                 pointBackgroundColor: '#3e95cd',
                                                                 data: data,
                                                                 pointBorderWidth: 2,
@@ -226,7 +226,7 @@
                                                             },
                                                             {
                                                                 label: "Check out",
-                                                                backgroundColor: 'rgba(188, 229, 214, 0.7)',
+                                                                backgroundColor: '#8e5ea2',
                                                                 pointBackgroundColor: '#8e5ea2',
                                                                 data: data1,
                                                                 pointBorderWidth: 2,
@@ -240,6 +240,9 @@
                                                         
                                                     },
                                                     options: {
+                                                        tooltips: {
+                                                            enabled: false
+                                                        },
                                                         scales: {
                                                             xAxes: [
                                                             {
@@ -269,18 +272,20 @@
                                                                 type: 'linear',
                                                                 position: 'left',
                                                                 ticks: {
-                                                                min: moment('1970-02-01 08:00:00').valueOf(),
-                                                                max: moment('1970-02-01 23:59:59').valueOf(),
-                                                                stepSize: 3.6e+6,
-                                                                beginAtZero: false,
-                                                                callback: value => {
-                                                                    let date = moment(value);
-                                                                    if(date.diff(moment('1970-02-01 23:59:59'), 'minutes') === 0) {
-                                                                    return null;
-                                                                    }
+                                                                    min: moment('1970-02-01 08:00:00').valueOf(),
+                                                                    max: moment('1970-02-01 23:59:59').valueOf(),
+                                                                    stepSize: 3.6e+6,
+                                                                    beginAtZero: false,
                                                                     
-                                                                    return date.format('h:mm A');
-                                                                }
+                                                                    callback: value => {
+                                                                        let date = moment(value);
+                                                                        if(date.diff(moment('1970-02-01 23:59:59'), 'minutes') === 0) {
+                                                                        return null;
+                                                                        }
+                                                                        
+                                                                        return date.format('h:mm A');
+                                                                    },
+                                                                    
                                                                 }
                                                             }
                                                             ]
