@@ -11,6 +11,7 @@ use App\Tasks;
 use Carbon\Carbon;
 use App\Admin;
 use Khill\Lavacharts\Lavacharts;
+use Illuminate\Support\Facades\Validator;
 use Lava;
 use Chart;
 
@@ -29,6 +30,7 @@ class AdminController extends Controller
         
         return view('admin::index');
     }
+    
     public function dashboard(){
         $data['users'] = User::where('role','=','user')->get();
         
@@ -221,33 +223,54 @@ class AdminController extends Controller
         return view('admin::editadmin')->with('profile',$profile);
     }
     public function editprocess(Request $request,$id,$userid){
-        
-        $profile = User::find($userid);
-        $profile->name = $request->name;
-        $profile->id_card = $request->id_card;
-        $profile->gender = $request->gender;
-        $profile->university = $request->university;
-        $profile->major = $request->major;
-        $profile->faculty = $request->faculty;
-        $profile->birt_date = $request->birt_date;
-        $profile->save();
 
-        $profile = Admin::find($userid);
-        $profile->name = $request->name;
-        $profile->save();
-
+        $validator = Validator::make($request->all(),[
+            'id_card'=> 'required|numeric|digits:13|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required',
+        ]);
         
-        $url = "admin/$id/member";           
-        // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
-        return redirect($url);
+        if($validator->passes()){
+            $profile = User::find($userid);
+
+            if($request->image != null){
+                $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move('../upload/img/site/admin-profile-image', $photoName);
+                $profile->image = $photoName;
+            }
+
+            $profile->name = $request->name;
+            $profile->id_card = $request->id_card;
+            $profile->gender = $request->gender;
+            $profile->birt_date = $request->birt_date;
+            
+            $profile->save();
+
+            $adminprofile = Admin::where('user_id','=',$userid)->first();
+            $adminprofile->name = $request->name;
+            $adminprofile->save();
+
+            
+            $url = "admin/$id/member";           
+            // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
+            return redirect($url);
+        }else{
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
     }
     public function createnewadmin(){
         return view('admin::createnewadmin');
     }
     public function createnewadminprocess(Request $request,$id){
-        $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move('../assets/site/img/profile-image/admin-image', $photoName);
-
+        
+        if($request->image != null){
+            $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move('../upload/img/site/admin-profile-image', $photoName);
+        }else{
+            $photoName = "default.jpg";
+        }
         $newadmin = new User;
         $newadmin->name = $request->name;
         $newadmin->id_card = $request->id_card;

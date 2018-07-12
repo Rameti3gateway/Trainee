@@ -57,48 +57,69 @@
                         <li><a href="{{ url('site/login') }}">Login</a></li>
                         <li><a href="{{ url('site/register') }}">Register</a></li>
                         <li><a href="{{ url('admin/login') }}">Admin</a></li>
-                    @else                         
-                        <li class="dropdown">                        
-                            <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
-                               @php
-                                    $loginUser = Auth::user();
-                               @endphp
-                                @if( $loginUser->type == "facebook" || $loginUser->type == "google")  
-                                    @if(strstr($loginUser->image,'_',true) == 'user')
-                                        <img width=25"px" height="25px" class="img-circle"  src="{{ url('../upload/img/site/profile-image/'.$loginUser->image ) }}" alt="photo" >
+                    @else       
+                        @php
+                            $loginUser = Auth::user();
+                        @endphp                  
+                        <li class="dropdown">  
+                            @if($loginUser->role == 'admin')
+                                @php 
+                                    $image = App\User::where('id','=',$loginUser->user_id)->pluck('image');
+                                    $urlpicadmin = "../upload/img/site/admin-profile-image/$image[0]"; 
+                                @endphp
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                                
+                                <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <img width=25"px" height="25px" class="img-circle" src="{{ url($urlpicadmin) }}" alt="photo">
+                                    {{ Auth::user()->name }}<span class="caret"></span>
+                                </a>
+                            @else
+                                @php
+                                    $image = $loginUser->image;
+                                    $urlpicuser = "../upload/img/site/profile-image/$image";
+                                @endphp
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @php
+                                            $id = Auth::user()->id;
+                                            $url = "site/users/$id/report";
+                                        @endphp
+                                        <a href="{{ url($url) }}">Export Report</a>                                    
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                                <a href="#" class="dropdown-toggle hvr-shrink" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    @if( $loginUser->type == "facebook" || $loginUser->type == "google")  
+                                        @if(strstr($loginUser->image,'_',true) == 'user')
+                                            <img width=25"px" height="25px" class="img-circle"  src="{{ url($urlpicuser) }}" alt="photo" >
+                                        @else
+                                            <img width=25"px" height="25px" class="img-circle" src="{{ $loginUser->image }}" alt="photo">
+                                        @endif                                     
                                     @else
-                                        <img width=25"px" height="25px" class="img-circle" src="{{ $loginUser->image }}" alt="photo">
-                                    @endif                                     
-                                    <!-- <img width=25"px" height="25px" class="img-circle" src="{{ Auth::user()->image }}" alt="profile"> -->
-                                @else
-                                    @if($loginUser->image == null)
-                                        <img width=25"px" height="25px" class="img-circle" src="{{ url('../upload/img/default.jpg') }}" alt="photo">
-                                    @else
-                                        <img width=25"px" height="25px" class="img-circle" src="{{url('../upload/img/site/profile-image/'.$loginUser->image )}}" alt="photo">
+                                        <img width=25"px" height="25px" class="img-circle" src="{{url($urlpicuser)}}" alt="photo">
                                     @endif      
-                                    <!-- <img  width=25"px" height="25px" class="img-circle" src="{{ url('../upload/img/default.jpg') }}" alt="profile">    -->
-                                @endif                                
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    @php
-                                        $id = Auth::user()->id;
-                                        $url = "site/users/$id/report";
-                                    @endphp
-                                    <a href="{{ url($url) }}">Export Report</a>                                    
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
+                                {{ Auth::user()->name }} <span class="caret"></span></a>
+                            @endif                      
                         </li>
                     @endif
                 </ul>
