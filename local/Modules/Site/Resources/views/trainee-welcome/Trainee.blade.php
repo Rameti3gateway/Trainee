@@ -31,10 +31,11 @@
                         <div class="about-thumb">
                             <div class="section-title">
                                 <h1 class="wow fadeIn" data-wow-delay="0.2s">I3gatway Digital Agency</h1>
-                                <h3 class="wow fadeInUp" data-wow-delay="0.4s">Example</h3>
+                                <h3 class="wow fadeInUp" data-wow-delay="0.4s">Services</h3>
                             </div>
                             <div class="wow fadeInUp" data-wow-delay="0.6s">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt illum blanditiis vero neque eaque amet culpa perferendis corrupti, expedita deleniti sapiente tempora labore! Temporibus nam maiores odit dolor dicta.</p>
+                                <p>We tailor our services to each and every brand ensuring the best possible outcome ever time
+                                    In the time of endless digital possibilities, define your uniqueness on our service to enhance your brand and show your personality to the market</p>
                              </div>
                         </div>
                     </div>
@@ -57,8 +58,8 @@
                         <i class="icon icon-laptop"></i>
                     </div>
                     <div class="media-body">
-                        <h2 class="media-heading">web design</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut.</p>
+                        <h2 class="media-heading">Website Development</h2>
+                        <p>Responsive everything to fit any devices, desktops, tablet, and phones. However, it is not only adjustable screen resolutions and automatically resizable images but also rather a whole new way of thinking about design</p>
                     </div>
                     </div>
                 </div>
@@ -69,8 +70,8 @@
                         <i class="icon icon-refresh"></i>
                     </div>
                     <div class="media-body">
-                        <h2 class="media-heading">Web Programming</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut.</p>
+                        <h2 class="media-heading">Interactive Application</h2>
+                        <p>Professional tool via iPad or tablet to present as well as advertise the product and service in more interactive, cleaner, and effective way, marking a impression to customers</p>
                     </div>
                     </div>
                 </div>
@@ -81,8 +82,8 @@
                         <i class="icon icon-chat"></i>
                     </div>
                     <div class="media-body">
-                        <h2 class="media-heading">Support Responsive</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut.</p>
+                        <h2 class="media-heading">Mobile Application</h2>
+                        <p>They are all in our pockets, create the opportunities on building awareness , communication, better connect possibly with providing more value by creating loyalty program</p>
                     </div>
                     </div>
                 </div>
@@ -102,12 +103,13 @@
                     <div class="col-md-offset-2 col-md-8 col-sm-12">
                         <div class="section-title">
                             <h1 class="wow fadeInUp" data-wow-delay="0.3s">Trainee system</h1>
-                            <p class="wow fadeInUp" data-wow-delay="0.6s">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
+                            <h3 class="wow fadeInUp" data-wow-delay="0.6s">Welcome internship</h3>
                         </div>
                         <div class="contact-form wow fadeInUp" data-wow-delay="1.0s">
                             <div class="text-center">
                                 @if (Auth::guest())
-                                    <button class="btn btn-primary btn-lg" href="{{ url('site/register') }}">Register</button>
+                                    <a class="btn btn-primary btn-lg" href="{{ url('site/login') }}">Login</a>
+                                    <a class="btn btn-warning btn-lg" href="{{ url('site/register') }}">Register</a>
                                 @endif
                             </div>                           
                         </div>
@@ -124,15 +126,14 @@
                         <path d="M0 0 L50 100 L100 0 Z"></path>
                     </svg>
                     <div class="col-md-4 col-sm-6">
-                        <h2>comila</h2>
+                        <h2>develop</h2>
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut. Etiam a tellus magna.</p>
-                            <p class="copyright-text">Copyright &copy; 2016 I3GATWAY DIGITAL AGENCY <br>
+                           <p class="copyright-text">Copyright &copy; 2016 I3GATWAY DIGITAL AGENCY <br>
                             Designed by <a rel="nofollow" href="#">***</a></p>
                         </div>
                     </div>                    
                         <div class="col-md-4 col-sm-5">
-                            <h2>Our Studio</h2>
+                            <h2>Contact</h2>
                             <p class="wow fadeInUp" data-wow-delay="0.6s">
                                     120-240 aliquam augue libero,<br>
                                     Convallis in vulputate 10220 <br>
@@ -149,8 +150,11 @@
             </div>
         </footer>
     </div>
+    
     <!-- Back top -->
-    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+    <a href="#back-top" class="go-top hvr-icon-bob">
+        <i class="glyphicon glyphicon-menu-up hvr-icon"></i>
+    </a>
 @endsection
 
 

@@ -4,9 +4,24 @@
 <div class="container-fluid">
     <div class="row">
         <!-- show profile -->
-        <div class="col-md-6 col-md-offset-3 animated zoomIn show-profile">
+        <div class="col-md-6 col-md-offset-3 show-profile">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Profile</strong></div>              
+                <div class="panel-heading"><strong>Profile</strong></div>  
+                <div class="panel-body text-center">
+                    @if($blog->type == "facebook" || $blog->type == "google" )                                
+                        @if(strstr($blog->image,'_',true) == 'user')
+                            <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                        @else
+                            <img class="hvr-grow" src="{{$blog->image}}" alt="photo" style="width:20%">
+                        @endif
+                    @elseif($blog->type == 'general')
+                        @if($blog->image == null)
+                            <img class="hvr-grow" src="{{ url('../upload/img/default.jpg') }}" alt="photo" style="width:20%">
+                        @else
+                            <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                        @endif                            
+                    @endif                        
+                 </div>     
                 <div class="panel-body ">
                     <label for="name" class="col-md-4 control-label">Name : </label>
                     <div class="col-md-6">
@@ -43,14 +58,14 @@
         </div>
 
         <!-- To do list -->
-        <div class="col-md-6 col-md-offset-3 animated fadeInUp To-do-list">
+        <div class="col-md-6 col-md-offset-3 animated fadeIn To-do-list">
             <div  id="displaytask">
                 <div class="panel panel-default">                    
                     <div class="panel-body">
                         <div class="panel-heading">
-                            <strong>To do list</strong> 
-                           
-                            {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}</div>
+                            <strong>To do list</strong>                            
+                            {{ Form::select('date',$choosedate, null , ['class' => 'form-control','id'=>'selectdate']) }}
+                        </div>
                         <table class="table table-striped task-table">
                             <tbody id="choosedate" >
                                 <script type="text/javascript">
@@ -92,7 +107,7 @@
         </div>
 
         <!-- graph -->
-        <div class="col-md-6 col-md-offset-3 graph animated fadeInUp">
+        <div class="col-md-6 col-md-offset-3 graph animated fadeIn">
             <div class="panel panel-default">
                 <div class="panel-body">
                      <div class="panel-heading"><strong>Checkin & Checkout Graph</strong> 

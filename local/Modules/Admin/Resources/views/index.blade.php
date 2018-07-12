@@ -9,12 +9,12 @@
         <div class="row">
             <div class="col-lg-6" >
                 <form action="http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id; ?>/dashboard" method="get">
-                    {{Form::submit('Dashboard',['class'=>'btn btn-primary btn-circle btn-xl'])}}
+                    {{Form::submit('Dashboard',['class'=>'btn btn-primary btn-circle btn-xl hvr-grow'])}}
                 </form>                    
             </div>
             <div class="col-lg-6">
                 <form action="http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id; ?>/member" method="get">
-                    {{ Form::submit('Member',['class'=>'btn btn-danger btn-circle btn-xl']) }}
+                    {{ Form::submit('Member',['class'=>'btn btn-danger btn-circle btn-xl hvr-grow']) }}
                 </form>
             </div>
         </div>
