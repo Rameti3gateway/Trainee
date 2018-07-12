@@ -19,6 +19,8 @@
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
     {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
     
+    {{ Html::script(('../assets/bower_components/moment/moment.js')) }}
+    {{ Html::script(('../assets/bower_components/moment/min/moment-with-locales.js')) }}
     {{ Html::style(('../assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
        
      <!-- Links laravel -->
@@ -108,5 +110,8 @@
     </div>         
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
     {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
+    
+
+
 </body>
 </html>
