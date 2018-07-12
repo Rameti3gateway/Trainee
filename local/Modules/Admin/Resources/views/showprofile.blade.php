@@ -1,19 +1,5 @@
 @extends('site::layouts.app')
-<style>
-    .container-fluid{
-        margin-top: 1em;
-    }
-    .show-profile{
-         animation-delay: 0.1s; 
-    }
-    .to-do-list{
-         animation-delay: 0.1s;        
-    }  
-    .graph{
-         animation-delay: 0.2s;
-    }
-</style>
-
+ {{ Html::style(('../assets/site/css/Admin/dashboard/showprofile.css')) }}
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -31,6 +17,7 @@
                         <?php } ?>
                     </div>
                 </div>
+
                 <div class="panel-body">
                     <label for="email" class="col-md-4 control-label">Email Address : </label>
                     <div class="col-md-6">
@@ -40,17 +27,8 @@
                         <p>{{$blog->email}}</p>
                         <?php } ?>
                     </div>
-                </div>
-                <!-- <div class="panel-body">
-                    <label for="id_card" class="col-md-4 control-label">ID Card : </label>
-                    <div class="col-md-6">
-                        <?php if ($blog->id_card == null) { ?>
-                        <p>-</p>
-                        <?php } else { ?>
-                        <p>{{$blog->id_card}}</p>
-                        <?php } ?>
-                    </div>
-                </div> -->
+                </div> 
+                   
                 <div class="panel-body">
                     <label for="gender" class="col-md-4 control-label">Gender : </label>
                     <div class="col-md-6">
@@ -60,8 +38,7 @@
                         <p>{{$blog->gender}}</p>
                         <?php } ?>
                     </div>
-                </div>
-                         
+                </div>                         
             </div>    
         </div>
 
@@ -484,9 +461,13 @@
                     $url = "admin/$id/dashboard";
                 ?>
                 <div class="text-center">
-                    <a class="btn btn-primary btn-lg" name="edit"  href="{{ url($url) }}">Back</a>  
-                </div>  
-                                                 
+                    <a href="{{ url($url) }}">
+                        <button type="button" class="text-center col-lg-4 col-lg-offset-4 btn btn-primary hvr-icon-back">
+                            <i class="glyphicon glyphicon-menu-left hvr-icon"></i>
+                            Back
+                        </button>
+                    </a> 
+                </div>                        
             </div>
         </div>
     </div>

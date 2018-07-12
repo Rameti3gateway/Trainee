@@ -1,19 +1,12 @@
 @extends('site::layouts.app')
-<style>
-    .container-fluid{
-        margin-top: 4em;
-    }
-    .panel-heading{
-        text-align: center;
-    }
-</style>
+ {{ Html::style(('../assets/site/css/Admin/admin_member/member.css')) }}
 @section('content')
   <!-- This view is loaded from module: {!! config('admin.name') !!} -->
-    <div class="container-fluid animated zoomIn">
-        <div class="row">
+    <div class="container-fluid animated fadeIn">
+        <div class="row list-member">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h1><strong>List Member</strong></h1></div>              
+                    <div class="panel-heading"><h1><strong>Admin Member</strong></h1></div>              
                         <div class="panel-body ">
                             <table class="table ">
                                 <tbody>
@@ -33,7 +26,8 @@
                                         </td>
                                         <td class="col-xs-1">
                                             <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
-                                                <button type="submit" class="btn btn-warning" >
+                                                <button type="submit" class="btn btn-warning hvr-icon-grow" >
+                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i></i>
                                                     Edit
                                                 </button>
                                             </form>
@@ -41,7 +35,10 @@
                                         <td class="col-xs-3">                                          
                                            
                                             <!-- Trigger the modal with a button -->
-                                            <button type="button" class="btn btn-danger" id="deletebutton-{{$member->user_id}}">Delete</button>
+                                            <button type="button" class="btn btn-danger hvr-icon-grow" id="deletebutton-{{$member->user_id}}">
+                                                 <i class="glyphicon glyphicon-minus hvr-icon"></i></i>
+                                                Delete
+                                            </button>
                                             <script>
                                                 $(function($){
                                                      $.ajaxSetup({
@@ -91,19 +88,21 @@
                     <form action="http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/createnewadmin" method="get">
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <a href="{{url('/admin')}}"> <button type="button" class="btn btn-primary">Back</button></a>
+                                <a href="{{url('/admin')}}"> <button type="button" class="btn btn-primary hvr-icon-back">
+                                    <i class="glyphicon glyphicon-menu-left hvr-icon"></i></i>
+                                     Back
+                                </button></a>
                             </div>                            
                             <div class="btn-group" role="group">
-                                <a href="{{url('/admin')}}"><button type="submit" class="btn btn-success">Create New Admin</button></a>
+                                
+                                <a href="{{url('/admin')}}"><button type="submit" class="btn btn-success hvr-icon-back">
+                                    <i class="glyphicon glyphicon-plus-sign hvr-icon"></i></i>
+                                     Create New Admin
+                                </button></a>
                             </div>
-                        </div>
-                        <!-- <a href="{{url('/admin')}}" class="btn btn-primary ">Back</a>
-                        <button type="submit" class="btn btn-primary btn-success">
-                            <i class="fa fa-btn fa-plus"></i>Create New Admin
-                        </button> -->
+                        </div>                       
                     </form>
-                </div> 
-               
+                </div>                
             </div> 
         </div>
     </div>

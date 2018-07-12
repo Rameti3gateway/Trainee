@@ -1,7 +1,7 @@
 @extends('site::layouts.app')
-
+ {{ Html::style(('../assets/site/css/Admin/admin_member/createnewadmin.css')) }}
 @section('content')
-<div class="container register-form animated ZoomIn">
+<div class="container register-form animated fadeIn">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -102,9 +102,14 @@
                         <!--  -->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit"  class="btn btn-primary">
+                                <a href="{{url('/admin')}}"> <button type="button" class="btn btn-primary hvr-icon-back">
+                                    <i class="glyphicon glyphicon-menu-left hvr-icon"></i></i>
+                                     Back
+                                </button></a>  
+                                <button type="submit"  class="btn btn-warning">
                                     Submit
-                                </button>                                
+                                </button>   
+                                                    
                             </div>
                         </div>
                     </form>

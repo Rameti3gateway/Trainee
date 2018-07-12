@@ -1,25 +1,10 @@
 @extends('site::layouts.app')
-
-<style type="text/css">
-   .checkinout{
-       margin-top:150px;
-       margin-bottom:100px;
-   }
-   .btn-circle.btn-xl {
-        width: 300px;
-        height: 300px;
-        padding: 10px 16px;
-        border-radius: 150px;
-        font-size: 30px;
-        line-height: 1.33;
-    }        
-</style>
+ {{ Html::style(('../assets/site/css/Admin/index.css')) }}
 @section('content')
   <!-- This view is loaded from module: {!! config('admin.name') !!} -->
 <body>
-	<div class="container text-center animated zoomIn">
-        <h1 class="text-center text-success checkinout">Admin Management</h1>
-        
+	<div class="container text-center animated fadeIn">
+        <h1 class="text-center text-success checkinout">Admin Management</h1>        
         <!-- <h3><a href="{{url('site/home')}}">Back To Home</a></h3> -->
         <div class="row">
             <div class="col-lg-6" >
