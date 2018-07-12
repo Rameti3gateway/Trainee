@@ -97,7 +97,7 @@ class AdminController extends Controller
     public function showgraph($id,$userid,$date){
 
         $data = $date;
-        
+        $test;
         $datadata = [];
         $datachin = [];
         $datachout = [];
@@ -136,6 +136,29 @@ class AdminController extends Controller
                         array_push($datachout,$checkouttime);
                         array_push($datadata,$timedate);
                        
+                    }
+                    if(count($value) == 1){
+                       
+                        $date = new Carbon();
+                        $date->setISODate(substr($data, -4),substr($data,0,2)); // 2016-10-17 23:59:59.000000
+                        $start = $date->startOfWeek()->toDateString(); // 2016-10-17 00:00:00.000000
+                        $end = $date->endOfWeek()->toDateString(); // 2016-10-23 23:59:59.000000
+                        $test = $start;
+                        if($datadata[0] != $start && $datadata[0] != $end){
+                            $a = Carbon::parse($start)->addDays(1);
+                            $b = Carbon::parse($end)->subDays(1);
+                            $test = $b;
+
+                        }elseif($datadata[0] == $start){
+                            $a = Carbon::parse($start)->addDays(1);
+                            $test = $a;
+                        }elseif($datadata[0] == $end){
+                            $b = Carbon::parse($end)->subDays(1);
+                            $test = $b;
+                        }
+                        
+                    }else{
+                        $test = null;
                     }
                    
                 }
@@ -176,7 +199,7 @@ class AdminController extends Controller
         }
 
         
-        return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout]);
+        return response()->json(['date'=>$datadata,'timechin'=>$datachin,'timechout'=>$datachout,'test'=>$test]);
         
         
 

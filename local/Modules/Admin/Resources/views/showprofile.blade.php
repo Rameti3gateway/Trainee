@@ -178,17 +178,7 @@
                                                 var date = response.date;
                                                 
 
-                                                if(date.lenght == 1){
-                                                    date = date.concat([
-                                                        null
-                                                    ]);
-                                                    timechin = timechin.concat([
-                                                        null
-                                                    ]);
-                                                    timechout = timechout.concat([
-                                                        null
-                                                    ]);
-                                                }
+                                               
                                                 
 
                                                
@@ -197,7 +187,7 @@
                                                 var ctx = document.getElementById("showgraph").getContext("2d");
                                         
                                                 let years = date;
-                                                
+                                                console.log(response.test);
                                                 // let times = ["11:46:07", "11:41:14", "11:55:26", "12:14:58", "11:54:55", "11:54:04", "12:28:29", "12:35:18"];
                                                 console.log(timechin);
                                                 console.log(timechout);
@@ -224,7 +214,7 @@
                                                     data: {
                                                         datasets: [
                                                             {
-                                                                label: "Time",
+                                                                label: "Check in",
                                                                 backgroundColor: 'rgba(188, 229, 214, 0.7)',
                                                                 pointBackgroundColor: '#3e95cd',
                                                                 data: data,
@@ -235,7 +225,7 @@
                                                                 showLine:false
                                                             },
                                                             {
-                                                                label: "Time",
+                                                                label: "Check out",
                                                                 backgroundColor: 'rgba(188, 229, 214, 0.7)',
                                                                 pointBackgroundColor: '#8e5ea2',
                                                                 data: data1,
