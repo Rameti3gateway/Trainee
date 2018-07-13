@@ -30,22 +30,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/site/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -56,17 +46,18 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
-        $photoName = 'user_'.uniqid().'_'.time().'.'.$data['image']->getClientOriginalExtension();
-        $data['image']->move('../assets/site/img/profile-image/user-image', $photoName);
-        return User::create([
+       
+       if(array_key_exists('image', $data) == null){
+            $photoName = "default.jpg";
+           
+       }else{
+            $photoName = 'user_'.uniqid().'_'.time().'.'.$data['image']->getClientOriginalExtension();
+            $data['image']->move('../assets/site/img/profile-image/user-image', $photoName);
+            
+       }
+       return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'gender' => $data['gender'],
@@ -80,5 +71,7 @@ class RegisterController extends Controller
             'faculty'=>$data['faculty'],
             'id_card'=>$data['id_card'],
         ]);
+       
+        
     }
 }

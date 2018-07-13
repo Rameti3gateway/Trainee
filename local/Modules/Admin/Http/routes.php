@@ -8,6 +8,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'Module
 	Route::post('/login', 'AdminLoginController@login')->name('admin.login.submitt');
 	Route::get('/', 'AdminController@index')->name('admin');
 
+	//forgot password
+	
+
 	Route::get('/{id}/dashboard', 'AdminController@dashboard');
 	Route::get('/{id}/member', 'AdminController@member')->name('admin-member');
 	Route::get('/{id}/member/{userid}/editadmin','AdminController@editadmin');

@@ -14,10 +14,7 @@ use Auth;
 
 class PDFController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
+    
     public function index()
     {
         $id=Auth::user()->id;
@@ -31,10 +28,7 @@ class PDFController extends Controller
         return view('site::Login-after/pdf',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
+   
     public function PDFcheckincheckout($id,$type,$datadetail)
     {
         $datadata = [];
@@ -81,11 +75,7 @@ class PDFController extends Controller
         return $pdf->download('checkincheckout.pdf');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
+    
     public function PDFtodolist($id,$data)
     {
         // $data = "2019 10";
@@ -232,38 +222,5 @@ class PDFController extends Controller
        
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('site::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('site::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+    
 }

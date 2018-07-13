@@ -7,7 +7,7 @@
     $url2 = "site/users/$id/report/todolist";                     
 @endphp 
 
-<div class="container">
+<div class="container animated fadeIn">
     <div class="row generate">
         <div class="col">
             <h1>Generate Report</h1> 
@@ -152,9 +152,24 @@
                                     html:htmlString,
                                 })
                             }else{
-                                swal({
-                                    'title':'Please Choose Start Or End Before'                                        
-                                })
+                                var x = document.getElementById("selecttorinterval2").length;
+                                if(x == 1){
+                                    var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
+                                    var htmlString = '<html>';
+                                    htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                                    htmlString += '</html>';
+                                    console.log(htmlString);
+                                    swal({   
+                                        title: 'Your Generate PDF Checkin Checkout',
+                                        confirmButtonText: 'OK',
+                                        html:htmlString,
+                                    })
+                                }else{
+                                    swal({
+                                        'title':'Please Choose Start Or End Before',                           
+                                    })
+                                }
+                                
                             }                        
                         }else if(type=="year" || type=="month"){
                             if($("#selecttoryearmonth")[0].selectedIndex != 0){

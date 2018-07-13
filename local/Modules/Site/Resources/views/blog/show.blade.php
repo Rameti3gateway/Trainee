@@ -16,15 +16,13 @@
                                         <img class="hvr-grow" src="{{$blog->image}}" alt="photo" style="width:20%">
                                     @endif
                                 @elseif($blog->type == 'general')
-                                    @if($blog->image == null)
-                                        <img class="hvr-grow" src="{{ url('../upload/img/default.jpg') }}" alt="photo" style="width:20%">
-                                    @else
-                                        <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
-                                    @endif                            
+                                    
+                                    <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                                                             
                                 @endif   
                             </div>         
                         </div>
-                        <div class="panel-body "style="text-align:center">
+                        <div class="panel-body "style="">
                         
                             <label for="name" class="col-md-4 control-label">Name : </label>
                             <div class="col-md-6">
@@ -71,7 +69,7 @@
                                 @if(Auth::user()->birt_date == null)
                                     <p>-</p>
                                 @else
-                                    <p>{{$blog->birt_date}}</p>
+                                    <p>{{\Carbon\Carbon::parse($blog->birt_date,'Asia/Bangkok')->format('d F Y')}}</p>
                                 @endif
                             </div>
                         </div>

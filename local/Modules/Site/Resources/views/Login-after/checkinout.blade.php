@@ -9,10 +9,10 @@
     <h1 class="text-center text-success checkinout">CheckIN-CheckOut</h1>        
     <div class="row">
         <div class="col-lg-6" >
-            {{Form::submit('CheckIn',['class'=>'btn btn-primary btn-circle btn-xl','name'=>'check_in','id'=>'check_in'])}}
+            {{Form::submit('CheckIn',['class'=>'btn btn-primary btn-circle btn-xl hvr-grow','name'=>'check_in','id'=>'check_in'])}}
         </div>
         <div class="col-lg-6">
-            {{Form::submit('CheckOut',['class'=>'btn btn-danger btn-circle btn-xl','name'=>'check_out','id'=>'check_out'])}}
+            {{Form::submit('CheckOut',['class'=>'btn btn-danger btn-circle btn-xl  hvr-grow','name'=>'check_out','id'=>'check_out'])}}
         </div>
     </div>
     <a href="{{url('site/home')}}"><button class="btn btn-primary btn-lg">Back To Home</button</a>

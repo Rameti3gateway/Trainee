@@ -6,42 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use Auth;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
+
     public function index()
     {
         return view('site::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('site::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
     public function show($id)
     {
         // echo "Testt" or die;
@@ -50,10 +26,6 @@ class BlogController extends Controller
                 ->with('blog', $blog);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
     public function edit($id)
     {
         //  echo '555555555';
@@ -61,40 +33,50 @@ class BlogController extends Controller
             $profile = User::find($id);
             return view('site::blog.edit')->with('profile',$profile);           
     }
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
+
     public function update(Request $request, $id)
     { 
-        $image = $request->image;
-       
-        $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
-        $image->move('../upload/img/site/profile-image/', $photoName);
-        
-        
         $profile = User::find($id);
-        $profile->name = $request->name;
-        $profile->id_card = $request->id_card;
-        $profile->gender = $request->gender;
-        $profile->university = $request->university;
-        $profile->major = $request->major;
-        $profile->faculty = $request->faculty;
-        $profile->birt_date = $request->birt_date;
-        $profile->image = $photoName;
-        $profile->save();
+        if($profile->id_card == $request->id_card){
+            $validator = Validator::make($request->all(),[
+                'name' => 'required|string|max:255',
+            ]);
+        }else{
+            $validator = Validator::make($request->all(),[
+                'id_card'=> 'required|numeric|digits:13|unique:users',
+                'name' => 'required|string|max:255',
+            ]);
+        }
+       
+        if($validator->passes()){
+            $image = $request->image;
+            
+            
+            if($image != null){
+                $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
+                $image->move('../upload/img/site/profile-image/', $photoName);
+                $profile->image = $photoName;
+            }
+        
+            $profile->name = $request->name;
+            $profile->id_card = $request->id_card;
+            $profile->gender = $request->gender;
+            $profile->university = $request->university;
+            $profile->major = $request->major;
+            $profile->faculty = $request->faculty;
+            $profile->birt_date = $request->birt_date;
+        
+            $profile->save();
             $id=Auth::user()->id;
             $url = "site/users/$id";           
-        // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
-        return redirect($url);
+            // return redirect('/site/users/{id}')->action('BlogController@show', ['id' => $id]);
+            return redirect($url);
+        }else{
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+ 
+    
 }

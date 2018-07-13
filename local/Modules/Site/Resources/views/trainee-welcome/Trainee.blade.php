@@ -30,7 +30,7 @@
                     <div class=" col-sm-12">
                         <div class="about-thumb">
                             <div class="section-title">
-                                <h1 class="wow fadeIn" data-wow-delay="0.2s">I3gatway Digital Agency</h1>
+                                <h1 class="wow fadeIn" data-wow-delay="0.2s">I3gateway Digital Agency</h1>
                                 <h3 class="wow fadeInUp" data-wow-delay="0.4s">Services</h3>
                             </div>
                             <div class="wow fadeInUp" data-wow-delay="0.6s">

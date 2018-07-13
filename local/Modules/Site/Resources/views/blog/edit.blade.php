@@ -20,11 +20,8 @@
                                 <img src="{{$profile->image}}" alt="photo" style="width:20%">
                             @endif
                         @elseif($profile->type == 'general')
-                            @if($profile->image == null)
-                                <img src="{{ url('../upload/img/default.jpg') }}" alt="photo" style="width:20%">
-                            @else
-                                <img src="{{url('../upload/img/site/profile-image/user-image/'.$profile->image )}}" alt="photo" style="width:20%">
-                            @endif
+                            <img src="{{url('../upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                           
                             
                         @endif                        
                        
@@ -39,12 +36,14 @@
                         {{Form::label('null','Name :',['class'=>'col-md-4 control-label'])}}                        
                         <div class="col-md-6">
                              {{Form::text('name', $profile->name,['class'=>'form-control'])}}
+                             {{$errors->first('name')}}
                         </div>
                     </div>
                     <div class="panel-body ">
                          {{Form::label('null','ID Card :',['class'=>'col-md-4 control-label'])}}
                         <div class="col-md-6">
                              {{Form::text('id_card', $profile->id_card ,['class'=>'form-control'])}}
+                             {{$errors->first('id_card')}}
                         </div>
                     </div>
                     <div class="panel-body ">
@@ -56,7 +55,7 @@
                     <div class="panel-body" >
                         {{Form::label('null','Birtday Date :',['class'=>'col-md-4 control-label'])}}                      
                         <div class="col-md-6">
-                            {{Form::date('birt_date', \Carbon\Carbon::now(),['class'=>'form-control'],$profile->birt_date)}}
+                            {{Form::date('birt_date', \Carbon\Carbon::parse($profile->birt_date,'Asia/Bangkok'),['class'=>'form-control'],$profile->birt_date)}}
                         </div>                            
                     </div>
                     <div class="panel-body">

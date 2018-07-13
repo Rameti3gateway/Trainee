@@ -5,7 +5,7 @@
     @section('content')   
     <div class="home-main-content">      
         <div class="jumbotron welcome-site ">
-            <div class="container class-room animated zoomIn hvr-shadow">
+            <div class="container class-room animated zoomIn">
                 <img src="{{url('../assets/site/img/login-after/classroom.png')}}"> 
                 <h2>
                     @php
@@ -20,7 +20,7 @@
         </div>    
         <div class="container detial-home">
             <div class="row">            
-                <div class="col-md-6 animated slideInUp hvr-float-shadow">
+                <div class="col-md-6 animated slideInUp">
                     @php                 
                         $id =  Auth::user()->id;
                         $url = "site/users/$id";                     
@@ -28,7 +28,7 @@
                     <a href="{{url($url)}}"><img src="{{url('../assets/site/img/login-after/user.png')}}" class="hvr-bounce-out"></a>
                     <h3><a href="{{url($url)}}">Profile</a></h3>
                 </div>
-                <div class="col-md-6 animated slideInUp hvr-float-shadow">  
+                <div class="col-md-6 animated slideInUp">  
                     @php   
                         $id =  Auth::user()->id;
                         $urltasklist = "site/users/$id/todolist/?date=";  
@@ -45,7 +45,7 @@
                </div>   
             </div>       
             <div class="row">
-                <div class="col animated slideInDown hvr-float-shadow">                
+                <div class="col animated slideInDown">                
                     @php                    
                         $id =  Auth::user()->id;
                         $urlch = "site/users/$id/checkinout";                     

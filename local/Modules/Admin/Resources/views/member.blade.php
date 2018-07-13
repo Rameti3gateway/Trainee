@@ -24,21 +24,22 @@
                                         <td class="col-xs-6 text-center">
                                             <p> {{$member->name}} </p>
                                         </td>
-                                        <td class="col-xs-1">
-                                            <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
-                                                <button type="submit" class="btn btn-warning hvr-icon-grow" >
-                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i></i>
-                                                    Edit
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @if($member->user_id == Auth::user()->user_id)
+                                            <td class="col-xs-1">
+                                                <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                    <button type="submit" class="btn btn-warning hvr-icon-grow" >
+                                                    <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
+                                                    </button>
+                                                </form>
+                                            </td>
+                                       
+                                       
                                         <td class="col-xs-3">                                          
                                            
                                             <!-- Trigger the modal with a button -->
-                                            <button type="button" class="btn btn-danger hvr-icon-grow" id="deletebutton-{{$member->user_id}}">
-                                                 <i class="glyphicon glyphicon-minus hvr-icon"></i></i>
-                                                Delete
-                                            </button>
+                                            
+                                                
+                                            <button type="button" class="btn btn-danger hvr-icon-grow" id="deletebutton-{{$member->user_id}}"> <i class="glyphicon glyphicon-minus hvr-icon"></i>Delete</button>
                                             <script>
                                                 $(function($){
                                                      $.ajaxSetup({
@@ -78,6 +79,65 @@
                                                 })
                                             </script>
                                         </td> 
+                                        @elseif(Auth::user()->user_id == 1)
+                                        <td class="col-xs-1">
+                                                <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                    <button type="submit" class="btn btn-warning hvr-icon-grow" >
+                                                    <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
+                                                    </button>
+                                                </form>
+                                            </td>
+                                       
+                                       
+                                        <td class="col-xs-3">                                          
+                                           
+                                            <!-- Trigger the modal with a button -->
+                                            <button type="button" class="btn btn-danger hvr-icon-grow" id="deletebutton-{{$member->user_id}}"> <i class="glyphicon glyphicon-minus hvr-icon"></i>Delete</button>
+                                            <script>
+                                                $(function($){
+                                                     $.ajaxSetup({
+                                                        headers: {
+                                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                                                        }
+                                                    });                                                    
+                                                    $("#deletebutton-{{$member->user_id}}").click(function(){
+                                                        alert
+                                                        swal({
+                                                            title: 'Are you sure delete?',
+                                                           
+                                                            type: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Yes, delete it!'
+                                                            }).then((result) => {
+                                                            if (result.value) {  
+                                                                swal(
+                                                                    'Deleted!',
+                                                                    'Your task has been deleted.',
+                                                                    'success'
+                                                                )
+                                                               $.ajax({
+                                                                    'type':'post',
+                                                                    'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'cache':false,
+                                                                    'data':{date:""},
+                                                                    'success':function(data){
+                                                                        $("#admin-{{$member->id}}").empty();  
+                                                                    },
+                                                                })
+                                                            }   
+                                                        })                                                        
+                                                    }) 
+                                                })
+                                            </script>
+                                        </td> 
+                                        @elseif($member->user_id != Auth::user()->user_id && Auth::user()->user_id != 1)
+                                                <td class="col-xs-1"></td>
+                                                <td class="col-xs-3"></td>
+                                        @endif
+                                       
+                                       
                                     </tr>
                                     @endforeach
                                 </tbody>
