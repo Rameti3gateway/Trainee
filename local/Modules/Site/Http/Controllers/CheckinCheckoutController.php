@@ -20,7 +20,7 @@ class CheckinCheckoutController extends Controller
         $this->data = array(
             'style' => $acss
         );       
-        return view('site::Login-after.checkinout',$this->data);
+        return view('site::login-after.checkinout',$this->data);
     }
 
 

@@ -25,7 +25,7 @@ class PDFController extends Controller
         }
      
       
-        return view('site::Login-after/pdf',compact('data'));
+        return view('site::login-after/pdf',compact('data'));
     }
 
    
@@ -71,7 +71,7 @@ class PDFController extends Controller
         // exit();
         // return response()->json(['data'=>$datadata]);
         // return view('site::Login-after/checkincheckoutpdf',compact('datadata','profile'));
-        $pdf = PDF::loadView('site::Login-after/checkincheckoutpdf',compact('datadata','profile'));
+        $pdf = PDF::loadView('site::login-after/checkincheckoutpdf',compact('datadata','profile'));
         return $pdf->download('checkincheckout.pdf');
     }
 
@@ -118,7 +118,7 @@ class PDFController extends Controller
         
         // return view('site::Login-after/todolistpdf', compact('datadata','profile'));
         
-        $pdf = PDF::loadView('site::Login-after/todolistpdf', compact('datadata','profile'));
+        $pdf = PDF::loadView('site::login-after/todolistpdf', compact('datadata','profile'));
         return $pdf->download('todolist.pdf');
     }
     public function PDFcheckincheckoutChooseyear($id){
@@ -216,7 +216,7 @@ class PDFController extends Controller
         // exit();
         // return response()->json(['data'=>$datadata]);
         // return view('site::Login-after/checkincheckoutpdf',compact('datadata','profile'));
-        $pdf = PDF::loadView('site::Login-after/checkincheckoutpdf',compact('datadata','profile'));
+        $pdf = PDF::loadView('site::login-after/checkincheckoutpdf',compact('datadata','profile'));
         return $pdf->download('checkincheckout.pdf');
         
        

@@ -4,7 +4,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
 {
     // Route::get('/', 'SiteController@index');
     Route::get('/', function () {
-        return view('site::trainee-welcome.Trainee');
+        return view('site::trainee-welcome.trainee');
     });
     //  Route::get('/users/{id}', function () {
     //     return view('site::blog.show');

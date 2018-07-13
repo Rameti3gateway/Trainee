@@ -45,7 +45,7 @@ class TodolistController extends Controller
             
             $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 
-            return view('site::Login-after.tasks',$data);
+            return view('site::login-after.tasks',$data);
         }
 
         
