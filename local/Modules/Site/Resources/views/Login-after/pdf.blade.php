@@ -153,25 +153,43 @@
                                 })
                             }else{
                                 var x = document.getElementById("selecttorinterval2").length;
-                                if(x == 1){
-                                    var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
-                                    var htmlString = '<html>';
-                                    htmlString += '<a href="'+url+'" >Click here to Download</a>';
-                                    htmlString += '</html>';
-                                    console.log(htmlString);
-                                    swal({   
-                                        title: 'Your Generate PDF Checkin Checkout',
-                                        confirmButtonText: 'OK',
-                                        html:htmlString,
-                                    })
+                                var y = document.getElementById("selecttorinterval1").length;
+                                if(y != 1 && x == 1){
+                                    if($("#selecttorinterval1")[0].selectedIndex != 0){
+                                        var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
+                                        var htmlString = '<html>';
+                                        htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                                        htmlString += '</html>';
+                                        console.log(htmlString);
+                                        swal({   
+                                            title: 'Your Generate PDF Checkin Checkout',
+                                            confirmButtonText: 'OK',
+                                            html:htmlString,
+                                        })
+                                    }else{
+                                        swal({   
+                                            'title':'Please Choose',
+                                           
+                                        })
+                                    }
+                                    
                                 }else{
-                                    swal({
-                                        'title':'Please Choose Start Or End Before',                           
-                                    })
+                                    if(x==1 && y==1){
+                                        swal({
+                                            'title':'No data',                           
+                                        })
+
+                                    }else{
+                                        swal({
+                                            'title':'Please Choose',                           
+                                        })
+                                    }
+                                   
                                 }
                                 
                             }                        
                         }else if(type=="year" || type=="month"){
+                            var x = document.getElementById("selecttoryearmonth").length;
                             if($("#selecttoryearmonth")[0].selectedIndex != 0){
                                 var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail;
                                 var htmlString = '<html>';
@@ -184,10 +202,19 @@
                                     html:htmlString,
                                 })
                             }else{
-                                swal({
-                                    'title':'Please choose '+type+' before'
+                                if(x==1){
+                                    swal({
+                                        'title':'No Data'
 
-                                })
+                                    })
+                                }else{
+                                    swal({
+                                        'title':'Please choose '+type+' before'
+
+                                    })
+                                }
+
+                                
                             }                            
                         }                        
                     })
