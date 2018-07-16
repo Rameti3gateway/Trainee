@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
-{{ Html::style(('../assets/site/css/login-after/pdf.css')) }}
+{{ Html::style(('assets/site/css/login-after/pdf.css')) }}
 @section('content')
 @php                 
     $id =  Auth::user()->id;
