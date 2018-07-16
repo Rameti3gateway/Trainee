@@ -16,7 +16,7 @@ class CheckinCheckoutController extends Controller
      */
     public function index()
     {
-        $acss = array('../assets/site/css/home/checkinout/checkinout.css');
+        $acss = array('assets/site/css/home/checkinout/checkinout.css');
         $this->data = array(
             'style' => $acss
         );       

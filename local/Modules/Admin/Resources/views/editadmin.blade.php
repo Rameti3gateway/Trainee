@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
-{{ Html::style(('../assets/site/css/admin/admin_member/editadmin.css')) }}    
+{{ Html::style(('assets/site/css/admin/admin_member/editadmin.css')) }}    
 @section('content')
 <div class="container blog">
     <div class="row">

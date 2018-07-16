@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-     {{ Html::style(('../assets/site/css/login-after/todolistpdf.css')) }}   
+     {{ Html::style(('assets/site/css/login-after/todolistpdf.css')) }}   
   </head>
 <body>
     <div class="row" style="text-align: center">

@@ -10,7 +10,7 @@
         $('body').on('change','#selectdate',function(){
             $.ajax({
                 'type':'POST',
-                'url': "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/todolist/choose",
+                'url': "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/todolist/choose",
                 'cache':false,
                 'data':{date:$("#selectdate").val()},
                 'success':function(data){
@@ -42,7 +42,7 @@
                             $("#deletebutton-"+value.id).click(function(){
                                 $.ajax({
                                     'type':'POST',
-                                    'url':"http://localhost/Laravel/Trainee/local/site/users/"+value.id+"/todolist/delete/"+value.user_id,
+                                    'url':"http://localhost/trainee/site/users/"+value.id+"/todolist/delete/"+value.user_id,
                                     'cache':false,
                                     'data':{data:value.id,date:$("#selectdate").val()},
                                     'success':function(data){
@@ -67,7 +67,7 @@
                                     showCancelButton: true,
                                     inputValue:(count == 0)? data:oldvalue,
                                     preConfirm:(input)=>{
-                                        return fetch("/Laravel/Trainee/local/site/users/"+value.user_id+"/todolist/"+value.id+"/edittodolist/"+input)
+                                        return fetch("/trainee/site/users/"+value.user_id+"/todolist/"+value.id+"/edittodolist/"+input)
                                         .then(response =>{
                                             return response.json();
                                         })   
@@ -114,7 +114,7 @@
                 @endphp 
 
                 <!-- New Task Form -->
-                <form action="http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/todolist/task" method="post" class="form-horizontal" id="addtaskform">
+                <form action="http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/todolist/task" method="post" class="form-horizontal" id="addtaskform">
                     {{ csrf_field() }}
                     <!-- Task Name -->
                     <div  class="form-group">
@@ -192,7 +192,7 @@
                                                         )
                                                         $.ajax({
                                                         'type':'POST',
-                                                        'url':"http://localhost/Laravel/Trainee/local/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
+                                                        'url':"http://localhost/trainee/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
                                                         'cache':false,
                                                         'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
                                                         'success':function(data){                                                                                                                                             
@@ -217,7 +217,7 @@
                                                     showCancelButton: true,
                                                     inputValue:(count == 0)? data:oldvalue,
                                                     preConfirm:(input)=>{
-                                                        return fetch("/Laravel/Trainee/local/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
+                                                        return fetch("/trainee/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
                                                         .then(response =>{
                                                             return response.json();
                                                         })   

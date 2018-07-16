@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
+<head >
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">   
@@ -10,21 +10,21 @@
 
 
     <!-- Styles link-->
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
-    {{ Html::style(('../assets/bower_components/animate.css/animate.css')) }} 
-    {{ Html::style(('../assets/bower_components/hover/css/hover-min.css')) }}
-    {{ Html::script(('../assets/bower_components/jquery/dist/jquery.min.js')) }}   
-    {{ Html::script(('../assets/bower_components/bootstrap/dist/js/bootstrap.min.js')) }} 
+    {{ Html::style(('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
+    {{ Html::style(('assets/bower_components/animate.css/animate.css')) }} 
+    {{ Html::style(('assets/bower_components/hover/css/hover-min.css')) }}
+    {{ Html::script(('assets/bower_components/jquery/dist/jquery.min.js')) }}   
+    {{ Html::script(('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')) }} 
         
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.js')) }}  
-    {{ Html::script(('../assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
+    {{ Html::script(('assets/bower_components/chart.js/dist/Chart.js')) }}  
+    {{ Html::script(('assets/bower_components/sweetalert2/dist/sweetalert2.all.min.js')) }}  
     
-    {{ Html::script(('../assets/bower_components/moment/moment.js')) }}
-    {{ Html::script(('../assets/bower_components/moment/min/moment-with-locales.js')) }}
-    {{ Html::style(('../assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
+    {{ Html::script(('assets/bower_components/moment/moment.js')) }}
+    {{ Html::script(('assets/bower_components/moment/min/moment-with-locales.js')) }}
+    {{ Html::style(('assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
        
      <!-- Links laravel -->
-    {{ Html::style(('../assets/site/css/themes/app.css')) }}  
+    {{ Html::style(('assets/site/css/themes/app.css')) }}  
  </head>
 <body class="bg-body"onload="startTime()">   
     <nav class="navbar-inverse">
@@ -65,7 +65,7 @@
                             @if($loginUser->role == 'admin')
                                 @php 
                                     $image = App\User::where('id','=',$loginUser->user_id)->pluck('image');
-                                    $urlpicadmin = "../upload/img/site/admin-profile-image/$image[0]"; 
+                                    $urlpicadmin = "upload/img/site/admin-profile-image/$image[0]"; 
                                 @endphp
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -87,7 +87,7 @@
                             @else
                                 @php
                                     $image = $loginUser->image;
-                                    $urlpicuser = "../upload/img/site/profile-image/$image";
+                                    $urlpicuser = "upload/img/site/profile-image/$image";
                                 @endphp
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -129,8 +129,8 @@
     <div class="contrianer">
          @yield('content')         
     </div>         
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
-    {{ Html::script(('../assets/bower_components/chart.js/dist/Chart.min.js')) }}
+    {{ Html::script(('assets/bower_components/chart.js/dist/Chart.bundle.js')) }}
+    {{ Html::script(('assets/bower_components/chart.js/dist/Chart.min.js')) }}
     
 
 

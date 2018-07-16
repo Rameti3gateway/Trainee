@@ -11,13 +11,13 @@
                             <div class="animated zoomIn">
                                 @if($blog->type == "facebook" || $blog->type == "google" )                                
                                     @if(strstr($blog->image,'_',true) == 'user')
-                                        <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                                        <img class="hvr-grow" src="{{url('upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
                                     @else
                                         <img class="hvr-grow" src="{{$blog->image}}" alt="photo" style="width:20%">
                                     @endif
                                 @elseif($blog->type == 'general')
                                     
-                                    <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                                    <img class="hvr-grow" src="{{url('upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
                                                              
                                 @endif   
                             </div>         

@@ -10,12 +10,12 @@
 
     <title> @yield('title')</title>    
     <!-- Styles-->    
-    {{ Html::style(('../assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
-    <link rel="stylesheet" href="../assets/site/welcometemplete/css/animate.min.css">
-  	<link rel="stylesheet" href="../assets/site/welcometemplete/css/et-line-font.css">	  
-    {{ Html::style(('../assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
-    <link rel="stylesheet" href="../assets/site/welcometemplete/css/style.css">
-    {{ Html::style(('../assets/bower_components/hover/css/hover-min.css')) }}
+    {{ Html::style(('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')) }}    
+    <link rel="stylesheet" href="assets/site/welcometemplete/css/animate.min.css">
+  	<link rel="stylesheet" href="assets/site/welcometemplete/css/et-line-font.css">	  
+    {{ Html::style(('assets/bower_components/components-font-awesome/css/font-awesome.min.css')) }}
+    <link rel="stylesheet" href="assets/site/welcometemplete/css/style.css">
+    {{ Html::style(('assets/bower_components/hover/css/hover-min.css')) }}
 
 	<link href='https://fonts.googleapis.com/css?family=Rajdhani:400,500,700' rel='stylesheet' type='text/css'>
 </head>
@@ -56,15 +56,15 @@
                                @endphp
                                 @if( $loginUser->type == "facebook" || $loginUser->type == "google")  
                                     @if(strstr($loginUser->image,'_',true) == 'user')
-                                        <img width=25"px" height="25px" class="img-circle"  src="{{ url('../upload/img/site/profile-image/'.$loginUser->image ) }}" alt="photo" >
+                                        <img width=25"px" height="25px" class="img-circle"  src="{{ url('upload/img/site/profile-image/'.$loginUser->image ) }}" alt="photo" >
                                     @else
                                         <img width=25"px" height="25px" class="img-circle" src="{{ $loginUser->image }}" alt="photo">
                                     @endif  
                                 @else
                                     @if($loginUser->image == null)
-                                        <img width=25"px" height="25px" class="img-circle" src="{{ url('../upload/img/default.jpg') }}" alt="photo">
+                                        <img width=25"px" height="25px" class="img-circle" src="{{ url('upload/img/default.jpg') }}" alt="photo">
                                     @else
-                                        <img width=25"px" height="25px" class="img-circle" src="{{url('../upload/img/site/profile-image/'.$loginUser->image )}}" alt="photo">
+                                        <img width=25"px" height="25px" class="img-circle" src="{{url('upload/img/site/profile-image/'.$loginUser->image )}}" alt="photo">
                                     @endif  
                                 @endif    
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -98,11 +98,11 @@
       @yield('content')  
     
     <!-- javscript js -->
-    <script src="../assets/site/welcometemplete/js/jquery.js"></script>
-    <script src="../assets/site/welcometemplete/js/bootstrap.min.js"></script>
-    <script src="../assets/site/welcometemplete/js/vegas.min.js"></script>
-    <script src="../assets/site/welcometemplete/js/wow.min.js"></script>
-    <script src="../assets/site/welcometemplete/js/smoothscroll.js"></script>
-    <script src="../assets/site/welcometemplete/js/custom.js"></script>  
+    <script src="assets/site/welcometemplete/js/jquery.js"></script>
+    <script src="assets/site/welcometemplete/js/bootstrap.min.js"></script>
+    <script src="assets/site/welcometemplete/js/vegas.min.js"></script>
+    <script src="assets/site/welcometemplete/js/wow.min.js"></script>
+    <script src="assets/site/welcometemplete/js/smoothscroll.js"></script>
+    <script src="assets/site/welcometemplete/js/custom.js"></script>  
 </body>
 </html>

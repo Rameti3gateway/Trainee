@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
- {{ Html::style(('../assets/site/css/Admin/admin_member/createnewadmin.css')) }}
+ {{ Html::style(('assets/site/css/Admin/admin_member/createnewadmin.css')) }}
 @section('content')
 <div class="container register-form animated fadeIn">
     <div class="row">

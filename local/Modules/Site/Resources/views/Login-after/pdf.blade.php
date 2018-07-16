@@ -66,7 +66,7 @@
                         }
                         $.ajax({
                             'type':'post',
-                            'url':'http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
+                            'url':'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
                             'data':{data:$("#selecttoryearmonthinterval").val()},
                             'cache':false,
                             'success':function(response){
@@ -109,7 +109,7 @@
                              });     
                             $.ajax({
                                 'type':'post',
-                                'url':'http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
+                                'url':'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
                                 'data':{data:$("#selecttoryearmonthinterval").val()},
                                 'cache':false,
                                 'success':function(response){
@@ -134,14 +134,14 @@
                         }       
                     })
                     $("#chooseforcheckincheckout").click(function(){                        
-                        // var link = $(this).attr('http://localhost/Laravel/Trainee/local/site/users/2/report');
+                        // var link = $(this).attr('http://localhost/trainee/site/users/2/report');
                         var type = $("#selecttoryearmonthinterval").val();
                         var detail = $("#selecttoryearmonth").val();
                         var detail1 = $("#selecttorinterval1").val();
                         var detail2 = $("#selecttorinterval2").val();                        
                         if(type == "interval"){
                             if($("#selecttorinterval1")[0].selectedIndex != 0 && $("#selecttorinterval2")[0].selectedIndex != 0){
-                                var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail1+"/"+detail2;
+                                var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail1+"/"+detail2;
                                 var htmlString = '<html>';
                                 htmlString += '<a href="'+url+'" >Click here to Download</a>';
                                 htmlString += '</html>';
@@ -156,7 +156,7 @@
                                 var y = document.getElementById("selecttorinterval1").length;
                                 if(y != 1 && x == 1){
                                     if($("#selecttorinterval1")[0].selectedIndex != 0){
-                                        var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
+                                        var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
                                         var htmlString = '<html>';
                                         htmlString += '<a href="'+url+'" >Click here to Download</a>';
                                         htmlString += '</html>';
@@ -191,7 +191,7 @@
                         }else if(type=="year" || type=="month"){
                             var x = document.getElementById("selecttoryearmonth").length;
                             if($("#selecttoryearmonth")[0].selectedIndex != 0){
-                                var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail;
+                                var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail;
                                 var htmlString = '<html>';
                                 htmlString += '<a href="'+url+'" >Click here to Download</a>';
                                 htmlString += '</html>';
@@ -220,7 +220,7 @@
                     })
                     $("#choosefortodolist").click(function(){
                         var data = $("#selecttodolist").val();
-                        var url = "http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/report/todolist/"+data;
+                        var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/todolist/"+data;
                         var htmlString = '<html>';
                         htmlString += '<a href="'+url+'" >Click here to Download</a>';
                         htmlString += '</html>';

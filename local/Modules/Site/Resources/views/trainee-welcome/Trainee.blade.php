@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-4">
-                        <img src="../assets/site/welcometemplete/images/about-img.png" class="img-responsive wow fadeInUp" alt="About">
+                        <img src="assets/site/welcometemplete/images/about-img.png" class="img-responsive wow fadeInUp" alt="About">
                     </div> 
                     <div class="col-md-5 col-md-offset-4">
                         <h1 class="animated fadeInUp" data-animated-delay="0.4s">Trainee Systems</h1>

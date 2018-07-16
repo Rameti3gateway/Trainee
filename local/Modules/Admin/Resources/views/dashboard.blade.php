@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
- {{ Html::style(('../assets/site/css/Admin/dashboard/dashboard.css')) }}
+ {{ Html::style(('assets/site/css/Admin/dashboard/dashboard.css')) }}
 @section('content')
   <!-- This view is loaded from module: {!! config('admin.name') !!} -->
 <body>

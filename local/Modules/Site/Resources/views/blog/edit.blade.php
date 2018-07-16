@@ -15,12 +15,12 @@
 
                         @if($profile->type == "facebook" || $profile->type == "google" )                                
                             @if(strstr($profile->image,'_',true) == 'user')
-                                <img src="{{url('../upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                                <img src="{{url('upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
                             @else
                                 <img src="{{$profile->image}}" alt="photo" style="width:20%">
                             @endif
                         @elseif($profile->type == 'general')
-                            <img src="{{url('../upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
+                            <img src="{{url('upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
                            
                             
                         @endif                        

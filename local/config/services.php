@@ -37,12 +37,12 @@ return [
      'facebook' => [
         'client_id' => '445249842605114',        
         'client_secret' => '5f3ef4225d5b9b6869f803dc9dd6b5d7', 
-        'redirect' =>'http://localhost/trainee/local/site/login/facebook/callback'
+        'redirect' =>'http://localhost/trainee/site/login/facebook/callback'
     ],
     'google' => [
         'client_id' => '266891001278-r819pt5augk1u0mu6f47u3kg2ppnhnb2.apps.googleusercontent.com',        
         'client_secret' => 'Benjwa2EO7hXftqnG2NPStQc', 
-        'redirect' => 'http://localhost/trainee/local/site/login/google/callback'
+        'redirect' => 'http://localhost/trainee/site/login/google/callback'
     ],
 
 ];

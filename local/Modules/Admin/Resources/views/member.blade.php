@@ -1,5 +1,5 @@
 @extends('site::layouts.app')
- {{ Html::style(('../assets/site/css/Admin/admin_member/member.css')) }}
+ {{ Html::style(('assets/site/css/Admin/admin_member/member.css')) }}
 @section('content')
   <!-- This view is loaded from module: {!! config('admin.name') !!} -->
     <div class="container-fluid animated fadeIn">
@@ -26,19 +26,13 @@
                                         </td>
                                         @if($member->user_id == Auth::user()->user_id)
                                             <td class="col-xs-1">
-                                                <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                <form action= "http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
                                                     <button type="submit" class="btn btn-warning hvr-icon-grow" >
                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
                                                     </button>
                                                 </form>
-                                            </td>
-                                       
-                                       
-                                        <td class="col-xs-3">                                          
-                                           
-                                            <!-- Trigger the modal with a button -->
-                                            
-                                                
+                                            </td>          
+                                        <td class="col-xs-3">                                                  
                                             <button type="button" class="btn btn-danger hvr-icon-grow" id="deletebutton-{{$member->user_id}}"> <i class="glyphicon glyphicon-minus hvr-icon"></i>Delete</button>
                                             <script>
                                                 $(function($){
@@ -66,7 +60,7 @@
                                                                 )
                                                                $.ajax({
                                                                     'type':'post',
-                                                                    'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'url':"http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
                                                                     'cache':false,
                                                                     'data':{date:""},
                                                                     'success':function(data){
@@ -81,7 +75,7 @@
                                         </td> 
                                         @elseif(Auth::user()->user_id == 1)
                                         <td class="col-xs-1">
-                                                <form action= "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                <form action= "http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
                                                     <button type="submit" class="btn btn-warning hvr-icon-grow" >
                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
                                                     </button>
@@ -119,7 +113,7 @@
                                                                 )
                                                                $.ajax({
                                                                     'type':'post',
-                                                                    'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'url':"http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
                                                                     'cache':false,
                                                                     'data':{date:""},
                                                                     'success':function(data){
@@ -145,7 +139,7 @@
                         </div>                    
                     </div>                  
                 <div class="col-lg-8 col-md-offset-2">
-                    <form action="http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/createnewadmin" method="get">
+                    <form action="http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/createnewadmin" method="get">
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <a href="{{url('/admin')}}"> <button type="button" class="btn btn-primary hvr-icon-back">
