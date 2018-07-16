@@ -27,7 +27,7 @@
         });               
         $.ajax({
             'method':'post',
-            'url': 'http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
+            'url': 'http://localhost/trainee/local/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
             'data':{data: $("#check_in").val()},
             'success': function(data){                	
             //    alert(data) ;    
@@ -49,7 +49,7 @@
         });
             $.ajax({
             'method':'post',
-            'url': 'http://localhost/Laravel/Trainee/local/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
+            'url': 'http://localhost/trainee/local/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
             'data':{data: $("#check_out").val()},
             'success':function(data){
                 // alert(data) ; 
