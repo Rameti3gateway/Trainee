@@ -8,6 +8,7 @@
 <div class="container text-center checkinout-main animated FadeIn">
     <h1 class="text-center text-success checkinout">CheckIN-CheckOut</h1>        
     <div class="row">
+
         <div class="col-lg-6" >
             {{Form::submit('CheckIn',['class'=>'btn btn-primary btn-circle btn-xl hvr-grow','name'=>'check_in','id'=>'check_in'])}}
         </div>
@@ -24,17 +25,21 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });               
+        });    
+        
+        
+        
         $.ajax({
             'method':'post',
-            'url': 'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
+            'url': 'checkinout/check',
             'data':{data: $("#check_in").val()},
             'success': function(data){                	
             //    alert(data) ;    
             swal(
                 'check in!',
                 '',
-                'success'
+                'success',
+
                 )        
             }
         });
@@ -49,7 +54,7 @@
         });
             $.ajax({
             'method':'post',
-            'url': 'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/checkinout/check',
+            'url': 'checkinout/check',
             'data':{data: $("#check_out").val()},
             'success':function(data){
                 // alert(data) ; 

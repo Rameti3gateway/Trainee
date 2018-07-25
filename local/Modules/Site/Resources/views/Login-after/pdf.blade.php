@@ -34,6 +34,7 @@
             @php
                 use Carbon\carbon;
                 echo "<select class='form-control' id='selecttodolist'>";
+                    echo "<option>Choose</option>";
                     foreach ($data as $key => $value) {
                         $val = Carbon::parse($value)->format("F Y");
                         echo "<option id=$value >$val</option>";
@@ -66,7 +67,7 @@
                         }
                         $.ajax({
                             'type':'post',
-                            'url':'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
+                            'url':'report/checkincheckout/choose',
                             'data':{data:$("#selecttoryearmonthinterval").val()},
                             'cache':false,
                             'success':function(response){
@@ -109,7 +110,7 @@
                              });     
                             $.ajax({
                                 'type':'post',
-                                'url':'http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/choose',
+                                'url':'report/checkincheckout/choose',
                                 'data':{data:$("#selecttoryearmonthinterval").val()},
                                 'cache':false,
                                 'success':function(response){
@@ -141,9 +142,11 @@
                         var detail2 = $("#selecttorinterval2").val();                        
                         if(type == "interval"){
                             if($("#selecttorinterval1")[0].selectedIndex != 0 && $("#selecttorinterval2")[0].selectedIndex != 0){
-                                var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail1+"/"+detail2;
+                                var url = "{{url('report/checkincheckout/month')}}";
+                                <?php $userid = Auth::user()->id; ?>
+                                 // var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail1+"/"+detail2;
                                 var htmlString = '<html>';
-                                htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                                htmlString += '<a href="{{url("site/users/$userid/report/checkincheckout/")}}'+'/'+type+'/'+detail1+'/'+detail2+'" >Click here to Download</a>';
                                 htmlString += '</html>';
                                 console.log(htmlString);
                                 swal({   
@@ -156,9 +159,10 @@
                                 var y = document.getElementById("selecttorinterval1").length;
                                 if(y != 1 && x == 1){
                                     if($("#selecttorinterval1")[0].selectedIndex != 0){
-                                        var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/month/"+detail1;
+                                       
+                                        <?php $userid = Auth::user()->id; ?>
                                         var htmlString = '<html>';
-                                        htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                                        htmlString += '<a href="{{url("site/users/$userid/report/checkincheckout/month/")}}'+'/'+detail1+'" >Click here to Download</a>';
                                         htmlString += '</html>';
                                         console.log(htmlString);
                                         swal({   
@@ -190,10 +194,13 @@
                             }                        
                         }else if(type=="year" || type=="month"){
                             var x = document.getElementById("selecttoryearmonth").length;
+                            console.log(detail);
                             if($("#selecttoryearmonth")[0].selectedIndex != 0){
-                                var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/checkincheckout/"+type+"/"+detail;
+                                
+                                <?php $userid = Auth::user()->id; ?>
+                                
                                 var htmlString = '<html>';
-                                htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                                htmlString += '<a href="{{url("site/users/$userid/report/checkincheckout/")}}'+'/'+type+'/'+detail+'" >Click here to Download</a>';
                                 htmlString += '</html>';
                                 console.log(htmlString);
                                 swal({   
@@ -216,20 +223,36 @@
 
                                 
                             }                            
+                        }else if(type = "Choose"){
+                            swal({   
+                                title: 'Please Choose Before',
+                                confirmButtonText: 'OK',
+                                    
+                            })
                         }                        
                     })
                     $("#choosefortodolist").click(function(){
                         var data = $("#selecttodolist").val();
-                        var url = "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/report/todolist/"+data;
+                        <?php $userid = Auth::user()->id; ?>
                         var htmlString = '<html>';
-                        htmlString += '<a href="'+url+'" >Click here to Download</a>';
+                        htmlString += '<a href="{{url("site/users/$userid/report/todolist/")}}'+'/'+data+'" >Click here to Download</a>';
                         htmlString += '</html>';
                         console.log(htmlString);
-                        swal({   
-                            title: 'Your Generate PDF Todolist',
-                            confirmButtonText: 'OK',
-                            html:htmlString,
-                        })
+                        console.log(data);
+                        if(data != 'Choose'){
+                            swal({   
+                                title: 'Your Generate PDF Todolist',
+                                confirmButtonText: 'OK',
+                                html:htmlString,
+                            })
+                        }else{
+                            swal({   
+                                title: 'Please Choose Before',
+                                confirmButtonText: 'OK',
+                                
+                            })
+                        }
+                        
                     })                    
                 })
          </script>

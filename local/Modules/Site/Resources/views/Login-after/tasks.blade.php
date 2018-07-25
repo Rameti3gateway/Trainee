@@ -10,7 +10,7 @@
         $('body').on('change','#selectdate',function(){
             $.ajax({
                 'type':'POST',
-                'url': "http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/todolist/choose",
+                'url': "todolist/choose",
                 'cache':false,
                 'data':{date:$("#selectdate").val()},
                 'success':function(data){
@@ -40,21 +40,38 @@
                                     "</div></td>"+
                                 "</tr>");      
                             $("#deletebutton-"+value.id).click(function(){
-                                $.ajax({
-                                    'type':'POST',
-                                    'url':"http://localhost/trainee/site/users/"+value.id+"/todolist/delete/"+value.user_id,
-                                    'cache':false,
-                                    'data':{data:value.id,date:$("#selectdate").val()},
-                                    'success':function(data){
-                                        if(data.count == 0){
-                                            $("#displaytask").empty();
-                                        }else{
-                                            $("#trid-"+value.id).empty();
-                                        }
-
+                                swal({
+                                    title: 'Are you sure delete?',
+                                    text: "Do you want to delete it!",
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.value) {  
+                                        swal(
+                                            'Deleted!',
+                                            'Your task has been deleted.',
+                                            'success'
+                                        )
+                                        $.ajax({
+                                        'type':'POST',
+                                        'url':"todolist/delete/"+value.id,
+                                        'cache':false,
+                                        'data':{data:value.id,date:$("#selectdate").val()},
+                                        'success':function(data){                                                                                                                                             
+                                                    if(data.count == 0){                                                        
+                                                        $("#displaytask").empty();
+                                                    }else{
+                                                        $("#trid-"+value.id).empty();
+                                                    }
+                                                }
+                                        })
                                     }
-                                })
+                                });                                                    
                             });
+                            
                             console.log(value.detail);
                             var oldvalue;
                             var count = 0;
@@ -67,7 +84,7 @@
                                     showCancelButton: true,
                                     inputValue:(count == 0)? data:oldvalue,
                                     preConfirm:(input)=>{
-                                        return fetch("/trainee/site/users/"+value.user_id+"/todolist/"+value.id+"/edittodolist/"+input)
+                                        return fetch("/site/users/"+value.user_id+"/todolist/"+value.id+"/edittodolist/"+input)
                                         .then(response =>{
                                             return response.json();
                                         })   
@@ -114,7 +131,8 @@
                 @endphp 
 
                 <!-- New Task Form -->
-                <form action="http://localhost/trainee/site/users/<?php echo Auth::user()->id; ?>/todolist/task" method="post" class="form-horizontal" id="addtaskform">
+
+                <form action="todolist/task" method="post" class="form-horizontal" id="addtaskform">
                     {{ csrf_field() }}
                     <!-- Task Name -->
                     <div  class="form-group">
@@ -192,7 +210,7 @@
                                                         )
                                                         $.ajax({
                                                         'type':'POST',
-                                                        'url':"http://localhost/trainee/site/users/"+<?php echo $task->id ?>+"/todolist/delete/"+<?php echo $task->user_id ?>,
+                                                        'url':"todolist/delete/"+<?php echo $task->user_id ?>,
                                                         'cache':false,
                                                         'data':{data:<?php echo $task->id ?>,date:$("#selectdate").val()},
                                                         'success':function(data){                                                                                                                                             
@@ -217,7 +235,7 @@
                                                     showCancelButton: true,
                                                     inputValue:(count == 0)? data:oldvalue,
                                                     preConfirm:(input)=>{
-                                                        return fetch("/trainee/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
+                                                        return fetch("/site/users/{{$task->user_id}}/todolist/{{$task->id}}/edittodolist/"+input)
                                                         .then(response =>{
                                                             return response.json();
                                                         })   

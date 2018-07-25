@@ -26,7 +26,7 @@
                                         </td>
                                         @if($member->user_id == Auth::user()->user_id)
                                             <td class="col-xs-1">
-                                                <form action= "http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                <form action= "member/{{$member->user_id}}/editadmin" method="get">
                                                     <button type="submit" class="btn btn-warning hvr-icon-grow" >
                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
                                                     </button>
@@ -60,7 +60,7 @@
                                                                 )
                                                                $.ajax({
                                                                     'type':'post',
-                                                                    'url':"http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'url':"member/{{$member->user_id}}/deleteadmin",
                                                                     'cache':false,
                                                                     'data':{date:""},
                                                                     'success':function(data){
@@ -75,7 +75,7 @@
                                         </td> 
                                         @elseif(Auth::user()->user_id == 1)
                                         <td class="col-xs-1">
-                                                <form action= "http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/editadmin" method="get">
+                                                <form action= "member/{{$member->user_id}}/editadmin" method="get">
                                                     <button type="submit" class="btn btn-warning hvr-icon-grow" >
                                                     <i class="glyphicon glyphicon-edit hvr-icon"></i>Edit
                                                     </button>
@@ -113,7 +113,7 @@
                                                                 )
                                                                $.ajax({
                                                                     'type':'post',
-                                                                    'url':"http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/{{$member->user_id}}/deleteadmin",
+                                                                    'url':"member/{{$member->user_id}}/deleteadmin",
                                                                     'cache':false,
                                                                     'data':{date:""},
                                                                     'success':function(data){
@@ -139,7 +139,7 @@
                         </div>                    
                     </div>                  
                 <div class="col-lg-8 col-md-offset-2">
-                    <form action="http://localhost/trainee/admin/<?php echo Auth::user()->id ?>/member/createnewadmin" method="get">
+                    <form action="member/createnewadmin" method="get">
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <a href="{{url('/admin')}}"> <button type="button" class="btn btn-primary hvr-icon-back">

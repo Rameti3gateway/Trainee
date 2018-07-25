@@ -40,8 +40,18 @@ class TodolistController extends Controller
                 $data['recentdate'] = $data['date'];
             }
             
-            $data['choosedate']= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(5)->pluck('date','date');
-            
+            $val= Times::select('date')->where('user_id','=',$id)->where('time_checkin','!=',null)->groupBy('date')->orderBy('date','desc')->paginate(5)->pluck('date');
+
+            $arr = [];
+            $arrval = [];
+            $data['choosedate'] = [];
+            foreach ($val as $key => $value) {
+               $date = Carbon::parse($value)->format("d F Y");
+               array_push($arr, $date);
+               array_push($arrval, $value);
+               
+            }
+            $data['choosedate'] = array_combine($arrval, $arr); 
             
             $data['tasks'] = Tasks::where('user_id','=',$id)->where('date','=',$data['recentdate'])->get();
 

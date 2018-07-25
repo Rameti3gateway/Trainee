@@ -53,8 +53,13 @@ class BlogController extends Controller
             
             
             if($image != null){
+                $oldimage = $profile->image;
+                if($oldimage != "default.jpg"){
+                    unlink("upload/img/site/profile-image/".$oldimage);
+                }
+               
                 $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
-                $image->move('../upload/img/site/profile-image/', $photoName);
+                $image->move('upload/img/site/profile-image/', $photoName);
                 $profile->image = $photoName;
             }
         

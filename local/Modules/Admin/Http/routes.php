@@ -28,6 +28,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'Module
 	
 
 	Route::get('/{id}/showprofile/{userid}/showgraph/{date}','AdminController@showgraph');
+
+	
 	
 
 });

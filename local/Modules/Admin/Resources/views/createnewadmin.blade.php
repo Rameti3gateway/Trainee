@@ -8,7 +8,7 @@
                 <div class="panel-heading">Create New Admin</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id ?>/member/createnewadminprocess">
+                    <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="createnewadminprocess">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

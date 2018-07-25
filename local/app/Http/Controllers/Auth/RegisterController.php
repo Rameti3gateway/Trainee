@@ -54,7 +54,7 @@ class RegisterController extends Controller
            
        }else{
             $photoName = 'user_'.uniqid().'_'.time().'.'.$data['image']->getClientOriginalExtension();
-            $data['image']->move('../assets/site/img/profile-image/user-image', $photoName);
+            $data['image']->move('upload/img/site/profile-image', $photoName);
             
        }
        return User::create([

@@ -257,8 +257,13 @@ class AdminController extends Controller
             $profile = User::find($userid);
 
             if($request->image != null){
+                $oldimage = $profile->image;
+                if($oldimage != "default.jpg"){
+                    unlink("upload/img/site/admin-profile-image/".$oldimage);
+                }
+                
                 $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
-                $request->image->move('../upload/img/site/admin-profile-image', $photoName);
+                $request->image->move('upload/img/site/admin-profile-image', $photoName);
                 $profile->image = $photoName;
             }
 
@@ -297,7 +302,7 @@ class AdminController extends Controller
             $newadmin = new User;
             if($request->image != null){
                 $photoName = 'admin_'.uniqid().'_'.time().'.'.$request->image->getClientOriginalExtension();
-                $request->image->move('../upload/img/site/admin-profile-image', $photoName);
+                $request->image->move('upload/img/site/admin-profile-image', $photoName);
                 $newadmin->image = $photoName;
             }else{
                 $photoName = "default.jpg";
@@ -323,8 +328,9 @@ class AdminController extends Controller
             $admin->role = $newadmin->role;
             $admin->password = $newadmin->password;
             $admin->save();
-    
-            return $this->member();
+
+            $url = "admin/$id/member";   
+            return redirect($url);
         }else{
             return redirect()->back()->withErrors($validator)->withInput();
         }

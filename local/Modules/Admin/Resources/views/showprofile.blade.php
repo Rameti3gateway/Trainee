@@ -10,15 +10,15 @@
                 <div class="panel-body text-center">
                     @if($blog->type == "facebook" || $blog->type == "google" )                                
                         @if(strstr($blog->image,'_',true) == 'user')
-                            <img class="hvr-grow" src="{{url('upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                            <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
                         @else
                             <img class="hvr-grow" src="{{$blog->image}}" alt="photo" style="width:20%">
                         @endif
                     @elseif($blog->type == 'general')
                         @if($blog->image == null)
-                            <img class="hvr-grow" src="{{ url('upload/img/default.jpg') }}" alt="photo" style="width:20%">
+                            <img class="hvr-grow" src="{{ url('../upload/img/default.jpg') }}" alt="photo" style="width:20%">
                         @else
-                            <img class="hvr-grow" src="{{url('upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
+                            <img class="hvr-grow" src="{{url('../upload/img/site/profile-image/'.$blog->image )}}" alt="photo" style="width:20%">
                         @endif                            
                     @endif                        
                  </div>     
@@ -79,7 +79,7 @@
                                             if($("#selectdate").val() != 0){
                                                 $.ajax({
                                                     'type':'post',
-                                                    'url' : "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id; ?>/showprofile/<?php echo $blog->id ?>/showtodolist",
+                                                    'url' : "<?php echo $blog->id ?>/showtodolist",
                                                     'cache':false,
                                                     'data':{date:$("#selectdate").val()},
                                                     'success':function(data){
@@ -137,7 +137,7 @@
                                         $("#divweekormonth").show();
                                         $.ajax({
                                             'type':'post',
-                                            'url':"http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id; ?>/showprofile/<?php echo $blog->id ?>/selectweekormonth",
+                                            'url':"<?php echo $blog->id ?>/selectweekormonth",
                                             'cache':false,
                                             'data':{data:$("#selectweekormonth").val()},
                                             'success':function(data){
@@ -156,7 +156,7 @@
                                         
                                         $("#showgraph").empty();
                                         var date = $("#formweekormonth").val();
-                                        var url = "http://localhost/Laravel/Trainee/local/admin/<?php echo Auth::user()->id; ?>/showprofile/<?php echo $blog->id ?>/showgraph/"+date;
+                                        var url = "<?php echo $blog->id ?>/showgraph/"+date;
                                         console.log(url);
                                         $.ajax({
                                             'type':'get',

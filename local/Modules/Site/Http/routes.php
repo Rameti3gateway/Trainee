@@ -40,7 +40,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'site', 'namespace' => 'Modules
 
         Route::get('/{id}/todolist', 'TodolistController@index');
         Route::post('/{id}/todolist/task','TodolistController@store');
-        Route::post('/{task}/todolist/delete/{id}','TodolistController@destroy');
+        Route::post('/{id}/todolist/delete/{task}','TodolistController@destroy');
         Route::post('/{id}/todolist/choose','TodolistController@show');
         Route::get('/{id}/todolist/{taskid}/edittodolist/{input}','TodolistController@edittodolist');
 
