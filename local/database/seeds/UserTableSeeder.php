@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'gender' => 'female',
             'email' => 'vi@example.com',
             'role' => 'admin',
-            'type' => 'general',
+            'type' => 'general',           
             'password' => bcrypt('123456'),
         ]);
         DB::table('users')->insert([
@@ -27,6 +27,7 @@ class UserTableSeeder extends Seeder
             'email' => 'sakura@example.com',
             'role' => 'user',
             'type' => 'general',
+            'image' => 'default.jpg',
             'password' => bcrypt('123456'),
         ]);
     

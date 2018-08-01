@@ -22,7 +22,7 @@ class GoogleAuthController extends Controller
      */
     public function handlegoogleCallback(SocialGoogleAccountService $service)
     {
-        $user = $service->createOrGetUser(Socialite::driver('google')->user());
+        $user = $service->createOrGetUser(Socialite::driver('google')->stateless()->user());
          auth()->login($user);    
         return redirect()->to('site/home');
         //dd($user);      
