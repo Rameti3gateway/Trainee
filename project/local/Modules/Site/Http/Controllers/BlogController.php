@@ -20,7 +20,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        // echo "Testt" or die;
+        // echo "Testt";
          $blog = User::findOrFail($id);
           return View('site::blog.show')
                 ->with('blog', $blog);
@@ -31,7 +31,8 @@ class BlogController extends Controller
         //  echo '555555555';
             if(User::where(''))
             $profile = User::find($id);
-            return view('site::blog.edit')->with('profile',$profile);           
+            return view('site::blog.edit')->with('profile',$profile);      
+                 
     }
 
     public function update(Request $request, $id)
@@ -55,7 +56,7 @@ class BlogController extends Controller
             if($image != null){
                 $oldimage = $profile->image;
                 if($oldimage != "default.jpg"){
-                    unlink("upload/img/site/profile-image/".$oldimage);
+                    unlink("upload/img/site/profile-image/".$oldimage);                  
                 }
                
                 $photoName = 'user_'.uniqid().'_'.time().'.'.$image->getClientOriginalExtension();
