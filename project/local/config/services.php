@@ -37,11 +37,15 @@ return [
     'facebook' => [
         'client_id' => '445249842605114',
         'client_secret' => '5f3ef4225d5b9b6869f803dc9dd6b5d7',
-        'redirect' => 'http://localhost/site/login/facebook/callback'
+        'redirect' => 'http://localhost/trainee/project/site/login/facebook/callback'
+        //upserver facebook use
+        // 'redirect' => 'https://www.traineei3gateway.tk/site/login/facebook/callback'
     ],
     'google' => [
         'client_id' => '266891001278-r819pt5augk1u0mu6f47u3kg2ppnhnb2.apps.googleusercontent.com',
         'client_secret' => 'Benjwa2EO7hXftqnG2NPStQc',
-        'redirect' => 'http://localhost/site/login/google/callback'
+        'redirect' => 'http://localhost/trainee/project/site/login/google/callback'
+        //upserver google use
+        // 'redirect' => 'https://www.traineei3gateway.tk/site/login/google/callback'
     ],
 ];
