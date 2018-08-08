@@ -26,12 +26,12 @@
                         @endif                        
                        
                      </div>
-                     <div class="panel-body ">
+                     <!-- <div class="panel-body ">
                         {{Form::label('null','Image :',['class'=>'col-md-4 control-label'])}}                      
                         <div class="col-md-6">
                             {{Form::file('image', null)}}                             
                         </div>
-                    </div>
+                    </div> -->
                     <div class="panel-body ">
                         {{Form::label('null','Name :',['class'=>'col-md-4 control-label'])}}                        
                         <div class="col-md-6">
