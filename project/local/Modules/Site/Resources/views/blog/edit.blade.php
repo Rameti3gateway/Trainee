@@ -19,19 +19,17 @@
                             @else
                                 <img src="{{$profile->image}}" alt="photo" style="width:20%">
                             @endif
-                        @elseif($profile->type == 'general')
+                       @elseif($profile->type == 'general')
                             <img src="{{url('upload/img/site/profile-image/'.$profile->image )}}" alt="photo" style="width:20%">
-                           
-                            
-                        @endif                        
-                       
-                     </div>
-                     <!-- <div class="panel-body ">
-                        {{Form::label('null','Image :',['class'=>'col-md-4 control-label'])}}                      
+                      </div>
+                    <div class="panel-body ">
+                        {{Form::label('null','Image :',['class'=>'col-md-4 control-label'])}}
                         <div class="col-md-6">
-                            {{Form::file('image', null)}}                             
+                            {{Form::file('image', null)}}
                         </div>
-                    </div> -->
+                    </div>
+                        @endif                       
+                    
                     <div class="panel-body ">
                         {{Form::label('null','Name :',['class'=>'col-md-4 control-label'])}}                        
                         <div class="col-md-6">
